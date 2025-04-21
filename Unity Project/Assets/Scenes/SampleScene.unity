@@ -1313,7 +1313,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &292278267
@@ -1470,7 +1470,7 @@ GameObject:
   - component: {fileID: 420841701}
   - component: {fileID: 420841699}
   - component: {fileID: 420841698}
-  - component: {fileID: 420841705}
+  - component: {fileID: 420841708}
   m_Layer: 6
   m_Name: PlayerModel
   m_TagString: Player
@@ -1639,19 +1639,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 292278266}
---- !u!114 &420841705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420841696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859952e76ec78af4e9ac0cd0affb70f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MovementStateName: 
 --- !u!114 &420841706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,6 +1673,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementStateName: 
+--- !u!81 &420841708
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420841696}
+  m_Enabled: 1
 --- !u!1 &449298304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2596,7 +2591,6 @@ GameObject:
   m_Component:
   - component: {fileID: 817506685}
   - component: {fileID: 817506689}
-  - component: {fileID: 817506688}
   - component: {fileID: 817506687}
   - component: {fileID: 817506686}
   - component: {fileID: 817506690}
@@ -2674,15 +2668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c476b5f84b64e724d94a203fd7af69d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p: {fileID: 0}
---- !u!81 &817506688
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817506684}
-  m_Enabled: 1
+  p: {fileID: 420841696}
 --- !u!20 &817506689
 Camera:
   m_ObjectHideFlags: 0

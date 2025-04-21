@@ -36,14 +36,12 @@ public class StateAPI
             {
                 returnState = MovementStateType.Falling;
             }
-            else
-            {
-                returnState = MovementStateType.Still;
-            }
+
         }
 
         catch (Exception e)
         {
+            Debug.LogException(e); 
             return MovementStateType.Still;
         }
 

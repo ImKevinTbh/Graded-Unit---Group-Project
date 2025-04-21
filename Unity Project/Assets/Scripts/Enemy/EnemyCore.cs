@@ -49,7 +49,7 @@ public class EnemyCore : MonoBehaviour
         }
         catch (Exception e)
         {
-
+            return false;
         }
 
         Debug.Log($"Old {Health}");

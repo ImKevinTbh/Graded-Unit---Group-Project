@@ -15,18 +15,15 @@ public class AttackController : MonoBehaviour
         _Damage = Damage;
         if (Input.GetKey(KeyCode.Mouse0) && canShoot)
         {
-            Timing.RunCoroutine(Shoot().CancelWith(gameObject));
-            AudioSource.PlayClipAtPoint(AudioClip, GameObject.Find("PlayerModel").gameObject.transform.position);
+            if (canShoot)
+            {
+                canShoot = false;
+                Instantiate(bullet, transform.position, transform.rotation);
+                AudioSource.PlayClipAtPoint(AudioClip, GameObject.Find("PlayerModel").gameObject.transform.position);
+                Timing.CallDelayed(0.14f, () => canShoot = true);
+            }
+            
         }
-    }
-
-    public IEnumerator<float> Shoot()
-    {
-        canShoot = false;
-        Instantiate(bullet, transform.position, transform.rotation);
-        yield return Timing.WaitForSeconds(0.15f);
-        canShoot = true;
-        
     }
 
 
