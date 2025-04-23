@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class PickupEventArgs
 {
-    public PickupEventArgs(Collider2D collider) { Collider = collider; }
+    public PickupEventArgs(GameObject instance, Collider2D collider)
+    {
+        Instance = instance;
+        Collider = collider;
+    }
+    public GameObject Instance { get; }
     public Collider2D Collider { get; }
+
 
 }
 public class Events
