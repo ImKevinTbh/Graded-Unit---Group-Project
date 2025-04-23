@@ -16,6 +16,6 @@ public class UiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ui.text = $"Speed {rb.velocity.ToString()}";
+        ui.text = $"Speed {rb.velocity.ToString()} \nScore {ScoreHandler.Score.ToString()}";
     }
 }

@@ -27,6 +27,7 @@ public class PickupHandler : MonoBehaviour
         {
             GameObject pickup = GameObject.Instantiate(pickupPrefab);
             pickup.AddComponent<PickupObject>();
+            pickup.transform.position = spawnpoint;
             Events.Pickup += PickupCollected;
         }
 
@@ -37,6 +38,8 @@ public class PickupHandler : MonoBehaviour
     {
         GameObject.Destroy(e.Instance);
         Debug.Log("PICKED UP");
+        ScoreHandler.Score += 5;
+        Debug.Log(e.Instance.transform.position);
 
     }
 

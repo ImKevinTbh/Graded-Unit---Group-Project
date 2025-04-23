@@ -14,6 +14,8 @@ namespace Assets
 
         public void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.CompareTag("Boundary") || other.CompareTag("Bullet") || other.CompareTag("Pickup")) { return; }
+            GameObject.Destroy(gameObject);
             Events.OnPickup(new PickupEventArgs(gameObject, other));
         }
     }
