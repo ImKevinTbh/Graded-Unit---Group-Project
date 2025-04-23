@@ -1,6 +1,7 @@
 using Assets;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -34,7 +35,7 @@ public class PickupHandler : MonoBehaviour
 
     public void PickupCollected(object sender, PickupEventArgs e)
     {
-
+        GameObject.Destroy(e.Instance);
         Debug.Log("PICKED UP");
 
     }

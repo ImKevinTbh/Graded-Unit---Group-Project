@@ -14,7 +14,7 @@ namespace Assets
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            Events.OnPickup(new PickupEventArgs(other));
+            Events.OnPickup(new PickupEventArgs(gameObject, other));
         }
     }
 }

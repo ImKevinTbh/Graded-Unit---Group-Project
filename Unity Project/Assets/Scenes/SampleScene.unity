@@ -1313,7 +1313,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &292278267
@@ -1470,7 +1470,7 @@ GameObject:
   - component: {fileID: 420841701}
   - component: {fileID: 420841699}
   - component: {fileID: 420841698}
-  - component: {fileID: 420841708}
+  - component: {fileID: 420841705}
   m_Layer: 6
   m_Name: PlayerModel
   m_TagString: Player
@@ -1639,6 +1639,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 292278266}
+--- !u!114 &420841705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420841696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859952e76ec78af4e9ac0cd0affb70f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementStateName: 
 --- !u!114 &420841706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1673,14 +1686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementStateName: 
---- !u!81 &420841708
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420841696}
-  m_Enabled: 1
 --- !u!1 &449298304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,6 +2596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 817506685}
   - component: {fileID: 817506689}
+  - component: {fileID: 817506688}
   - component: {fileID: 817506687}
   - component: {fileID: 817506686}
   - component: {fileID: 817506690}
@@ -2668,7 +2674,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c476b5f84b64e724d94a203fd7af69d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p: {fileID: 420841696}
+  p: {fileID: 0}
+--- !u!81 &817506688
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817506684}
+  m_Enabled: 1
 --- !u!20 &817506689
 Camera:
   m_ObjectHideFlags: 0
@@ -3835,6 +3849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1471418989}
+  - component: {fileID: 1471418990}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -3856,8 +3871,65 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1283403005}
+  - {fileID: 1477213045}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1471418990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471418988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e416ae01ebb2695499aa6507bfe7606c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1477213044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1477213045}
+  - component: {fileID: 1477213046}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1477213045
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477213044}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1471418989}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1477213046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477213044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e416ae01ebb2695499aa6507bfe7606c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1515837636
 GameObject:
   m_ObjectHideFlags: 0
