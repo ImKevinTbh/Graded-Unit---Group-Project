@@ -124,6 +124,7 @@ public class MovementHandler : MonoBehaviour
             gameObject.transform.position = Spawn;
             rb.velocity = Vector2.zero;
             OnGround = false;
+            
         }
     }
 

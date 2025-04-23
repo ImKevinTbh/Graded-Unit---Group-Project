@@ -15,6 +15,7 @@ public class EnemyCore : MonoBehaviour
 
     public AudioClip DyingSFX;
 
+    public Events Events = EnemyCore.inst;
 
     public void Start()
     {
@@ -31,10 +32,16 @@ public class EnemyCore : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().AddForce(GameObject.Find("PlayerModel").transform.position - gameObject.transform.position, ForceMode2D.Force);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       
+    }
+
     public void OnDestroy()
     {
         AudioSource.PlayClipAtPoint(DyingSFX, gameObject.transform.position);
         Destroy(gameObject);
+        ScoreHandler.Score += 10;
     }
 
     public bool Attacked(GameObject attacker, GameObject instance, float Damage)

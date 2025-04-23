@@ -22,13 +22,13 @@ public class PickupHandler : MonoBehaviour
 
     private void Awake()
     {
+        Events.Pickup += PickupCollected;
         instance = this;
         foreach (Vector3 spawnpoint in spawnPoints)
         {
             GameObject pickup = GameObject.Instantiate(pickupPrefab);
             pickup.AddComponent<PickupObject>();
             pickup.transform.position = spawnpoint;
-            Events.Pickup += PickupCollected;
         }
 
         
@@ -36,7 +36,7 @@ public class PickupHandler : MonoBehaviour
 
     public void PickupCollected(object sender, PickupEventArgs e)
     {
-        GameObject.Destroy(e.Instance);
+        
         Debug.Log("PICKED UP");
         ScoreHandler.Score += 5;
         Debug.Log(e.Instance.transform.position);
