@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance = null;
     public GameObject p;
     // Start is called before the first frame update
     void Start()
     {
-        p = GameObject.Find("PlayerModel").gameObject;
+            instance = this;
+            p = GameObject.Find("PlayerModel").gameObject;
     }
 
     // Update is called once per frame

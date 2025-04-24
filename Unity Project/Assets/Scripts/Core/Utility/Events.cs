@@ -1,23 +1,68 @@
 using System;
 using UnityEngine;
 
-public class PickupEventArgs
+namespace EventArgs
 {
-    public PickupEventArgs(GameObject instance, Collider2D collider)
+    public class HurtEventArgs
     {
-        Instance = instance;
-        Collider = collider;
+        public HurtEventArgs(GameObject instance, GameObject source, float damage)
+        {
+            Instance = instance;
+            Source = source;
+            Damage = damage;
+        }
+
+        public GameObject Instance { get; }
+        public GameObject Source { get; }
+        public float Damage { get; }
     }
-    public GameObject Instance { get; }
-    public Collider2D Collider { get; }
+
+    public class PickupEventArgs
+    {
+        public PickupEventArgs(GameObject instance, Collider2D collider)
+        {
+            Instance = instance;
+            Collider = collider;
+        }
+        public GameObject Instance { get; }
+        public Collider2D Collider { get; }
+
+    }
+}
+
+namespace Events
+{
+    using EventArgs;
+
+    public class Pickup
+    {
 
 
-}
-public class Events
-{
-    public event EventHandler<PickupEventArgs> Pickup;
-    public virtual void OnPickup(PickupEventArgs e)
+        public event EventHandler<PickupEventArgs> OnPickup;
+        public virtual void _Pickup(PickupEventArgs pickupeventargs)
+        {
+            OnPickup?.Invoke(this, pickupeventargs);
+        }
+    }
+
+    public class Player
     {
-        Pickup?.Invoke(this, e);
+        public event EventHandler<HurtEventArgs> Hurt;
+        public virtual void _Hurt(HurtEventArgs playerhurteventargs)
+        {
+            Hurt?.Invoke(this, playerhurteventargs);
+        }
+    }
+
+
+    public class Enemy
+    {
+        public event EventHandler<HurtEventArgs> Hurt;
+        public virtual void _Hurt(HurtEventArgs playerhurteventargs)
+        {
+            Hurt?.Invoke(this, playerhurteventargs);
+        }
     }
 }
+
+

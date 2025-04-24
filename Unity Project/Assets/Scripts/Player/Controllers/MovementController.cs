@@ -85,7 +85,7 @@ public class MovementHandler : MonoBehaviour
         {
             _JumpsUsed++;
             rb.velocity = new Vector2(rb.velocity.x, JumpPower * (rb.mass + rb.gravityScale / 10));
-            AudioSource.PlayClipAtPoint(JumpSFX, gameObject.transform.position);
+            AudioSource.PlayClipAtPoint(JumpSFX, CameraController.instance.transform.position);
         }
 
     }
@@ -124,6 +124,7 @@ public class MovementHandler : MonoBehaviour
             gameObject.transform.position = Spawn;
             rb.velocity = Vector2.zero;
             OnGround = false;
+            
         }
     }
 
