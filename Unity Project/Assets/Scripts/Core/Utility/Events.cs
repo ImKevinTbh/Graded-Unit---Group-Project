@@ -1,43 +1,68 @@
 using System;
 using UnityEngine;
 
-public class PickupEventArgs
+namespace EventArgs
 {
-    public PickupEventArgs(GameObject instance, Collider2D collider)
+    public class HurtEventArgs
     {
-       Instance = instance;
-       Collider = collider;
-    }
-    public GameObject Instance { get; }
-    public Collider2D Collider { get; }
+        public HurtEventArgs(GameObject instance, GameObject source, float damage)
+        {
+            Instance = instance;
+            Source = source;
+            Damage = damage;
+        }
 
+        public GameObject Instance { get; }
+        public GameObject Source { get; }
+        public float Damage { get; }
+    }
+
+    public class PickupEventArgs
+    {
+        public PickupEventArgs(GameObject instance, Collider2D collider)
+        {
+            Instance = instance;
+            Collider = collider;
+        }
+        public GameObject Instance { get; }
+        public Collider2D Collider { get; }
+
+    }
 }
 
-public class PlayerHurtEventArgs
+namespace Events
 {
-    public PlayerHurtEventArgs(GameObject instance, GameObject source, float damage)
+    using EventArgs;
+
+    public class Pickup
     {
-       Instance = instance;
-       Source = source;
-       Damage = damage;
+
+
+        public event EventHandler<PickupEventArgs> OnPickup;
+        public virtual void _Pickup(PickupEventArgs pickupeventargs)
+        {
+            OnPickup?.Invoke(this, pickupeventargs);
+        }
     }
 
-    public GameObject Instance { get; }
-    public GameObject Source { get; }
-    public float Damage { get; }
+    public class Player
+    {
+        public event EventHandler<HurtEventArgs> Hurt;
+        public virtual void _Hurt(HurtEventArgs playerhurteventargs)
+        {
+            Hurt?.Invoke(this, playerhurteventargs);
+        }
+    }
+
+
+    public class Enemy
+    {
+        public event EventHandler<HurtEventArgs> Hurt;
+        public virtual void _Hurt(HurtEventArgs playerhurteventargs)
+        {
+            Hurt?.Invoke(this, playerhurteventargs);
+        }
+    }
 }
 
-public class Events
-{
-    public event EventHandler<PickupEventArgs> Pickup;
-    public virtual void OnPickup(PickupEventArgs pickupeventargs)
-    {
-        Pickup?.Invoke(this, pickupeventargs);
-    }
 
-    public event EventHandler<PlayerHurtEventArgs> PlayerHurt;
-    public virtual void OnPlayerHurt(PlayerHurtEventArgs playerhurteventargs)
-    {
-        PlayerHurt?.Invoke(this, playerhurteventargs);
-    }
-}

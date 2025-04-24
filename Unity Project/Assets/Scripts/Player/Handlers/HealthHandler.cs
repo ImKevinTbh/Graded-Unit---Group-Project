@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using EventArgs;
 public class HealthHandler : MonoBehaviour
 {
-    public static HealthHandler instance = null;
-    public Events Events = new Events();
+
 
     public static float PlayerHealth;
 
     private void Awake()
     {
-        Events.PlayerHurt += Hurt;
+        EventHandler.Player.Hurt += Hurt;
     }
 
-    public void Hurt(object sender, PlayerHurtEventArgs e)
+    public void Hurt(object sender, HurtEventArgs e)
     {
         PlayerHealth -= e.Damage;
     }

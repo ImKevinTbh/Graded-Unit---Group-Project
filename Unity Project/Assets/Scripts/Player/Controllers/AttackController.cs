@@ -19,8 +19,8 @@ public class AttackController : MonoBehaviour
             {
                 canShoot = false;
                 Instantiate(bullet, transform.position, transform.rotation);
-                AudioSource.PlayClipAtPoint(AudioClip, GameObject.Find("PlayerModel").gameObject.transform.position);
-                Timing.CallDelayed(0.14f, () => canShoot = true);
+                AudioSource.PlayClipAtPoint(AudioClip, CameraController.instance.transform.position);
+                Timing.CallDelayed(0.2f, () => canShoot = true);
             }
             
         }

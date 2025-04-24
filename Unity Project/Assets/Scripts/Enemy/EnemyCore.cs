@@ -15,7 +15,6 @@ public class EnemyCore : MonoBehaviour
 
     public AudioClip DyingSFX;
 
-    public Events Events = EnemyCore.inst;
 
     public void Start()
     {
@@ -49,19 +48,17 @@ public class EnemyCore : MonoBehaviour
 
         Color color = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-        try
-        {
-            Timing.CallDelayed(0.2f, () => { gameObject.GetComponent<SpriteRenderer>().color = color; });
 
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
+            Timing.CallDelayed(0.2f, () =>
+            {
+                try
+                {
+                    gameObject.GetComponent<SpriteRenderer>().color = color;
+                }
+                catch (Exception e) { }
+            });
 
-        Debug.Log($"Old {Health}");
         Health -= Damage;
-        Debug.Log($"New {Health}");
         return true;
     }
 

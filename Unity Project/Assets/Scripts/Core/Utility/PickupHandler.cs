@@ -1,18 +1,15 @@
 using Assets;
+using Events;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using EventArgs;
 
 public class PickupHandler : MonoBehaviour
 {
     public static PickupHandler instance = null;
-    public Events Events = new Events();
-
-
-    List<string> listName = new List<string>();
-    
 
     public List<GameObject> pickups = new List<GameObject>();
     public List<Vector3> spawnPoints = new List<Vector3>();
@@ -22,8 +19,8 @@ public class PickupHandler : MonoBehaviour
 
     private void Awake()
     {
-        Events.Pickup += PickupCollected;
-        instance = this;
+        EventHandler.Pickup.OnPickup += PickupCollected; // Subscribe to event, all events should be under "EventHandler.<Category>.On<EventName>
+
         foreach (Vector3 spawnpoint in spawnPoints)
         {
             GameObject pickup = GameObject.Instantiate(pickupPrefab);
@@ -31,7 +28,7 @@ public class PickupHandler : MonoBehaviour
             pickup.transform.position = spawnpoint;
         }
 
-        
+
     }
 
     public void PickupCollected(object sender, PickupEventArgs e)
