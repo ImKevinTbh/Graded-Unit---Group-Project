@@ -1,4 +1,4 @@
-// code writen by Allan Taylor
+// code writen by Allan 
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;

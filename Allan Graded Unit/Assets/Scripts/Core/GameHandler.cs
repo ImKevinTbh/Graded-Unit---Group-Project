@@ -12,7 +12,7 @@ public class GameHandler : MonoBehaviour
     public static GameHandler instance = null;
 
 
-    private void Awake()
+    private void Start()
     {
         if (instance == null) { instance = this; } else { Destroy(this); }
         EventHandler.Init();

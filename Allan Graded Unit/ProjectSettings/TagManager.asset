@@ -11,6 +11,7 @@ TagManager:
   - Bullet
   - Door
   - Pickup
+  - Camera Boundary
   layers:
   - Default
   - TransparentFX

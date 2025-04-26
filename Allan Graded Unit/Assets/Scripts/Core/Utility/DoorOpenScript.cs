@@ -1,3 +1,5 @@
+// code written by allan
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,7 +23,6 @@ public class DoorOpenScript : MonoBehaviour
 
     void doorOpenTrigger()
     {
-        Debug.Log("the script to close the door got the event so this shit is just broken");
         gameObject.SetActive(true);
     }
 }

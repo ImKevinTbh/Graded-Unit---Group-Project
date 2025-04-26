@@ -10,11 +10,11 @@ public class HealthHandler : MonoBehaviour
 
     private void Awake()
     {
-        EventHandler.Player.Hurt += Hurt;
+        Events.Player.Hurt += Hurt;
     }
 
-    public void Hurt(object sender, HurtEventArgs e)
+    public void Hurt()
     {
-        PlayerHealth -= e.Damage;
+        PlayerHealth -= 1;
     }
 }
