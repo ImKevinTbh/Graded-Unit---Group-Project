@@ -128,5 +128,12 @@ namespace Events
         {
             BossArenaEnter?.Invoke();
         }
+
+        public delegate void BossLayoutChangeEvent();
+        public static event BossLayoutChangeEvent BossLayoutChange;
+        public virtual void _BossLayoutChangeEvent()
+        {
+            BossLayoutChange?.Invoke();
+        }
     }
 }
