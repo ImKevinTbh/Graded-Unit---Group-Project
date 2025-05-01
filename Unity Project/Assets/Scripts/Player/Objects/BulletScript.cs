@@ -20,7 +20,7 @@ public class BulletScript : MonoBehaviour
         target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GetComponent<Rigidbody2D>().AddForce(((Vector2)gameObject.transform.position - target).normalized * bSpeed * -Vector2.one);
         GameObject pl = GameObject.Find("PlayerModel");
-        
+
     }
 
     void Update()

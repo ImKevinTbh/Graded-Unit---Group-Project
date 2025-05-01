@@ -19,7 +19,7 @@ public class PickupHandler : MonoBehaviour
 
     private void Awake()
     {
-        EventHandler.Pickup.OnPickup += PickupCollected; // Subscribe to event, all events should be under "EventHandler.<Category>.On<EventName>
+        Events.Pickup.OnPickup += PickupCollected; // Subscribe to event, all events should be under "EventHandler.<Category>.On<EventName>
 
         foreach (Vector3 spawnpoint in spawnPoints)
         {
@@ -31,12 +31,11 @@ public class PickupHandler : MonoBehaviour
 
     }
 
-    public void PickupCollected(object sender, PickupEventArgs e)
+    public void PickupCollected()
     {
-        
+
         Debug.Log("PICKED UP");
         ScoreHandler.Score += 5;
-        Debug.Log(e.Instance.transform.position);
 
     }
 

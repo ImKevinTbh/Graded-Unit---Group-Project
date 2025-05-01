@@ -52,15 +52,15 @@ public class StateAPI
 }
 
 public class StateHandler : MonoBehaviour
-    {
+{
     public StateAPI.MovementStateType State { get; set; } = StateAPI.MovementStateType.Still;
     public string MovementStateName;
 
 
     public void Update()
-        {
-            State = StateAPI.CheckMovementState(gameObject);
-            MovementStateName = State.ToString();
-        }
+    {
+        State = StateAPI.CheckMovementState(gameObject);
+        MovementStateName = State.ToString();
     }
+}
 

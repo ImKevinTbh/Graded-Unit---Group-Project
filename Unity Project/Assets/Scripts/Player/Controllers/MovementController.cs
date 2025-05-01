@@ -49,12 +49,12 @@ public class MovementHandler : MonoBehaviour
         float inputY = Mathf.Clamp((int)Input.GetAxis("Vertical"), -1, 1);
 
 
-        bool NoInput = false;  if (inputX == 0 || (CheatMode && inputY == 0)) { NoInput = true; }
+        bool NoInput = false; if (inputX == 0 || (CheatMode && inputY == 0)) { NoInput = true; }
 
         Vector2 movement;
 
         if (!CheatMode) { movement = new Vector2(inputX * Speed, 0f); } else { movement = new Vector2(inputX * Speed, inputY * Speed); }
-        
+
         movement *= Time.deltaTime * 100;
 
         if (!GroundCheck())
@@ -124,7 +124,7 @@ public class MovementHandler : MonoBehaviour
             gameObject.transform.position = Spawn;
             rb.velocity = Vector2.zero;
             OnGround = false;
-            
+
         }
     }
 

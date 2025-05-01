@@ -8,8 +8,8 @@ using UnityEngine;
 public class EnemyCore : MonoBehaviour
 {
     public static float Health { get; set; }
-    public static float Speed { get; set;}
-    public static float Damage { get; set;}
+    public static float Speed { get; set; }
+    public static float Damage { get; set; }
 
     public float DistanceFromPlayer;
 
@@ -33,7 +33,7 @@ public class EnemyCore : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       
+
     }
 
     public void OnDestroy()
@@ -49,14 +49,14 @@ public class EnemyCore : MonoBehaviour
         Color color = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
-            Timing.CallDelayed(0.2f, () =>
+        Timing.CallDelayed(0.2f, () =>
+        {
+            try
             {
-                try
-                {
-                    gameObject.GetComponent<SpriteRenderer>().color = color;
-                }
-                catch (Exception e) { }
-            });
+                gameObject.GetComponent<SpriteRenderer>().color = color;
+            }
+            catch (Exception e) { }
+        });
 
         Health -= Damage;
         return true;

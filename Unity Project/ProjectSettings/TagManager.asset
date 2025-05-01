@@ -7,8 +7,11 @@ TagManager:
   - Ground
   - Wall
   - Boundary
+  - Undefined
   - Bullet
+  - Door
   - Pickup
+  - Camera Boundary
   layers:
   - Default
   - TransparentFX
