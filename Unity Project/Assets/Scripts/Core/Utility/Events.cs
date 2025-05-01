@@ -87,11 +87,11 @@ namespace Events
     public class Pickup
     {
 
-        public delegate void PickupEvent();
+        public delegate void PickupEvent(PickupEventArgs ev);
         public static event PickupEvent OnPickup;
-        public virtual void _Pickup()
+        public virtual void _Pickup(PickupEventArgs ev)
         {
-            OnPickup?.Invoke();
+            OnPickup?.Invoke(ev);
         }
     }
 

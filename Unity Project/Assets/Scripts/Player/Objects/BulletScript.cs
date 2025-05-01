@@ -45,7 +45,7 @@ public class BulletScript : MonoBehaviour
             {
                 collision.gameObject.GetComponent<EnemyCore>().Attacked(this.gameObject, collision.gameObject, Damage);
             }
-            Timing.CallDelayed(0.01f, () => Destroy(gameObject));
+            Timing.CallDelayed(0.15f, () => Destroy(gameObject));
         }
 
     }
