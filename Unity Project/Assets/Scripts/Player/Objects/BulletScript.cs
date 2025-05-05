@@ -16,12 +16,11 @@ public class BulletScript : MonoBehaviour
     void Awake()
     {
         Damage = AttackController._Damage;
-        Debug.Log($"{Damage}");
         Created = Time.time;
         target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GetComponent<Rigidbody2D>().AddForce(((Vector2)gameObject.transform.position - target).normalized * bSpeed * -Vector2.one);
         GameObject pl = GameObject.Find("PlayerModel");
-        
+
     }
 
     void Update()
@@ -44,10 +43,9 @@ public class BulletScript : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<EnemyCore>() != null)
             {
-                Debug.Log($"ENEMY WAS SHOT AND TRIGGER ENTERED WITH {Damage} DAMAGE");
                 collision.gameObject.GetComponent<EnemyCore>().Attacked(this.gameObject, collision.gameObject, Damage);
             }
-            Timing.CallDelayed(0.01f, () => Destroy(gameObject));
+            Timing.CallDelayed(0.15f, () => Destroy(gameObject));
         }
 
     }

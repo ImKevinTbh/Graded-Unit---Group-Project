@@ -1,18 +1,15 @@
 using Assets;
+using Events;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using EventArgs;
 
 public class PickupHandler : MonoBehaviour
 {
     public static PickupHandler instance = null;
-    public Events Events = new Events();
-
-
-    List<string> listName = new List<string>();
-    
 
     public List<GameObject> pickups = new List<GameObject>();
     public List<Vector3> spawnPoints = new List<Vector3>();
@@ -20,23 +17,30 @@ public class PickupHandler : MonoBehaviour
 
 
 
-    private void Awake()
+    private void Start()
     {
-        instance = this;
+        Events.Pickup.OnPickup += PickupCollected; // Subscribe to event, all events should be under "EventHandler.<Category>.On<EventName>
+
         foreach (Vector3 spawnpoint in spawnPoints)
         {
             GameObject pickup = GameObject.Instantiate(pickupPrefab);
-            pickup.AddComponent<PickupObject>();
-            Events.Pickup += PickupCollected;
+            pickup.transform.position = spawnpoint;
+            pickups.Add(pickup);
         }
 
-        
+
     }
 
-    public void PickupCollected(object sender, PickupEventArgs e)
+    private void OnDisable()
     {
-        GameObject.Destroy(e.Instance);
+        Events.Pickup.OnPickup -= PickupCollected; // Unsubscribe event, stops the event being registered multiple times on restarts and stuff
+    }
+
+    public void PickupCollected(PickupEventArgs ev)
+    {
+        pickups.Remove(ev.Instance.gameObject);
         Debug.Log("PICKED UP");
+        ScoreHandler.Score += 5;
 
     }
 

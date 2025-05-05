@@ -8,8 +8,8 @@ using UnityEngine;
 public class EnemyCore : MonoBehaviour
 {
     public static float Health { get; set; }
-    public static float Speed { get; set;}
-    public static float Damage { get; set;}
+    public static float Speed { get; set; }
+    public static float Damage { get; set; }
 
     public float DistanceFromPlayer;
 
@@ -31,10 +31,16 @@ public class EnemyCore : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().AddForce(GameObject.Find("PlayerModel").transform.position - gameObject.transform.position, ForceMode2D.Force);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+    }
+
     public void OnDestroy()
     {
         AudioSource.PlayClipAtPoint(DyingSFX, gameObject.transform.position);
         Destroy(gameObject);
+        ScoreHandler.Score += 10;
     }
 
     public bool Attacked(GameObject attacker, GameObject instance, float Damage)
@@ -42,19 +48,17 @@ public class EnemyCore : MonoBehaviour
 
         Color color = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-        try
-        {
-            Timing.CallDelayed(0.2f, () => { gameObject.GetComponent<SpriteRenderer>().color = color; });
 
-        }
-        catch (Exception e)
+        Timing.CallDelayed(0.2f, () =>
         {
-            return false;
-        }
+            try
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = color;
+            }
+            catch (Exception e) { }
+        });
 
-        Debug.Log($"Old {Health}");
         Health -= Damage;
-        Debug.Log($"New {Health}");
         return true;
     }
 

@@ -1,20 +1,21 @@
 
-using System;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-
+using EventArgs; // Get access to eventargs
 namespace Assets
 {
 
 
     public class PickupObject : MonoBehaviour
     {
-        public Events Events = PickupHandler.instance.Events;
 
+        
         public void OnTriggerEnter2D(Collider2D other)
         {
-            Events.OnPickup(new PickupEventArgs(gameObject, other));
+            if (other.CompareTag("Player"))
+            {
+                GameObject.Destroy(gameObject);
+                EventHandler.Pickup._Pickup(new PickupEventArgs(gameObject, other)); // Send event
+            }
         }
     }
 }
