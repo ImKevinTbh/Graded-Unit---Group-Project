@@ -1,9 +1,6 @@
 using System;
 using UnityEngine;
 
-
-// as of now namespace EventArgs is depricated, not sure if can be removed rn so just leave
-// ~Allan
 namespace EventArgs
 {
     public class HurtEventArgs
@@ -30,6 +27,16 @@ namespace EventArgs
         public GameObject Instance { get; }
         public Collider2D Collider { get; }
 
+    }
+
+    public class LoadedLevelEventArgs
+    {
+        public LoadedLevelEventArgs(MapController instance)
+        {
+            Instance = instance;
+        }
+
+        public MapController Instance { get; }
     }
 
     public class BossArenaEnterEventArgs
@@ -121,6 +128,14 @@ namespace Events
     // ~Allan
     public class Level
     {
+
+        public delegate void LoadedLevel(LoadedLevelEventArgs ev);
+        public static event LoadedLevel OnLoadedLevel;
+        public virtual void _LoadedLevel(LoadedLevelEventArgs ev)
+        {
+            OnLoadedLevel?.Invoke(ev);
+        }
+
 
         public delegate void BossArenaEnterEvent();
         public static event BossArenaEnterEvent BossArenaEnter;

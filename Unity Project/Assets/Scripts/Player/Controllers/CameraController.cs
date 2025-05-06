@@ -21,18 +21,25 @@ public class CameraController : MonoBehaviour
 
         instance = this;
 
-        // checks for the player object and assisns it to the p variable
-        p = GameObject.Find("PlayerModel").gameObject;
+        // checks for the player object and assigns it to the p variable
+
 
         // subscribes the door open trigger function to the boss arena enter event
         Events.Level.BossArenaEnter += doorOpenTrigger;
+        Events.Level.OnLoadedLevel += OnLoadedLevel;
+ 
     }
 
+    private void OnLoadedLevel(LoadedLevelEventArgs ev)
+    {
+        p = PlayerController.Instance.gameObject;
+        Debug.Log("Camera: Level Loaded");
+    }
 
     private void Update()
     {
         // every frame moves the cameras possition to focus on the player
-        gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f);
+        if (p != null) { gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f); }
     }
 
 

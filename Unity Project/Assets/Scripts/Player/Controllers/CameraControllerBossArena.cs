@@ -16,19 +16,23 @@ public class BossCameraController : MonoBehaviour
     private GameObject p;
 
 
-    private void Awake()
+    private void Start()
     {
         // starts this camera inactive
         gameObject.SetActive(false);
 
         // checks for the player object and assisns it to the p variable
-        p = GameObject.Find("PlayerModel").gameObject;
+
 
         // subscribes the door open trigger function to the boss arena enter event
         Events.Level.BossArenaEnter += doorOpenTrigger;
+        Events.Level.OnLoadedLevel += OnLoadedLevel;
     }
 
-
+    private void OnLoadedLevel(LoadedLevelEventArgs ev)
+    {
+        p = PlayerController.Instance.gameObject;
+    }
     private void Update()
     {
 
