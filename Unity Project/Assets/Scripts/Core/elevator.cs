@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class elevator : MonoBehaviour
+public class Elevator : MonoBehaviour
 {
     public float platformFloatHeight; // increases height exponentially, 1 = going from the floor of the boss room to the players head touching the ceiling
     private float i = 0.0f;
