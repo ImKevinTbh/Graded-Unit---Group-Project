@@ -5,6 +5,7 @@ using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
 using EventArgs;
 using Events;
+using MEC;
 
 public class CameraController : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class CameraController : MonoBehaviour
 
     private void OnLoadedLevel(LoadedLevelEventArgs ev)
     {
-        p = PlayerController.Instance.gameObject;
+        Timing.CallDelayed(0.5f, () =>  p = PlayerController.Instance.gameObject );
+
         Debug.Log("Camera: Level Loaded");
     }
 

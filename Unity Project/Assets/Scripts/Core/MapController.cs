@@ -13,7 +13,7 @@ public class MapController : MonoBehaviour
     void Start()
     {
         if (Instance == null) { Instance = this; } else { Destroy(this); }
-        EventHandler.Level._LoadedLevel(new LoadedLevelEventArgs(this));
+        EventHandler.Level._LoadedLevel(new LoadedLevelEventArgs(Instance));
         Debug.Log("MapController: Loading Level");
     }
 

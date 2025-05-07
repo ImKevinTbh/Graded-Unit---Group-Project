@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using EventArgs;
 using Events;
+using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
@@ -30,7 +31,8 @@ public class GameHandler : MonoBehaviour
     private void OnLoadedLevel(LoadedLevelEventArgs ev)
     {
         Debug.Log("GameHandler: Level Loaded");
-        Instantiate(Player, transform.parent);
+        var player = Instantiate(Player, ev.Instance.gameObject.transform.position, Quaternion.identity);
+        player.transform.SetParent(ev.Instance.transform);
         
     }
 }
