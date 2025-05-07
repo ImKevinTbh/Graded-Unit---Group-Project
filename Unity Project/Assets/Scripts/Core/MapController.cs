@@ -12,8 +12,8 @@ public class MapController : MonoBehaviour
 
     void Start()
     {
-        if (Instance == null) { Instance = this; } else { Destroy(this); }
-        EventHandler.Level._LoadedLevel(new LoadedLevelEventArgs(Instance));
+        print("map controller running");
+        EventHandler.Level._LoadedLevel(new LoadedLevelEventArgs(this));
         Debug.Log("MapController: Loading Level");
     }
 

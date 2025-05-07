@@ -1,4 +1,6 @@
 // code writen by Allan 
+
+using System;
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,11 +11,6 @@ using Events;
 
 public class BossCameraController : MonoBehaviour
 {
-
-    // initialises variable for the boss arena enter event to be held
-
-    // initialises variable to hold player reference
-    private GameObject p;
 
 
     private void Start()
@@ -26,24 +23,14 @@ public class BossCameraController : MonoBehaviour
 
         // subscribes the door open trigger function to the boss arena enter event
         Events.Level.BossArenaEnter += doorOpenTrigger;
-        Events.Level.OnLoadedLevel += OnLoadedLevel;
     }
-
-    private void OnLoadedLevel(LoadedLevelEventArgs ev)
-    {
-        p = PlayerController.Instance.gameObject;
-    }
-    private void Update()
-    {
-
-        // every frame moves the cameras possition to focus on the player
-        gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f);
-    }
+    
 
 
     private void doorOpenTrigger()
     {
         // when the boss arena enter event is triggered this camera is enabled
         gameObject.SetActive(true);
+        GetComponent<CinemachineVirtualCamera>().Follow = PlayerController.Instance.gameObject.transform;
     }
 }

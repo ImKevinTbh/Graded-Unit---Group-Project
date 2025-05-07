@@ -48,6 +48,7 @@ public class CameraController : MonoBehaviour
     private void doorOpenTrigger()
     {
         // when the boss arena enter event is triggered this camera is enabled
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
+        
     }
 }
