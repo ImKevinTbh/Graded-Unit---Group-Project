@@ -20,6 +20,7 @@ public class ButtonHandler : MonoBehaviour
     public void OptionsButton()
     {
         Debug.Log("Going to Options Menu...");
+        SceneManager.LoadScene("OptionsMenu");
     }
 
     // This method manages the functions for the credits button.
