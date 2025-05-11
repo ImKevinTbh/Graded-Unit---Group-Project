@@ -14,7 +14,7 @@ namespace Assets
             if (other.CompareTag("Player"))
             {
                 GameObject.Destroy(gameObject);
-                EventHandler.Pickup._Pickup(); // Send event
+                EventHandler.Pickup._Pickup(new PickupEventArgs(gameObject, other)); // Send event
             }
         }
     }

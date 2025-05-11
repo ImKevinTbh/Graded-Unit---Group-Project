@@ -30,7 +30,7 @@ public class Elevator : MonoBehaviour
 
             rb.velocity += new Vector2(0, 1 * Time.deltaTime) * velocityMultiplier * 5;
 
-            Debug.Log("Y = " + velocityMultiplier + "| I = " + i + "| Velocity = " + rb.velocity.magnitude);
+            //Debug.Log("Y = " + velocityMultiplier + "| I = " + i + "| Velocity = " + rb.velocity.magnitude);
         }
     }
 }

@@ -31,10 +31,10 @@ public class PickupHandler : MonoBehaviour
 
     }
 
-    public void PickupCollected()
+    public void PickupCollected(PickupEventArgs e)
     {
 
-        Debug.Log("PICKED UP");
+        Debug.Log("PICKED UP " + e);
         ScoreHandler.Score += 5;
 
     }
