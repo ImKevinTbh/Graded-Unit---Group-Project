@@ -5,15 +5,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using EventArgs;
+using Unity.Mathematics;
 
 public class MiscController : MonoBehaviour
 {
+    private int range = 0;
+    private int r;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        foreach(GameObject e in GameObject.FindGameObjectsWithTag("Layout"))
+        {
+            range += 1;
+        }
+
+
         if (collider.gameObject.tag == "Player")
         {
+            //r = UnityEngine.Random.Range(1, range);
             EventHandler.Level._BossArenaEnter();
+            //EventHandler.Level._BossLayoutChangeEvent(new BossLayoutChangeEventArgs(gameObject, r));
+
         }
     }
 }

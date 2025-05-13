@@ -31,18 +31,15 @@ public class PickupHandler : MonoBehaviour
 
     }
 
-    private void OnDisable()
+    public void PickupCollected(PickupEventArgs e)
     {
         Events.Pickup.OnPickup -= PickupCollected; // Unsubscribe event, stops the event being registered multiple times on restarts and stuff
     }
 
-    public void PickupCollected(PickupEventArgs ev)
-    {
-        pickups.Remove(ev.Instance.gameObject);
-        Debug.Log("PICKED UP");
-        ScoreHandler.Score += 5;
+       // Debug.Log("PICKED UP " + e);
+        //ScoreHandler.Score += 5;
 
     }
 
 
-}
+//}
