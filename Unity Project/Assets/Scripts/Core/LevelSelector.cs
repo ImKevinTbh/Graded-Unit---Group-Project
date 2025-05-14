@@ -12,7 +12,9 @@ public class LevelSelector : MonoBehaviour
     // When the player presses the button, it will load them into the tutorial level.
     public void LoadTutorial()
     {
-        SceneManager.LoadScene("SampleScene");
+        Debug.Log("Loading Limbo...");
+        SceneManager.LoadScene("LimboScene");
+        
     }
 
     // This method manages the functions for the button assigned to the 1st level, Grief.

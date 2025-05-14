@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using EventArgs;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public static PlayerController Instance = null;
+
+    public static int Health = 3;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        Instance = this;
+        Events.Player.Hurt += PlayerHurt;
+    }
+    
+    
+    public void PlayerHurt(HurtEventArgs ev)
+    {
+        Health -= ev.Damage;
+    }
+}
