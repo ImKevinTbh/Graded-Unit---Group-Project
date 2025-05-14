@@ -5,6 +5,7 @@ using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
 using EventArgs;
 using Events;
+using MEC;
 
 public class CameraController : MonoBehaviour
 {
@@ -21,24 +22,33 @@ public class CameraController : MonoBehaviour
 
         instance = this;
 
-        // checks for the player object and assisns it to the p variable
-        p = GameObject.Find("PlayerModel").gameObject;
+        // checks for the player object and assigns it to the p variable
+
 
         // subscribes the door open trigger function to the boss arena enter event
         Events.Level.BossArenaEnter += doorOpenTrigger;
+        Events.Level.OnLoadedLevel += OnLoadedLevel;
+ 
     }
 
+    private void OnLoadedLevel(LoadedLevelEventArgs ev)
+    {
+        Timing.CallDelayed(0.5f, () =>  p = PlayerController.Instance.gameObject );
+
+        Debug.Log("Camera: Level Loaded");
+    }
 
     private void Update()
     {
         // every frame moves the cameras possition to focus on the player
-        gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f);
+        if (p != null) { gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f); }
     }
 
 
     private void doorOpenTrigger()
     {
         // when the boss arena enter event is triggered this camera is enabled
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
+        
     }
 }

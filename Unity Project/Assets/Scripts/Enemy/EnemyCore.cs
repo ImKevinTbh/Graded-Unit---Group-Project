@@ -55,7 +55,7 @@ public class EnemyCore : MonoBehaviour
             {
                 gameObject.GetComponent<SpriteRenderer>().color = color;
             }
-            catch (Exception e) { }
+            catch (Exception e) { Debug.LogError(e); }
         });
 
         Health -= Damage;

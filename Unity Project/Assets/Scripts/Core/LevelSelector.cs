@@ -27,6 +27,7 @@ public class LevelSelector : MonoBehaviour
     public void LoadDenial()
     {
         Debug.Log("Loading Denial...");
+        SceneManager.LoadScene("DenialScene");
     }
 
     // This method manages the functions for the button assigned to the 3rd level, Anger.
