@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using EventArgs;
 using Events;
+using MEC;
 using UnityEditor;
 using UnityEditor.VersionControl;
 using UnityEngine.SceneManagement;
@@ -40,6 +41,7 @@ public class GameHandler : MonoBehaviour
         print("Spawned player.");
         //player.transform.SetParent(MapController.Instance.gameObject.transform, true);
         //player.SetActive(true);
-        Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;;
+        
+        Timing.CallDelayed(0.15f, () => Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform);
     }
 }
