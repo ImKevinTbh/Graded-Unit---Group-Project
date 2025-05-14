@@ -10,38 +10,42 @@ using UnityEngine.EventSystems;
 using EventArgs;
 using Events;
 using MEC;
-using UnityEditor;
-using UnityEditor.VersionControl;
-using UnityEngine.SceneManagement;
-
 public class GameHandler : MonoBehaviour
 {
     public static GameHandler instance = null;
     public GameObject Player;
+    GameObject PObject = null;
 
     private void Start()
     {
         if (instance == null) { instance = this; } else { Destroy(this); }
         EventHandler.Init();
-        Debug.Log("Subscribing to loaded level");
-        Events.Level.OnLoadedLevel += OnLoadedLevel;
+        Events.Level.OnLoadedLevel += LoadedLevel;
     }
 
     private void OnDestroy()
-    {
-        Events.Level.OnLoadedLevel -= OnLoadedLevel;
+    {   
+        
     }
 
 
-    public void OnLoadedLevel(LoadedLevelEventArgs ev)
+    public void LoadedLevel(LoadedLevelEventArgs ev)
     {
         Debug.Log("GameHandler: Level Loaded");
-        var player = GameObject.Instantiate(Player);
+        Timing.CallDelayed(0.15f, () =>
+        {
+            if (PlayerController.Instance == null)
+            {
+                Instantiate(Player, MapController.Instance.InitialSpawnPoint, Quaternion.identity);
+            }
+
+
+        });
         
         print("Spawned player.");
         //player.transform.SetParent(MapController.Instance.gameObject.transform, true);
         //player.SetActive(true);
         
-        Timing.CallDelayed(0.15f, () => Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform);
+        Timing.CallDelayed(0.17f, () => Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = PlayerController.Instance.gameObject.transform);
     }
 }

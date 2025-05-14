@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Assets/Scripts/Core/Utility/EventHandler.cs" />
     <Compile Include="Assets/Scripts/Player/Controllers/MiscController.cs" />
+    <Compile Include="Assets/Init.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/DoorColliderTrigger.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/Events.cs" />
     <Compile Include="Assets/Scripts/Player/Handlers/EffectHandler.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Assets/Scripts/Core/UiController.cs" />
     <Compile Include="Assets/Scripts/Core/MapController.cs" />
     <Compile Include="Assets/Object components/PickupObject.cs" />
+    <Compile Include="Assets/NextLevel.cs" />
     <Compile Include="Assets/Scripts/Player/Handlers/StateHandler.cs" />
     <Compile Include="Assets/Scripts/Core/ButtonHandler.cs" />
     <Compile Include="Assets/Scripts/Core/GameHandler.cs" />
