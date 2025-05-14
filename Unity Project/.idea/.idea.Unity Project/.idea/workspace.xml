@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="873c6ace-68dd-4969-814f-c077296af7ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
@@ -16,6 +17,9 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Controllers/CameraControllerBossArena.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Controllers/CameraControllerBossArena.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
     </list>
+=======
+    <list default="true" id="873c6ace-68dd-4969-814f-c077296af7ed" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +46,11 @@
     "Rider.SolutionAnalysis.ShowPreview": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+<<<<<<< Updated upstream
     "git-widget-placeholder": "Kevin",
+=======
+    "git-widget-placeholder": "Staging",
+>>>>>>> Stashed changes
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -119,7 +127,11 @@
       <option name="presentableId" value="Default" />
       <updated>1746611253265</updated>
       <workItem from="1746611255975" duration="3836000" />
+<<<<<<< Updated upstream
       <workItem from="1746624686161" duration="3286000" />
+=======
+      <workItem from="1746624686161" duration="3633000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
