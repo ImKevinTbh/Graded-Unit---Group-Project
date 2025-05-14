@@ -1,5 +1,6 @@
 //- THIS CODE WAS WRITTEN BY KEVIN WATSON -//
 using System;
+using MEC;
 using UnityEngine;
 using UnityEngine.Windows;
 using Input = UnityEngine.Input;
@@ -20,6 +21,9 @@ public class MovementHandler : MonoBehaviour
 
     public bool CheatMode = false;
 
+    public bool CanDash;
+    public float DashCooldown;
+    
     public Vector2 Spawn;
     private LayerMask mask;
     private Rigidbody2D rb;
@@ -36,6 +40,8 @@ public class MovementHandler : MonoBehaviour
 
     public void Awake() // Run *AFTER* object is done instantiating and this component script is being loaded (DO NOT USE START UNLESS YOU REALLY NEED TO)
     {
+        CanDash = true;
+        CheatMode = Settings.instance.CheatMode;
         mask = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
         _JumpsUsed = MaxJumps; // Set Initial Jumps to maxJumps
@@ -72,10 +78,30 @@ public class MovementHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) { Jump(); } // Run my jump method if spacebar is pressed
 
         Move(movement, CheatMode, NoInput); // Run movement method every update with passed parameters
-
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {Dash( new Vector3(inputX, 0, 0));}
+        
 
     }
 
+
+
+    public void Dash(Vector3 movement)
+    {
+        Debug.Log(CanDash);
+        if (CanDash == false) { return; }
+        Debug.Log("Dashing");
+        CanDash = false;
+        float originspd = MaxSpeed;
+        MaxSpeed *= 10;
+        gameObject.GetComponent<Rigidbody2D>().AddForce(movement * 25, ForceMode2D.Impulse);
+
+        Timing.CallDelayed(0.2f, () => { MaxSpeed = originspd; });
+        Timing.CallDelayed(DashCooldown, () => { CanDash = true;});
+        Debug.Log("WWW");
+    }
+    
+    
     public void Jump()
     {
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Events;
 using TMPro;
 using UnityEngine;
 
@@ -10,12 +11,12 @@ public class UiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+    
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ui.text = $"Speed {PlayerController.Instance.gameObject.GetComponent<Rigidbody2D>().velocity.ToString()} \nScore {ScoreHandler.Score.ToString()}";
+        ui.text = $"Speed {PlayerController.Instance.gameObject.GetComponent<Rigidbody2D>().velocity.ToString()} \nScore {PlayerController.Instance.Score.ToString()}";
     }
 }

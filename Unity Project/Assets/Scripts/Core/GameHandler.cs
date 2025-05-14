@@ -6,11 +6,12 @@ using UnityEngine.EventSystems;
 using EventArgs;
 using Events;
 using MEC;
+
 public class GameHandler : MonoBehaviour // Kevin 
 {
     public static GameHandler instance = null; // Declare Instance Variable, This allows us to find THIS SPECIFIC SCRIPT without doing gameobject.find because it is performance heavy
     public GameObject Player; // Used to set the player object prefab in the editor so we can spawn them in
-
+    public GameObject SettingsItem;
     private void Start() // On Object Creation Upon Scene Load
     {
         if (instance == null) { instance = this; } else { Destroy(this); } // If an instance of this type of script already exists, destroy this one. (Should never happen)
@@ -22,21 +23,33 @@ public class GameHandler : MonoBehaviour // Kevin
     public void LoadedLevel(LoadedLevelEventArgs ev) // The delegate method we run when LoadedLevel is run
     {
         Debug.Log("GameHandler: Level Loaded");
-        Timing.CallDelayed(0.15f, () => 
+        Timing.CallDelayed(0.1f, () => 
         {
             if (PlayerController.Instance == null) // If an instance of the playercontroller script does not exist
             {
                 Instantiate(Player, MapController.Instance.InitialSpawnPoint, Quaternion.identity); // Spawn the player
+                
             }
             else // If an instance of the playercontroller script DOES exist
             {
+                Debug.Log(PlayerController.Instance.gameObject.name);
+                Debug.unityLogger.Log(MapController.Instance.InitialSpawnPoint);
                 PlayerController.Instance.gameObject.transform.position = MapController.Instance.InitialSpawnPoint; // Move the player to the initial spawnpoint
             }
+            
+            if (Settings.instance == null) { Instantiate(SettingsItem); } // If the settings object does not exist, create it, shouldn't really need to happen
 
+            Timing.CallDelayed(0.05f, () =>
+            {
+                Debug.Log(PlayerController.Instance.transform.position);
+                Debug.Log(MapController.Instance.InitialSpawnPoint);
+                PlayerController.Instance.gameObject.transform.position = MapController.Instance.InitialSpawnPoint;
+            });
 
         });
         
         print("Spawned player.");
+
         Timing.CallDelayed(0.17f, () => Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = PlayerController.Instance.gameObject.transform); // Make the camera follow the player again
     }
 }

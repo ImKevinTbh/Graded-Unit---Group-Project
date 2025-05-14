@@ -26,7 +26,6 @@ public class CameraController : MonoBehaviour
 
 
         // subscribes the door open trigger function to the boss arena enter event
-        Events.Level.BossArenaEnter += doorOpenTrigger;
         Events.Level.OnLoadedLevel += OnLoadedLevel;
  
     }
@@ -44,11 +43,5 @@ public class CameraController : MonoBehaviour
         if (p != null) { gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f); }
     }
 
-
-    private void doorOpenTrigger()
-    {
-        // when the boss arena enter event is triggered this camera is enabled
-        this.gameObject.SetActive(false);
-        
-    }
+    
 }

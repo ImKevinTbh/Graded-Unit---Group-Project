@@ -2,6 +2,7 @@ using MEC;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Events;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -40,7 +41,7 @@ public class EnemyCore : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(DyingSFX, gameObject.transform.position);
         Destroy(gameObject);
-        ScoreHandler.Score += 10;
+        PlayerController.Instance.Score += 10;
     }
 
     public bool Attacked(GameObject attacker, GameObject instance, float Damage)
