@@ -5,7 +5,7 @@ namespace EventArgs
 {
     public class HurtEventArgs
     {
-        public HurtEventArgs(GameObject instance, GameObject source, float damage)
+        public HurtEventArgs(GameObject instance, GameObject source, int damage)
         {
             Instance = instance;
             Source = source;
@@ -14,7 +14,7 @@ namespace EventArgs
 
         public GameObject Instance { get; }
         public GameObject Source { get; }
-        public float Damage { get; }
+        public int Damage { get; }
     }
 
     public class PickupEventArgs
@@ -105,11 +105,11 @@ namespace Events
     public class Player
     {
 
-        public delegate void HurtEvent();
+        public delegate void HurtEvent(HurtEventArgs ev);
         public static event HurtEvent Hurt;
-        public virtual void _Hurt()
+        public virtual void _Hurt(HurtEventArgs ev)
         {
-            Hurt?.Invoke();
+            Hurt?.Invoke(ev);
         }
     }
 

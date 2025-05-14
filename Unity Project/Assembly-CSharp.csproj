@@ -50,8 +50,6 @@
     <Compile Include="Assets/Init.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/DoorColliderTrigger.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/Events.cs" />
-    <Compile Include="Assets/Scripts/Player/Handlers/EffectHandler.cs" />
-    <Compile Include="Assets/Scripts/Player/Handlers/HealthHandler.cs" />
     <Compile Include="Assets/GodMode.cs" />
     <Compile Include="Assets/Scripts/Core/LevelSelector.cs" />
     <Compile Include="Assets/Scripts/Player/Controllers/CameraControllerBossArena.cs" />
@@ -65,12 +63,13 @@
     <Compile Include="Assets/Scripts/Player/Handlers/StateHandler.cs" />
     <Compile Include="Assets/Scripts/Core/ButtonHandler.cs" />
     <Compile Include="Assets/Scripts/Core/GameHandler.cs" />
+    <Compile Include="Assets/Settings.cs" />
     <Compile Include="Assets/Scripts/Enemy/EnemyCore.cs" />
     <Compile Include="Assets/Scripts/Player/Controllers/AttackController.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/DoorOpenScript.cs" />
     <Compile Include="Assets/Scripts/Player/Controllers/MovementController.cs" />
-    <Compile Include="Assets/Object components/PlayerController.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/ScoreHandler.cs" />
+    <Compile Include="Assets/Scripts/Player/Controllers/PlayerController.cs" />
     <Compile Include="Assets/PersistenceController.cs" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
