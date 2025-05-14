@@ -9,10 +9,10 @@ public class ButtonHandler : MonoBehaviour
     /* All Code below this point has been written by Charlotte, unless where labled otherwise. */
 
     // This method manages the functions for our play button. The PlayButton text in yellow represents that it is a method.
-    // When the button is pressed, it will load the player into the first level.
+    // When the button is pressed, it will load the player into the Level Select Screen.
     public void PlayButton()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("LevelSelect");
     }
 
     // This method manages the functions for the options button.
