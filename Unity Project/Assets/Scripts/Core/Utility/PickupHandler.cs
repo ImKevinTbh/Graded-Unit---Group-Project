@@ -38,6 +38,4 @@ public class PickupHandler : MonoBehaviour
         ScoreHandler.Score += 5;
 
     }
-
-
 }

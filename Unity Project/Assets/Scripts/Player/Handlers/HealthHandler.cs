@@ -13,7 +13,7 @@ public class HealthHandler : MonoBehaviour
         Events.Player.Hurt += Hurt;
     }
 
-    public void Hurt()
+    public void Hurt(HurtEventArgs e)
     {
         PlayerHealth -= 1;
     }

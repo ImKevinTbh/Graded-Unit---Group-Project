@@ -85,7 +85,10 @@ public class MovementHandler : MonoBehaviour
         {
             _JumpsUsed++;
             rb.velocity = new Vector2(rb.velocity.x, JumpPower * (rb.mass + rb.gravityScale / 10));
-            AudioSource.PlayClipAtPoint(JumpSFX, CameraController.instance.transform.position);
+            if (CameraController.instance.transform.position != null)
+            {
+                AudioSource.PlayClipAtPoint(JumpSFX, CameraController.instance.transform.position);
+            }
         }
 
     }

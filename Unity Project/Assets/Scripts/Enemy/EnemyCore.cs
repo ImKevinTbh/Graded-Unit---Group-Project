@@ -1,9 +1,11 @@
+using EventArgs;
 using MEC;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class EnemyCore : MonoBehaviour
 {
@@ -15,35 +17,111 @@ public class EnemyCore : MonoBehaviour
 
     public AudioClip DyingSFX;
 
+    public Vector2 Direction = Vector2.left;
+
+    public LayerMask Mask;
+
+    private Rigidbody2D rb;
+    
+    private bool SpottedPlayer = false;
+
+    public GameObject Player;
+
+    private float RayDistance = 3.0f;
+
 
     public void Start()
     {
         Health = 100f;
-        Speed = 5f;
+        Speed = 4f;
         Damage = 1.0f;
         DistanceFromPlayer = 0f;
+        Events.Enemy.Hurt += Attacked;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
-        DistanceFromPlayer = (int)(GameObject.Find("PlayerModel").transform.position - transform.position).magnitude;
-        gameObject.GetComponent<Rigidbody2D>().AddForce(GameObject.Find("PlayerModel").transform.position - gameObject.transform.position, ForceMode2D.Force);
+
+        RaycastHit2D Raycast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, RayDistance, Mask);
+
+        if (Raycast == CompareTag("Player"))
+        {
+            SpottedPlayer = true;
+            Debug.Log("Starting Tracking Player");
+            Direction.x = Player.transform.position.x - gameObject.transform.position.x;
+            Direction = Direction.normalized;
+        }
+        else
+        {
+            SpottedPlayer = false;
+            Debug.Log("Stopping Tracking Player");
+        }
+
+        RaycastHit2D testHorrizontal = (Physics2D.Raycast(gameObject.transform.position, Direction, 1.0f, Mask));
+
+        if (testHorrizontal || !(Physics2D.Raycast(gameObject.transform.position, Direction + Vector2.down, 2, Mask))) 
+        {
+            //if (CompareTag("Wall") || CompareTag("Ground"))
+            //{
+                Direction = Direction * -1;
+        }
+
+
+        Vector2 vel = rb.velocity; // We cant modify velocity directly on a single axis so copy it to a variable
+        vel.x = Mathf.Clamp(rb.velocity.x, -Speed, Speed); //  Stop going too fast by using the clamp method and giving it min/max parameters
+
+        rb.velocity = vel; // Now set the velocity back to whatever we had in the variable
+        rb.AddForce(Direction * Speed, ForceMode2D.Force);
+        
+        
+        Debug.DrawRay(gameObject.transform.position, (Player.transform.position - gameObject.transform.position).normalized * RayDistance, Color.red);
+        Debug.Log("Velocity: " + vel + " Direction: " + Direction);
+        try
+        {
+            Debug.Log("Raycast Towards Player Result: " + Raycast.collider.gameObject.name);
+        }
+        catch
+        {
+            Debug.Log("Raycast Toward Player Result: NULL");
+        }
+        try
+        {
+            Debug.Log("Raycast Towards Wall Result: " + testHorrizontal.collider.gameObject.name);
+        }
+        catch
+        {
+            Debug.Log("Raycast Towards Wall Result: NULL");
+        }
+
+        
+
+
+    }
+
+    private void SpotPlayer()
+    {
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if(collision.collider.CompareTag("Player"))
+        {
+            EventHandler.Player._Hurt(new HurtEventArgs(this.gameObject, collision.gameObject, Damage));
+        }
     }
 
     public void OnDestroy()
     {
         AudioSource.PlayClipAtPoint(DyingSFX, gameObject.transform.position);
+        Events.Enemy.Hurt -= Attacked;
         Destroy(gameObject);
         ScoreHandler.Score += 10;
     }
 
-    public bool Attacked(GameObject attacker, GameObject instance, float Damage)
+    public void Attacked(HurtEventArgs e)
     {
 
         Color color = gameObject.GetComponent<SpriteRenderer>().color;
@@ -59,7 +137,6 @@ public class EnemyCore : MonoBehaviour
         });
 
         Health -= Damage;
-        return true;
     }
 
 }

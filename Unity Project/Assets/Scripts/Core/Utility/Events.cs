@@ -156,17 +156,20 @@ namespace Events
         public virtual void _Pickup(PickupEventArgs e)
         {
             OnPickup?.Invoke(e);
+            Debug.Log("Pickup");
         }
     }
 
     public class Player
     {
 
-        public delegate void HurtEvent();
+        public delegate void HurtEvent(HurtEventArgs e);
         public static event HurtEvent Hurt;
-        public virtual void _Hurt()
+        public virtual void _Hurt(HurtEventArgs e)
         {
-            Hurt?.Invoke();
+            Hurt?.Invoke(e);
+            Debug.Log("Player Hurt");
+
         }
     }
 
@@ -174,11 +177,13 @@ namespace Events
     public class Enemy
     {
 
-        public delegate void HurtEvent();
+        public delegate void HurtEvent(HurtEventArgs e);
         public static event HurtEvent Hurt;
-        public virtual void _Hurt()
+        public virtual void _Hurt(HurtEventArgs e)
         {
-            Hurt?.Invoke();
+            Hurt?.Invoke(e);
+            Debug.Log("Enemy Hurt");
+
         }
     }
 
@@ -191,6 +196,8 @@ namespace Events
         public virtual void _BossArenaEnter()
         {
             BossArenaEnter?.Invoke();
+            Debug.Log("Boss Arena Enter");
+
         }
 
         public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
@@ -198,6 +205,7 @@ namespace Events
         public virtual void _BossLayoutChangeEvent(BossLayoutChangeEventArgs e)
         {
             BossLayoutChange?.Invoke(e);
+            Debug.Log("Boss Layout Change");
         }
 
         public delegate void ButtonClickEvent(ButtonClickEventArgs e);
@@ -205,6 +213,8 @@ namespace Events
         public virtual void _ButtonClickEvent(ButtonClickEventArgs e)
         {
             ButtonClick?.Invoke(e);
+            Debug.Log("Button Click Event");
+
         }
 
     }
