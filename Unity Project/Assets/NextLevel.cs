@@ -8,6 +8,5 @@ public class NextLevel : MonoBehaviour
 {
     public void OnCollisionEnter2D(Collision2D other)
     {
-        SceneManager.LoadScene("DenialScene");
-    }
+        SceneManager.LoadScene("DenialScene"); }
 }
