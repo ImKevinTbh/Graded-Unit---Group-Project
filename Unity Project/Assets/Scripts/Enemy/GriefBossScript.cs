@@ -39,7 +39,5 @@ public class GriefBossScript : MonoBehaviour
         {
             Debug.Log("Boss Touched Player");
         }
-
-
     }
 }
