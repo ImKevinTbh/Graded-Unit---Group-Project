@@ -1,3 +1,4 @@
+// Code by Allan
 
 using EventArgs;
 using MEC;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
+
 
 public class EnemyCore : MonoBehaviour
 {
@@ -22,9 +24,9 @@ public class EnemyCore : MonoBehaviour
 
     public LayerMask Mask;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     
-    private bool SpottedPlayer = false;
+    public bool SpottedPlayer = false;
 
     public GameObject Player;
 
@@ -41,7 +43,7 @@ public class EnemyCore : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    public void Update()
     {
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
 
@@ -81,13 +83,13 @@ public class EnemyCore : MonoBehaviour
 
     }
 
-    private void SpotPlayer()
+    public void SpotPlayer()
     {
 
     }
 
     // when the player collides send a hurt event
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider == Player)
         {
