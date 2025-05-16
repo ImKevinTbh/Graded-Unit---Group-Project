@@ -26,7 +26,8 @@ public class GameHandler : MonoBehaviour // Kevin
         {
             if (PlayerController.Instance == null) // If an instance of the playercontroller script does not exist
             {
-                Instantiate(Player, MapController.Instance.InitialSpawnPoint, Quaternion.identity); // Spawn the player
+                Instantiate(Player, MapController.Instance.InitialSpawnPoint, Quaternion.identity, PersistenceController.instance.gameObject.transform); // Spawn the player
+                print("Spawned player.");
             }
             else // If an instance of the playercontroller script DOES exist
             {
@@ -36,7 +37,7 @@ public class GameHandler : MonoBehaviour // Kevin
 
         });
         
-        print("Spawned player.");
+
         Timing.CallDelayed(0.17f, () => Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = PlayerController.Instance.gameObject.transform); // Make the camera follow the player again
     }
 }
