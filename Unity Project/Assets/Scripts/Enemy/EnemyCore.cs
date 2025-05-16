@@ -1,3 +1,4 @@
+
 using EventArgs;
 using MEC;
 using System;
@@ -27,7 +28,7 @@ public class EnemyCore : MonoBehaviour
 
     public GameObject Player;
 
-    private float RayDistance = 3.0f;
+    public float VisionDistance = 5.0f;
 
 
     public void Start()
@@ -44,27 +45,29 @@ public class EnemyCore : MonoBehaviour
     {
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
 
-        RaycastHit2D Raycast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, RayDistance, Mask);
+        // Raycasts towards the players current possition from the enemies current possition at a distance defined in VisionDistance
+        RaycastHit2D PlayerCast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, VisionDistance, Mask);
 
-        if (Raycast == CompareTag("Player"))
+
+        // if the ray collides with the player, changes the enemies direction towards the player
+        if (PlayerCast && PlayerCast.collider.gameObject == Player)
         {
             SpottedPlayer = true;
-            Debug.Log("Starting Tracking Player");
             Direction.x = Player.transform.position.x - gameObject.transform.position.x;
             Direction = Direction.normalized;
         }
         else
         {
             SpottedPlayer = false;
-            Debug.Log("Stopping Tracking Player");
         }
 
-        RaycastHit2D testHorrizontal = (Physics2D.Raycast(gameObject.transform.position, Direction, 1.0f, Mask));
+        // Raycasts a short distance in front of the enemy and diagonally down in front checking for walls and floors
+        RaycastHit2D HorrizontalCast = (Physics2D.Raycast(gameObject.transform.position, Direction, 1.0f, Mask));
+        RaycastHit2D DiagonalCast = (Physics2D.Raycast(gameObject.transform.position, Direction + Vector2.down, 2, Mask));
 
-        if (testHorrizontal || !(Physics2D.Raycast(gameObject.transform.position, Direction + Vector2.down, 2, Mask))) 
+        // if either collide with a wall or floor, turns the enemy around
+        if (HorrizontalCast || !DiagonalCast) 
         {
-            //if (CompareTag("Wall") || CompareTag("Ground"))
-            //{
                 Direction = Direction * -1;
         }
 
@@ -75,28 +78,6 @@ public class EnemyCore : MonoBehaviour
         rb.velocity = vel; // Now set the velocity back to whatever we had in the variable
         rb.AddForce(Direction * Speed, ForceMode2D.Force);
         
-        
-        Debug.DrawRay(gameObject.transform.position, (Player.transform.position - gameObject.transform.position).normalized * RayDistance, Color.red);
-        Debug.Log("Velocity: " + vel + " Direction: " + Direction);
-        try
-        {
-            Debug.Log("Raycast Towards Player Result: " + Raycast.collider.gameObject.name);
-        }
-        catch
-        {
-            Debug.Log("Raycast Toward Player Result: NULL");
-        }
-        try
-        {
-            Debug.Log("Raycast Towards Wall Result: " + testHorrizontal.collider.gameObject.name);
-        }
-        catch
-        {
-            Debug.Log("Raycast Towards Wall Result: NULL");
-        }
-
-        
-
 
     }
 
@@ -105,9 +86,10 @@ public class EnemyCore : MonoBehaviour
 
     }
 
+    // when the player collides send a hurt event
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag("Player"))
+        if (collision.collider == Player)
         {
             EventHandler.Player._Hurt(new HurtEventArgs(this.gameObject, collision.gameObject, Damage));
         }
