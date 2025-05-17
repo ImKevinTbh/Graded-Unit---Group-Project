@@ -35,7 +35,7 @@ public class BulletScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.CompareTag("Player")) { return; }
         else if (collision.CompareTag("Boundary")) { return; }

@@ -17,7 +17,7 @@ public class EnemyCore : MonoBehaviour
     public AudioClip DyingSFX;
 
 
-    public void Start()
+    public void Start() 
     {
         Health = 100f;
         Speed = 1.5f;

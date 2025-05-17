@@ -27,14 +27,14 @@ public class GriefBossScript : MonoBehaviour
     // These are the default values for the boss.
     public void Start()
     {
-        Health = 150f;
+        Health = 300f;
         Speed = 0.5f;
         Damage = 2f;
         // DistanceFromPlayer is used to measure the distance between the enemy and the player
         DistanceFromPlayer = 0f;
         // Timer is used to manage how often the boss shoots a bullet at the player
         timer = 0;
-        // Dir is used to make the boss face the player
+        // Dir is used to make the boss face the player 
         dir = new Vector2(0, 0);
 
     }

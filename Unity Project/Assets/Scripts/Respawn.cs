@@ -26,7 +26,7 @@ public class Respawn : MonoBehaviour
         // This is what creates the raycast and sets its max distance.
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, 1000f);
 
-        // If something hits the raycast, it will spawn them at the Respawn Point
+        // If something hits the raycast, it will spawn them at the Respawn Point 
         if (hit.collider != null)
         {
             hit.collider.transform.position = respPoint;

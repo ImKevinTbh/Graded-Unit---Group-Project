@@ -22,7 +22,7 @@ public class EnemyBulletScript : MonoBehaviour
         // bull is the variable for the enemy's bullet
         bull = GetComponent<Rigidbody2D>();
         // This tells the enemy what it is shooting at
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player"); 
         // This code defines where the bullet will shoot
         Vector3 direction = player.transform.position - transform.position;
         bull.velocity = new Vector2(direction.x, direction.y).normalized * speed;
