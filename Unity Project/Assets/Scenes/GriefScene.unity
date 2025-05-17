@@ -3252,9 +3252,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2094021344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29966775004c62e4fb00ab0b8c2ac3ff, type: 3}
+  m_Script: {fileID: 11500000, guid: ca777d9596926824aa4e554206705162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DistanceFromPlayer: 0
+  DyingSFX: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

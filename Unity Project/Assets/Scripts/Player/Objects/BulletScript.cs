@@ -45,11 +45,15 @@ public class BulletScript : MonoBehaviour
             {
                 collision.gameObject.GetComponent<EnemyCore>().Attacked(this.gameObject, collision.gameObject, Damage);
             }
+            
+            // Charlotte's Comments for this If statement
+            // This manages the damage dealt to my boss in the Grief level, allowing it to collide with the bullet.
+            if (collision.gameObject.GetComponent<GriefBossScript>() != null)
+            {
+                collision.gameObject.GetComponent<GriefBossScript>().Attacked(this.gameObject, collision.gameObject, Damage);
+            }
             Timing.CallDelayed(0.15f, () => Destroy(gameObject));
         }
 
     }
-
-
-
 }

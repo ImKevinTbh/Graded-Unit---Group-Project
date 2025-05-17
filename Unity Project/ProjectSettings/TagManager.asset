@@ -12,6 +12,8 @@ TagManager:
   - Door
   - Pickup
   - Camera Boundary
+  - Enemy
+  - GriefBoss
   layers:
   - Default
   - TransparentFX

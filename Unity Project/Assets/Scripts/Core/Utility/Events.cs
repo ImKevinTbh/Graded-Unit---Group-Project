@@ -5,14 +5,14 @@ namespace EventArgs
 {
     public class HurtEventArgs
     {
-        public HurtEventArgs(GameObject instance, GameObject source, int damage)
+        public HurtEventArgs(GameObject target, GameObject source, int damage)
         {
-            Instance = instance;
+            Target = target;
             Source = source;
             Damage = damage;
         }
 
-        public GameObject Instance { get; }
+        public GameObject Target { get; }
         public GameObject Source { get; }
         public int Damage { get; }
     }

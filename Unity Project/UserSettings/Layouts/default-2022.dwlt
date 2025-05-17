@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1521.6
     height: 758.4
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 39
+  controlID: 97
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 40
+  controlID: 98
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -298,8 +298,8 @@ MonoBehaviour:
     y: 0
     width: 358.40002
     height: 708.4
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -378,7 +378,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e8faffff
+      m_ExpandedIDs: 20faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1124,9 +1124,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 24660000
-    m_LastClickedID: 26148
-    m_ExpandedIDs: 000000002466000026660000286600002a6600002c6600002e6600003066000000ca9a3b
+    m_SelectedIDs: e4660000
+    m_LastClickedID: 26340
+    m_ExpandedIDs: 00000000e4660000e6660000e8660000ea660000ec660000ee660000f066000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1154,7 +1154,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002466000026660000286600002a6600002c6600002e66000030660000
+    m_ExpandedIDs: 00000000e4660000e6660000e8660000ea660000ec660000ee660000f0660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

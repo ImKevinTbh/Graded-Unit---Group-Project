@@ -20,7 +20,7 @@ public class EnemyCore : MonoBehaviour
     public void Start()
     {
         Health = 100f;
-        Speed = 5f;
+        Speed = 1.5f;
         Damage = 1.0f;
         DistanceFromPlayer = 0f;
     }
@@ -28,13 +28,14 @@ public class EnemyCore : MonoBehaviour
     private void Update()
     {
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
-        DistanceFromPlayer = (int)(GameObject.Find("PlayerModel").transform.position - transform.position).magnitude;
-        gameObject.GetComponent<Rigidbody2D>().AddForce(GameObject.Find("PlayerModel").transform.position - gameObject.transform.position, ForceMode2D.Force);
+        DistanceFromPlayer = (int)(GameObject.Find("Player(Clone)").transform.position - transform.position).magnitude;
+        if (DistanceFromPlayer <= 35)
+            gameObject.GetComponent<Rigidbody2D>().AddForce(GameObject.Find("Player(Clone)").transform.position - gameObject.transform.position, ForceMode2D.Force);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        
     }
 
     public void OnDestroy()
