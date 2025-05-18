@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
     <Compile Include="Assets\GodMode.cs" />
     <Compile Include="Assets\Scripts\Core\LevelSelector.cs" />
+    <Compile Include="Assets\DenialBoss.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\CameraControllerBossArena.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\PickupHandler.cs" />

@@ -25,7 +25,7 @@ public class PersistenceController : MonoBehaviour
 
     public void Quit()
     {
-        SceneManager.LoadScene("MainMenu");
+
         foreach (GameObject o in Objects)
         {
             Debug.Log(o.name);
