@@ -1,3 +1,4 @@
+using EventArgs;
 using MEC;
 using System;
 using System.Collections;
@@ -27,13 +28,21 @@ public class EnemyCore : MonoBehaviour
     private void Update()
     {
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
-        DistanceFromPlayer = (int)(GameObject.Find("PlayerModel").transform.position - transform.position).magnitude;
-        gameObject.GetComponent<Rigidbody2D>().AddForce(GameObject.Find("PlayerModel").transform.position - gameObject.transform.position, ForceMode2D.Force);
+        if (PlayerController.Instance != null)
+        {
+            DistanceFromPlayer = (int)(PlayerController.Instance.gameObject.transform.position - transform.position).magnitude;
+            gameObject.GetComponent<Rigidbody2D>().AddForce(PlayerController.Instance.gameObject.transform.position - gameObject.transform.position, ForceMode2D.Force);
+        }
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if (collision.gameObject == PlayerController.Instance.gameObject)
+        {
+            Debug.LogWarning("Hit the fucking player");
+            EventHandler.Player._Hurt(new HurtEventArgs(collision.gameObject, this.gameObject, 1));
+        }
     }
 
     public void OnDestroy()
@@ -55,7 +64,7 @@ public class EnemyCore : MonoBehaviour
             {
                 gameObject.GetComponent<SpriteRenderer>().color = color;
             }
-            catch (Exception e) { }
+            catch (Exception e) { Debug.LogError(e); }
         });
 
         Health -= Damage;

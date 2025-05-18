@@ -44,6 +44,7 @@ public class StateAPI
 
         catch (Exception e)
         {
+            Debug.LogException(e);
             return MovementStateType.Still;
         }
 

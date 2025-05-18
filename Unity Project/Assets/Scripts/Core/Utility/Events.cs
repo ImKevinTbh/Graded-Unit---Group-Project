@@ -1,22 +1,36 @@
 using System;
+using System.Text.RegularExpressions;
+using EventArgs;
 using UnityEngine;
-
-
 
 namespace EventArgs
 {
     public class HurtEventArgs
     {
-        public HurtEventArgs(GameObject instance, GameObject source, float damage)
+        public HurtEventArgs(GameObject target, GameObject source, int damage)
         {
-            Instance = instance;
+            Target = target;
             Source = source;
             Damage = damage;
         }
 
-        public GameObject Instance { get; }
+        public GameObject Target { get; }
         public GameObject Source { get; }
-        public float Damage { get; }
+        public int Damage { get; }
+    }
+
+    public class DenierDestroyedEventArgs
+    {
+        public DenierDestroyedEventArgs(GameObject instance, int group, int id)
+        {
+            Instance = instance;
+            Group = group;
+            Id = id;
+        }
+        public GameObject Instance { get; }
+        public int Group { get; }
+        public int Id { get; }
+
     }
 
     public class PickupEventArgs
@@ -31,16 +45,17 @@ namespace EventArgs
 
     }
 
-    //public class BossArenaEnterEventArgs
-    //{
-    //    public BossArenaEnterEventArgs(GameObject instance)
-    //    {
-    //        Instance = instance;
-    //    }
-    //    public GameObject Instance { get; }
-    //}
+    public class LoadedLevelEventArgs 
+    {
+        public LoadedLevelEventArgs(MapController instance)
+        {
+            Instance = instance;
+        }
 
-    public class BossLayoutChangeEventArgs
+        public MapController Instance { get; }
+    }
+
+    public class BossArenaEnterEventArgs
     {
         public BossLayoutChangeEventArgs(GameObject instance, int layoutNumber)
         {
@@ -148,7 +163,7 @@ namespace Events
     // -------------------------------------------------------------------------------------------------------- //
 
 
-    public class Pickup
+    public class Pickup // Kevin
     {
 
         public delegate void PickupEvent(PickupEventArgs e);
@@ -159,7 +174,51 @@ namespace Events
         }
     }
 
-    public class Player
+    public class Game // Kevin
+    {
+        public delegate void QuitEvent();
+        public static event QuitEvent Quit;
+        public virtual void _Quit()
+        {
+            Quit?.Invoke();
+        }
+
+        public delegate void TogglePauseEvent();
+        public static event TogglePauseEvent TogglePause;
+        public virtual void _TogglePause()
+        {
+            TogglePause?.Invoke();
+        }
+    }
+
+    public class Player // Kevin
+    {
+
+        public delegate void DiedEvent();
+        public static event DiedEvent OnDied;
+        public virtual void _Died()
+        {
+            OnDied?.Invoke();
+        }
+
+
+        public delegate void HurtEvent(HurtEventArgs ev);
+        public static event HurtEvent Hurt;
+        public virtual void _Hurt(HurtEventArgs ev)
+        {
+            Hurt?.Invoke(ev);
+        }
+
+        public delegate void RespawnEvent();
+        public static event RespawnEvent Respawn;
+        public virtual void _Respawn()
+        {
+            Respawn?.Invoke();
+        }
+    }
+
+
+    public class Enemy // Kevin
     {
 
         public delegate void HurtEvent();
@@ -171,22 +230,18 @@ namespace Events
     }
 
 
-    public class Enemy
+    public class Level // Kevin
     {
 
-        public delegate void HurtEvent();
-        public static event HurtEvent Hurt;
-        public virtual void _Hurt()
+        public delegate void LoadedLevel(LoadedLevelEventArgs ev);
+        public static event LoadedLevel OnLoadedLevel;
+        public virtual void _LoadedLevel(LoadedLevelEventArgs ev)
         {
-            Hurt?.Invoke();
+            OnLoadedLevel?.Invoke(ev);
         }
-    }
 
-    // ~Allan
-    public class Level
-    {
 
-        public delegate void BossArenaEnterEvent();
+        public delegate void BossArenaEnterEvent(); // ~Allan
         public static event BossArenaEnterEvent BossArenaEnter;
         public virtual void _BossArenaEnter()
         {
@@ -215,15 +270,17 @@ namespace Events
 
 
     }
-    public class Hazards
+
+    public class Denial // Kevin
     {
-        public delegate void HazardTriggerEvent();
-        public static event HazardTriggerEvent HazardTrigger;
-        
-        public virtual void _Hazards ()
+        public delegate void DenierDestroyedEvent(DenierDestroyedEventArgs ev);
+        public static event DenierDestroyedEvent DenierDestroyed;
+        public virtual void _DenierDestroyed(DenierDestroyedEventArgs ev)
         {
-            HazardTrigger?.Invoke();
+            DenierDestroyed?.Invoke(ev);
         }
     }
 }
+
+
 
