@@ -19,6 +19,12 @@ public class GameHandler : MonoBehaviour // Kevin
     }
     
 
+    public static void RespawnPlayer()
+    {
+        PlayerController.Instance.gameObject.transform.position = MapController.Instance.InitialSpawnPoint;
+        PlayerController.Instance.Health = PlayerController.Instance.MaxHealth;
+    }
+
     public void LoadedLevel(LoadedLevelEventArgs ev) // The delegate method we run when LoadedLevel is run
     {
         Debug.Log("GameHandler: Level Loaded");
