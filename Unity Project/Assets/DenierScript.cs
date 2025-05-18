@@ -10,14 +10,16 @@ public class DenierScript : MonoBehaviour
     public int Id;
     // Start is called before the first frame update
 
-
+    private void Awake()
+    {
+        DenialController.instance.DenialObjects.Add(gameObject);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("HIt2");
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Debug.Log("HIt");
+            Debug.Log("Hit");
             Destroy(gameObject);
         }
     }

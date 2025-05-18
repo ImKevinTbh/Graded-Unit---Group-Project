@@ -10,9 +10,11 @@ public class DenialController : MonoBehaviour
 {
 
     public static DenialController instance;
-    public List<GameObject> Deniers_1 = new List<GameObject>();
-    public List<GameObject> Deniers_2 = new List<GameObject>();
-    public List<GameObject> Deniers_3 = new List<GameObject>();
+    public List<GameObject> DenialObjects = new List<GameObject>();
+
+    public int Group_1 = 2;
+    public int Group_2 = 3;
+    public int Group_3 = 3;
 
     public void Awake()
     {
@@ -21,8 +23,49 @@ public class DenialController : MonoBehaviour
     }
 
 
+    public void BossPhase1()
+    {
+        Debug.LogWarning("Boss Phase 1");
+        Destroy(GameObject.Find("Wall1"));
+    }
+    public void BossPhase2()
+    {
+        Debug.LogWarning("Boss Phase 2");
+        Destroy(GameObject.Find("Wall2"));
+    }
+    public void BossPhase3()
+    {
+        Debug.LogWarning("Boss Phase 3");
+        Destroy(GameObject.Find("Wall3"));
+    }
+
     public void DenierDestroyed(DenierDestroyedEventArgs ev)
     {
         Debug.Log(ev.Group + " : " + ev.Id + " Destroyed");
+        DenialObjects.Remove(ev.Instance.gameObject);
+        switch (ev.Group)
+        {
+            case 1:
+                {
+                    Group_1--;
+
+                    if (Group_1 == 0) { BossPhase1(); }
+                    break;
+                }
+            case 2:
+                {
+                    Group_2--;
+
+                    if (Group_2 == 0) { BossPhase2(); }
+                    break;
+                }
+            case 3:
+                {
+                    Group_3--;
+
+                    if (Group_3 == 0) { BossPhase3(); }
+                    break;
+                }
+        }
     }
 }

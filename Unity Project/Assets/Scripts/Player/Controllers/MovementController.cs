@@ -124,6 +124,7 @@ public class MovementHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Boundary")) // If the collision the player is exiting has the tag "Boundary"
         {
+            EventHandler.Player._Hurt(new EventArgs.HurtEventArgs(PlayerController.Instance.gameObject, this.gameObject, 1)); // Hurt the player
             gameObject.transform.position = Spawn; // Move the player back to spawn
             rb.velocity = Vector2.zero; // Reset the player's velocity so we can't do some kind of weird speed farming thing
             OnGround = false; // stops the player jumping on spawn causing weird behaviour

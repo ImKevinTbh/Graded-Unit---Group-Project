@@ -46,7 +46,7 @@ public class BulletScript : MonoBehaviour
                 collision.gameObject.GetComponent<EnemyCore>().Attacked(this.gameObject, collision.gameObject, Damage);
             }
             Debug.LogWarning(collision.gameObject.name);
-            Timing.CallDelayed(0.15f, () => Destroy(gameObject));
+            Timing.CallDelayed(0.05f, () => Destroy(gameObject));
         }
 
     }

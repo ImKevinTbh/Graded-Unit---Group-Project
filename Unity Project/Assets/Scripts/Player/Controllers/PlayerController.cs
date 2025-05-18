@@ -15,11 +15,16 @@ public class PlayerController : MonoBehaviour
         Instance = this;
         Events.Player.Hurt += PlayerHurt;
     }
-    
-    
+
+
     public void PlayerHurt(HurtEventArgs ev)
     {
         Health -= ev.Damage;
+
         Debug.Log($"Object: {ev.Target.name} took ({ev.Damage}) damage from source: {ev.Source.name}");
+        if (Health <= 0)
+        {
+            EventHandler.Player._Died();
+        }
     }
 }
