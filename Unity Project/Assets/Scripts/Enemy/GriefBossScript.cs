@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EventArgs;
 using Events;
 using MEC;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -39,6 +41,7 @@ public class GriefBossScript : MonoBehaviour
 
     }
 
+    // This method is used to control anything in the script that needs to be constantly checked, like the movement.
     private void Update()
     {
         // DistanceFromPlayer is constantly checking for the current co-ordinates of the player
@@ -70,17 +73,19 @@ public class GriefBossScript : MonoBehaviour
         }
     }
 
-    // This code will manage the boss dealing damage to the player when they collide.
-    // We use tags for this, assigning the Player a unique tag to make interactions with other things easier
+    // This method will manage the boss dealing damage to the player when they collide.
+    // I use tags for this, assigning the Player a unique tag to make interactions with other things easier
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            // When the player touches the boss, they will take damage.
+            EventHandler.Player._Hurt(new HurtEventArgs(gameObject, this.gameObject, 1));
             Debug.Log("Boss Touched Player");
         }
     }
 
-    // This manages the boss recieving damage from the players attacks. Kevin created this code and I borrowed it but I wrote the comments.
+    // This method manages the boss recieving damage from the players attacks. Kevin created this code and I borrowed it but I wrote the comments.
     public bool Attacked(GameObject attacker, GameObject instance, float Damage)
     {
         // The boss will change to a red colour when they take damage

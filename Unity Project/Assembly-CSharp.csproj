@@ -87,6 +87,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\Scripts\Enemy\GriefEnemyScript.cs" />
     <Compile Include="Assets\Scripts\Core\Settings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Assets\Scripts\Player\Controllers\MovementController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\Scripts\WinLoseCon.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
