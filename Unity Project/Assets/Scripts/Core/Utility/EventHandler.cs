@@ -7,6 +7,7 @@ public class EventHandler // DO NOT FUCKING TOUCH THIS UNLESS YOU ARE KEVIN
     public static Enemy Enemy;
     public static Player Player;
     public static Level Level = new Level();
+    public static Denial Denial = new Denial();
 
     public static void Init()
     {

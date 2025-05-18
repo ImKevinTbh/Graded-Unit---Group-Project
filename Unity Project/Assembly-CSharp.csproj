@@ -71,9 +71,11 @@
     <Compile Include="Assets\Scripts\Core\Utility\PickupHandler.cs" />
     <Compile Include="Assets\Scripts\Core\Settings.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScript.cs" />
+    <Compile Include="Assets\DenialController.cs" />
     <Compile Include="Assets\Scripts\Core\Init.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\CameraController.cs" />
     <Compile Include="Assets\Scripts\Core\UiController.cs" />
+    <Compile Include="Assets\DenierScript.cs" />
     <Compile Include="Assets\Scripts\Core\MapController.cs" />
     <Compile Include="Assets\Object components\PickupObject.cs" />
     <Compile Include="Assets\NextLevel.cs" />

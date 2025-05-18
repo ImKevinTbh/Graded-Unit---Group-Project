@@ -20,5 +20,6 @@ public class PlayerController : MonoBehaviour
     public void PlayerHurt(HurtEventArgs ev)
     {
         Health -= ev.Damage;
+        Debug.Log($"Object: {ev.Target.name} took ({ev.Damage}) damage from source: {ev.Source.name}");
     }
 }

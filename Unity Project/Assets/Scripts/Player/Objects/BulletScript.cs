@@ -38,13 +38,14 @@ public class BulletScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) { return; }
-        else if (collision.CompareTag("Boundary")) { return; }
+        else if (collision.CompareTag("Boundary") || collision.CompareTag("Camera Boundary")) { return; }
         else
         {
             if (collision.gameObject.GetComponent<EnemyCore>() != null)
             {
                 collision.gameObject.GetComponent<EnemyCore>().Attacked(this.gameObject, collision.gameObject, Damage);
             }
+            Debug.LogWarning(collision.gameObject.name);
             Timing.CallDelayed(0.15f, () => Destroy(gameObject));
         }
 

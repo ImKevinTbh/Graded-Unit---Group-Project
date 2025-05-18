@@ -1,20 +1,36 @@
 using System;
+using System.Text.RegularExpressions;
+using EventArgs;
 using UnityEngine;
 
 namespace EventArgs
 {
     public class HurtEventArgs
     {
-        public HurtEventArgs(GameObject instance, GameObject source, int damage)
+        public HurtEventArgs(GameObject target, GameObject source, int damage)
         {
-            Instance = instance;
+            Target = target;
             Source = source;
             Damage = damage;
         }
 
-        public GameObject Instance { get; }
+        public GameObject Target { get; }
         public GameObject Source { get; }
         public int Damage { get; }
+    }
+
+    public class DenierDestroyedEventArgs
+    {
+        public DenierDestroyedEventArgs(GameObject instance, int group, int id)
+        {
+            Instance = instance;
+            Group = group;
+            Id = id;
+        }
+        public GameObject Instance { get; }
+        public int Group { get; }
+        public int Id { get; }
+
     }
 
     public class PickupEventArgs
@@ -144,4 +160,17 @@ namespace Events
             BossArenaEnter?.Invoke();
         }
     }
+
+    public class Denial
+    {
+        public delegate void DenierDestroyedEvent(DenierDestroyedEventArgs ev);
+        public static event DenierDestroyedEvent DenierDestroyed;
+        public virtual void _DenierDestroyed(DenierDestroyedEventArgs ev)
+        {
+            DenierDestroyed?.Invoke(ev);
+        }
+    }
 }
+
+
+
