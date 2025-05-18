@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Instance = this;
+            
         Events.Player.Hurt += PlayerHurt;
     }
 
