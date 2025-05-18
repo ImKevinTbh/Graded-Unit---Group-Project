@@ -127,6 +127,13 @@ namespace Events
         {
             Hurt?.Invoke(ev);
         }
+
+        public delegate void RespawnEvent();
+        public static event RespawnEvent Respawn;
+        public virtual void _Respawn()
+        {
+            Respawn?.Invoke();
+        }
     }
 
 
