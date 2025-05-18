@@ -7,7 +7,7 @@ namespace EventArgs
 {
     public class HurtEventArgs
     {
-        public HurtEventArgs(GameObject instance, GameObject source, float damage)
+        public HurtEventArgs(GameObject source, GameObject instance, float damage)
         {
             Instance = instance;
             Source = source;

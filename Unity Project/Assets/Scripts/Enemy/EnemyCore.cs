@@ -1,5 +1,7 @@
 // Code by Allan
 
+// Don't touch this directly, inherit this script instead of MonoBehaviour in other enemy scripts
+
 using EventArgs;
 using MEC;
 using System;
@@ -32,6 +34,11 @@ public class EnemyCore : MonoBehaviour
 
     public float VisionDistance = 5.0f;
 
+    public float GroundDistance = 2.0f;
+
+    public float WidthScale = 1.0f;
+
+    public bool Movement = true;
 
     public void Start()
     {
@@ -57,6 +64,7 @@ public class EnemyCore : MonoBehaviour
             SpottedPlayer = true;
             Direction.x = Player.transform.position.x - gameObject.transform.position.x;
             Direction = Direction.normalized;
+            SpotPlayer();
         }
         else
         {
@@ -64,13 +72,19 @@ public class EnemyCore : MonoBehaviour
         }
 
         // Raycasts a short distance in front of the enemy and diagonally down in front checking for walls and floors
-        RaycastHit2D HorrizontalCast = (Physics2D.Raycast(gameObject.transform.position, Direction, 1.0f, Mask));
-        RaycastHit2D DiagonalCast = (Physics2D.Raycast(gameObject.transform.position, Direction + Vector2.down, 2, Mask));
+        RaycastHit2D HorrizontalCast = (Physics2D.Raycast(gameObject.transform.position, Direction, 1.0f * WidthScale, Mask));
+        RaycastHit2D DiagonalCast = (Physics2D.Raycast(gameObject.transform.position, Direction + (Vector2.down * 2), GroundDistance, Mask));
+
+        Debug.DrawRay(gameObject.transform.position, Direction * WidthScale, Color.red);
+        Debug.DrawRay(gameObject.transform.position, (Direction + (Vector2.down * 2) * GroundDistance), Color.red);
 
         // if either collide with a wall or floor, turns the enemy around
-        if (HorrizontalCast || !DiagonalCast) 
+        if ((HorrizontalCast || !DiagonalCast) && Movement) 
         {
-                Direction = Direction * -1;
+            Direction *= -1;
+            Vector2 scale = gameObject.transform.localScale;
+            scale.x *= -1;
+            gameObject.transform.localScale = scale;
         }
 
 
@@ -79,8 +93,6 @@ public class EnemyCore : MonoBehaviour
 
         rb.velocity = vel; // Now set the velocity back to whatever we had in the variable
         rb.AddForce(Direction * Speed, ForceMode2D.Force);
-        
-
     }
 
     public void SpotPlayer()
@@ -107,20 +119,22 @@ public class EnemyCore : MonoBehaviour
 
     public void Attacked(HurtEventArgs e)
     {
-
-        Color color = gameObject.GetComponent<SpriteRenderer>().color;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-
-        Timing.CallDelayed(0.2f, () =>
+        if (e.Instance == gameObject)
         {
-            try
-            {
-                gameObject.GetComponent<SpriteRenderer>().color = color;
-            }
-            catch (Exception e) { }
-        });
+            Color color = gameObject.GetComponent<SpriteRenderer>().color;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
-        Health -= Damage;
+            Timing.CallDelayed(0.2f, () =>
+            {
+                try
+                {
+                    gameObject.GetComponent<SpriteRenderer>().color = color;
+                }
+                catch (Exception e) { }
+            });
+
+            Health -= Damage;
+        }
     }
 
 }
