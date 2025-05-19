@@ -44,6 +44,7 @@ public class StateAPI
 
         catch (Exception e)
         {
+            Debug.LogException(e);
             return MovementStateType.Still;
         }
 
@@ -59,7 +60,7 @@ public class StateHandler : MonoBehaviour
 
     public void Update()
     {
-        State = StateAPI.CheckMovementState(gameObject);
+        State = StateAPI.CheckMovementState(PlayerController.Instance.gameObject);
         MovementStateName = State.ToString();
     }
 }

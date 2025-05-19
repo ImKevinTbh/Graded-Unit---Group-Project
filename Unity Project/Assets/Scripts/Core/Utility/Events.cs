@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
-
+using System.Text.RegularExpressions;
+using EventArgs;
+using UnityEngine;
 
 
 namespace EventArgs
@@ -14,9 +16,26 @@ namespace EventArgs
             Damage = damage;
         }
 
+
         public GameObject Instance { get; }
         public GameObject Source { get; }
         public float Damage { get; }
+
+    }
+
+    public class DenierDestroyedEventArgs
+    {
+        public DenierDestroyedEventArgs(GameObject instance, int group, int id)
+        {
+            Instance = instance;
+            Group = group;
+            Id = id;
+        }
+        public GameObject Instance { get; }
+        public int Group { get; }
+        public int Id { get; }
+
+
     }
 
     public class PickupEventArgs
@@ -31,14 +50,7 @@ namespace EventArgs
 
     }
 
-    //public class BossArenaEnterEventArgs
-    //{
-    //    public BossArenaEnterEventArgs(GameObject instance)
-    //    {
-    //        Instance = instance;
-    //    }
-    //    public GameObject Instance { get; }
-    //}
+
 
     public class BossLayoutChangeEventArgs
     {
@@ -57,6 +69,24 @@ namespace EventArgs
             ButtonNumber = buttonNumber;
         }
         public int ButtonNumber { get; }
+
+    public class LoadedLevelEventArgs 
+    {
+        public LoadedLevelEventArgs(MapController instance)
+        {
+            Instance = instance;
+        }
+
+        public MapController Instance { get; }
+    }
+
+    public class BossArenaEnterEventArgs
+    {
+        public BossArenaEnterEventArgs(GameObject instance)
+        {
+            Instance = instance;
+        }
+
         public GameObject Instance { get; }
     }
 }
@@ -148,28 +178,57 @@ namespace Events
     // -------------------------------------------------------------------------------------------------------- //
 
 
-    public class Pickup
+    public class Pickup // Kevin
     {
 
-        public delegate void PickupEvent(PickupEventArgs e);
+        public delegate void PickupEvent(PickupEventArgs ev);
         public static event PickupEvent OnPickup;
-        public virtual void _Pickup(PickupEventArgs e)
+        public virtual void _Pickup(PickupEventArgs ev)
         {
-            OnPickup?.Invoke(e);
-            Debug.Log("Pickup");
+            OnPickup?.Invoke(ev);
         }
     }
 
-    public class Player
+    public class Game // Kevin
+    {
+        public delegate void QuitEvent();
+        public static event QuitEvent Quit;
+        public virtual void _Quit()
+        {
+            Quit?.Invoke();
+        }
+
+        public delegate void TogglePauseEvent();
+        public static event TogglePauseEvent TogglePause;
+        public virtual void _TogglePause()
+        {
+            TogglePause?.Invoke();
+        }
+    }
+
+    public class Player // Kevin
     {
 
-        public delegate void HurtEvent(HurtEventArgs e);
-        public static event HurtEvent Hurt;
-        public virtual void _Hurt(HurtEventArgs e)
+        public delegate void DiedEvent();
+        public static event DiedEvent OnDied;
+        public virtual void _Died()
         {
-            Hurt?.Invoke(e);
-            Debug.Log("Player Hurt");
+            OnDied?.Invoke();
+        }
 
+
+        public delegate void HurtEvent(HurtEventArgs ev);
+        public static event HurtEvent Hurt;
+        public virtual void _Hurt(HurtEventArgs ev)
+        {
+            Hurt?.Invoke(ev);
+        }
+
+        public delegate void RespawnEvent();
+        public static event RespawnEvent Respawn;
+        public virtual void _Respawn()
+        {
+            Respawn?.Invoke();
         }
     }
 
@@ -191,16 +250,15 @@ namespace Events
     public class Level
     {
 
-        public delegate void BossArenaEnterEvent();
+        public delegate void BossArenaEnterEvent(); // ~Allan
         public static event BossArenaEnterEvent BossArenaEnter;
         public virtual void _BossArenaEnter()
         {
             BossArenaEnter?.Invoke();
             Debug.Log("Boss Arena Enter");
-
         }
-
-        public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
+		
+		public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
         public static event BossLayoutChangeEvent BossLayoutChange;
         public virtual void _BossLayoutChangeEvent(BossLayoutChangeEventArgs e)
         {
@@ -216,7 +274,29 @@ namespace Events
             Debug.Log("Button Click Event");
 
         }
+	}
+	
+
+    public class Level // Kevin
+    {
+
+        public delegate void LoadedLevel(LoadedLevelEventArgs ev);
+        public static event LoadedLevel OnLoadedLevel;
+        public virtual void _LoadedLevel(LoadedLevelEventArgs ev)
+        {
+            OnLoadedLevel?.Invoke(ev);
+        }
 
     }
-}
 
+
+    public class Denial // Kevin
+    {
+        public delegate void DenierDestroyedEvent(DenierDestroyedEventArgs ev);
+        public static event DenierDestroyedEvent DenierDestroyed;
+        public virtual void _DenierDestroyed(DenierDestroyedEventArgs ev)
+        {
+            DenierDestroyed?.Invoke(ev);
+        }
+    }
+}

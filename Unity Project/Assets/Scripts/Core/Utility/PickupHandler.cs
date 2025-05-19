@@ -17,25 +17,31 @@ public class PickupHandler : MonoBehaviour
 
 
 
-    private void Awake()
+    private void Start()
     {
         Events.Pickup.OnPickup += PickupCollected; // Subscribe to event, all events should be under "EventHandler.<Category>.On<EventName>
 
         foreach (Vector3 spawnpoint in spawnPoints)
         {
             GameObject pickup = GameObject.Instantiate(pickupPrefab);
-            pickup.AddComponent<PickupObject>();
             pickup.transform.position = spawnpoint;
+            pickups.Add(pickup);
         }
 
 
     }
 
-    public void PickupCollected(PickupEventArgs e)
+
+    private void OnDisable()
     {
+        Events.Pickup.OnPickup -= PickupCollected; // Unsubscribe event, stops the event being registered multiple times on restarts and stuff
+    }
 
-        Debug.Log("PICKED UP " + e);
+
+    public void PickupCollected(PickupEventArgs ev)
+    {
+        pickups.Remove(ev.Instance.gameObject);
+        Debug.Log("PICKED UP");
         ScoreHandler.Score += 5;
-
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Windows;
 using Input = UnityEngine.Input;
 
-public class MovementHandler : MonoBehaviour
+public class MovementHandler : MonoBehaviour 
 {
 
     //- Fixed list of available states -//
@@ -28,7 +28,9 @@ public class MovementHandler : MonoBehaviour
 
     public bool OnGround = false;
 
-
+    // Parameter Setting, Public params are for external use, private params only get used within this script
+    
+    
     //- variables that are ONLY used for tracking info should be prefixed by a `_` symbol so I can find tracking vs functional variables later -//
 
 
@@ -39,25 +41,26 @@ public class MovementHandler : MonoBehaviour
         _JumpsUsed = MaxJumps; // Set Initial Jumps to maxJumps
 
         // Incase someone changes this, movement doesn't work right if these settings get changed in the editor so I'm hardcoding them
-        rb.gravityScale = 3f;
-        rb.freezeRotation = true;
+        rb.gravityScale = 3f; // Unity's gravity is awful
+        rb.freezeRotation = true; // Stop the player falling over *optional*
     }
 
     void Update()
     {
-        float inputX = Mathf.Clamp((int)Input.GetAxis("Horizontal"), -1, 1);
-        float inputY = Mathf.Clamp((int)Input.GetAxis("Vertical"), -1, 1);
+        float inputX = Mathf.Clamp((int)Input.GetAxis("Horizontal"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
+        float inputY = Mathf.Clamp((int)Input.GetAxis("Vertical"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
+        
+        // Analogue Inputs are absolutely terrible 
 
-
-        bool NoInput = false; if (inputX == 0 || (CheatMode && inputY == 0)) { NoInput = true; }
+        bool NoInput = false; if (inputX == 0 || (CheatMode && inputY == 0)) { NoInput = true; } // Check if the user is pressing any movement inputs (I use this for manual drag because unity's inbuilt physics are shit.
 
         Vector2 movement;
 
-        if (!CheatMode) { movement = new Vector2(inputX * Speed, 0f); } else { movement = new Vector2(inputX * Speed, inputY * Speed); }
+        if (!CheatMode) { movement = new Vector2(inputX * Speed, 0f); } else { movement = new Vector2(inputX * Speed, inputY * Speed); } // Cheatmode setting check, WIP
 
-        movement *= Time.deltaTime * 100;
+        movement *= Time.deltaTime * 100; // Multiply movement vector by the time between frames so that the value is consistent no matter the client's framerate
 
-        if (!GroundCheck())
+        if (!GroundCheck()) // Run my method to check if the player is on the ground
         {
             OnGround = false;
         }
@@ -66,9 +69,9 @@ public class MovementHandler : MonoBehaviour
             OnGround = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) { Jump(); }
+        if (Input.GetKeyDown(KeyCode.Space)) { Jump(); } // Run my jump method if spacebar is pressed
 
-        Move(movement, CheatMode, NoInput);
+        Move(movement, CheatMode, NoInput); // Run movement method every update with passed parameters
 
 
     }
@@ -83,17 +86,14 @@ public class MovementHandler : MonoBehaviour
 
         if (_JumpsUsed < MaxJumps)
         {
-            _JumpsUsed++;
-            rb.velocity = new Vector2(rb.velocity.x, JumpPower * (rb.mass + rb.gravityScale / 10));
-            if (CameraController.instance.transform.position != null)
-            {
-                AudioSource.PlayClipAtPoint(JumpSFX, CameraController.instance.transform.position);
-            }
+            _JumpsUsed++; // Increment the value of the _JumpsUsed variable by 1
+            rb.velocity = new Vector2(rb.velocity.x, JumpPower * (rb.mass + rb.gravityScale / 10)); // Construct a new velocity value to move the player upwards
+            AudioSource.PlayClipAtPoint(JumpSFX, CameraController.instance.transform.position); // Play a stupid sound effect when jumping on the player's position in worldspace, this is a bit clunky
         }
 
     }
 
-    public void Move(Vector2 movement, bool CheatMode, bool NoInput)
+    public void Move(Vector2 movement, bool CheatMode, bool NoInput) 
     {
         if (NoInput)
         {
@@ -122,25 +122,26 @@ public class MovementHandler : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Boundary"))
+        if (collision.gameObject.CompareTag("Boundary")) // If the collision the player is exiting has the tag "Boundary"
         {
-            gameObject.transform.position = Spawn;
-            rb.velocity = Vector2.zero;
-            OnGround = false;
+            EventHandler.Player._Hurt(new EventArgs.HurtEventArgs(PlayerController.Instance.gameObject, this.gameObject, 1)); // Hurt the player
+            gameObject.transform.position = Spawn; // Move the player back to spawn
+            rb.velocity = Vector2.zero; // Reset the player's velocity so we can't do some kind of weird speed farming thing
+            OnGround = false; // stops the player jumping on spawn causing weird behaviour
 
         }
     }
 
     public bool GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one / 2, 0, Vector2.down, 1f, mask);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one / 2, 0, Vector2.down, 1f, mask); // cast downwards by 1 meter 
         if (hit.collider == null)
         {
-            return false;
+            return false; // If the ray hits nothing, the player is not on the ground
         }
         else
         {
-            return true;
+            return true; // If the ray hits *something* on the specified layer then they are on the ground
         }
     }
 

@@ -10,12 +10,12 @@ public class UiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        ui.text = $"Speed {rb.velocity.ToString()} \nScore {ScoreHandler.Score.ToString()}";
+        //ui.text = $"Speed {PlayerController.Instance.gameObject.GetComponent<Rigidbody2D>().velocity.ToString()} \nScore {ScoreHandler.Score.ToString()}";
     }
 }

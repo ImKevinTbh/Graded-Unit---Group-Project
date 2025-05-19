@@ -5,6 +5,7 @@ using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
 using EventArgs;
 using Events;
+using MEC;
 
 public class CameraController : MonoBehaviour
 {
@@ -32,13 +33,24 @@ public class CameraController : MonoBehaviour
         Events.Level.BossArenaEnter += BossArenaEnter;
 
         //Events.Level.BossArenaLeave += BossArenaLeave;    //TBA//
+		
+		Events.Level.OnLoadedLevel += OnLoadedLevel;
+
+    }
+
+    private void OnLoadedLevel(LoadedLevelEventArgs ev)
+    {
+        Timing.CallDelayed(0.5f, () =>  p = PlayerController.Instance.gameObject );
+
+        Debug.Log("Camera: Level Loaded");
     }
 
 
     private void Update()
     {
         // every frame moves the cameras possition to focus on the player
-        gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f);
+
+        if (p != null) { gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f); }
     }
 
     // switches camera bounds to stay within the boss arena when entering the boss arena
@@ -52,6 +64,6 @@ public class CameraController : MonoBehaviour
     private void BossArenaLeave()
     {
         gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = EndLevelCameraBounds;
-
-    }
+	}
+	
 }
