@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using EventArgs;
 using Events;
 using MEC;
+using UnityEngine.SceneManagement;
 public class GameHandler : MonoBehaviour // Kevin 
 {
 
@@ -32,12 +33,19 @@ public class GameHandler : MonoBehaviour // Kevin
         EventHandler.Init(); // Starts our event system (THIS NEEDS TO BE RUN BEFORE WE USE EVENTS *ANYWHERE* ELSE IN THE SOLUTION) 
         Events.Level.OnLoadedLevel += LoadedLevel; // Subscribe to the event that gets fired when a level is loaded
         Events.Player.Respawn += RespawnPlayer; // Subscribe to the event that gets fired when the player respawns
-        Events.Player.OnDied += PlayerDied;
+        Events.Player.OnDied += PlayerDied; // Subscribe to the event that gets fired when the player Dies
+    }
+    private void OnDestroy()
+    {
+        Events.Level.OnLoadedLevel -= LoadedLevel; // UnSubscribe to the event that gets fired when a level is loaded
+        Events.Player.Respawn -= RespawnPlayer; // UnSubscribe to the event that gets fired when the player respawns
+        Events.Player.OnDied -= PlayerDied; // UnSubscribe to the event that gets fired when the player Dies
     }
 
     public void PlayerDied()
     {
         EventHandler.Game._Quit(); // Quit the game
+        SceneManager.LoadScene("LevelSelect");
         // Do shit here when the player is dead
     }
 

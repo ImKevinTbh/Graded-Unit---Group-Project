@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using Events;
 using EventArgs;
+using MEC;
 
 
 public class DenialController : MonoBehaviour
@@ -27,6 +28,7 @@ public class DenialController : MonoBehaviour
     {
         Debug.LogWarning("Boss Phase 1");
         Destroy(GameObject.Find("Wall1"));
+        Timing.RunCoroutine(DenialBoss.instance.Phase1());
     }
     public void BossPhase2()
     {
