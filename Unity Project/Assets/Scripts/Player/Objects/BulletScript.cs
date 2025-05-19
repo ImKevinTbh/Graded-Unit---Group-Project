@@ -7,7 +7,7 @@ using UnityEngine.Assertions.Must;
 using EventArgs;
 public class BulletScript : MonoBehaviour
 {
-    public float Damage;
+    public int Damage;
     public float Created;
     public float LifeTime;
     public float bSpeed = 1;

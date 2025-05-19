@@ -9,17 +9,17 @@ namespace EventArgs
 {
     public class HurtEventArgs
     {
-        public HurtEventArgs(GameObject source, GameObject instance, float damage)
+        public HurtEventArgs(GameObject source, GameObject target, int damage)
         {
-            Instance = instance;
+            Target = target;
             Source = source;
             Damage = damage;
         }
 
 
-        public GameObject Instance { get; }
+        public GameObject Target { get; }
         public GameObject Source { get; }
-        public float Damage { get; }
+        public int Damage { get; }
 
     }
 
@@ -69,8 +69,10 @@ namespace EventArgs
             ButtonNumber = buttonNumber;
         }
         public int ButtonNumber { get; }
+        public GameObject Instance { get; }
 
-    public class LoadedLevelEventArgs 
+    }
+    public class LoadedLevelEventArgs
     {
         public LoadedLevelEventArgs(MapController instance)
         {
@@ -257,8 +259,8 @@ namespace Events
             BossArenaEnter?.Invoke();
             Debug.Log("Boss Arena Enter");
         }
-		
-		public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
+
+        public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
         public static event BossLayoutChangeEvent BossLayoutChange;
         public virtual void _BossLayoutChangeEvent(BossLayoutChangeEventArgs e)
         {
@@ -274,11 +276,6 @@ namespace Events
             Debug.Log("Button Click Event");
 
         }
-	}
-	
-
-    public class Level // Kevin
-    {
 
         public delegate void LoadedLevel(LoadedLevelEventArgs ev);
         public static event LoadedLevel OnLoadedLevel;

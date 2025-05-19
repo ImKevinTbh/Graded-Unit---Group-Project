@@ -6,8 +6,8 @@ using MEC;
 public class AttackController : MonoBehaviour
 {
     public GameObject bullet;
-    public float Damage;
-    public static float _Damage;
+    public int Damage;
+    public static int _Damage;
     private bool canShoot = true;
     public AudioClip AudioClip;
     void Update()

@@ -16,7 +16,7 @@ public class EnemyCore : MonoBehaviour
 {
     public static float Health { get; set; }
     public static float Speed { get; set; }
-    public static float Damage { get; set; }
+    public static int Damage { get; set; }
 
     public float DistanceFromPlayer;
 
@@ -44,7 +44,7 @@ public class EnemyCore : MonoBehaviour
     {
         Health = 100f;
         Speed = 4f;
-        Damage = 1.0f;
+        Damage = 1;
         DistanceFromPlayer = 0f;
         Events.Enemy.Hurt += Attacked;
         rb = GetComponent<Rigidbody2D>();
@@ -119,7 +119,7 @@ public class EnemyCore : MonoBehaviour
 
     public void Attacked(HurtEventArgs e)
     {
-        if (e.Instance == gameObject)
+        if (e.Target == gameObject)
         {
             Color color = gameObject.GetComponent<SpriteRenderer>().color;
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
