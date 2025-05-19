@@ -114,11 +114,11 @@ public class MovementHandler : MonoBehaviour
 
         if (movement.x < 0) // Going left
         {
-            gameObject.transform.localScale = new Vector3(-12, 13, 1); // Set scale on the X axis to negative to essentially flip the object 
+            gameObject.transform.localScale = new Vector3(-1, 1, 1); // Set scale on the X axis to negative to essentially flip the object 
         }
         else if (movement.x > 0) // Going right
         {
-            gameObject.transform.localScale = new Vector3(12, 13, 1); // Set scale on the X axis to positive to unflip the object
+            gameObject.transform.localScale = new Vector3(1, 1, 1); // Set scale on the X axis to positive to unflip the object
         }
 
 
