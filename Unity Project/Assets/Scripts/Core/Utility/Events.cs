@@ -57,11 +57,11 @@ namespace EventArgs
 
     public class BossArenaEnterEventArgs
     {
-        public BossLayoutChangeEventArgs(GameObject instance, int layoutNumber)
-        {
-            LayoutNumber = layoutNumber;
-        }
-        public int LayoutNumber { get; }
+        //public BossLayoutChangeEventArgs(GameObject instance, int layoutNumber)
+      //  {
+         //   LayoutNumber = layoutNumber;
+       // }
+       // public int LayoutNumber { get; }
     }
 
     public class ButtonClickEventArgs
@@ -248,12 +248,12 @@ namespace Events
             BossArenaEnter?.Invoke();
         }
 
-        public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
-        public static event BossLayoutChangeEvent BossLayoutChange;
-        public virtual void _BossLayoutChangeEvent(BossLayoutChangeEventArgs e)
-        {
-            BossLayoutChange?.Invoke(e);
-        }
+        //public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
+       // public static event BossLayoutChangeEvent BossLayoutChange;
+        //public virtual void _BossLayoutChangeEvent(BossLayoutChangeEventArgs e)
+        //{
+        //    BossLayoutChange?.Invoke(e);
+        //}
 
         public delegate void ButtonClickEvent(ButtonClickEventArgs e);
         public static event ButtonClickEvent ButtonClick;
