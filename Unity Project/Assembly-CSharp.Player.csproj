@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Core\Utility\EventHandler.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\MiscController.cs" />
+    <Compile Include="Assets\Scripts\Player\Objects\BulletScriptDenialBoss.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
     <Compile Include="Assets\GodMode.cs" />
