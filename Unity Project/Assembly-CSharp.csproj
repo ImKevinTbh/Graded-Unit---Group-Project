@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Player\Controllers\CameraControllerBossArena.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\PickupHandler.cs" />
+    <Compile Include="Assets\Scripts\Core\AchievementHandler.cs" />
     <Compile Include="Assets\Scripts\Core\Settings.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScript.cs" />
     <Compile Include="Assets\DenialController.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Object components\PickupObject.cs" />
     <Compile Include="Assets\NextLevel.cs" />
     <Compile Include="Assets\Scripts\Player\Handlers\StateHandler.cs" />
+    <Compile Include="Assets\Scripts\Enemy\SkeletonEnemy.cs" />
     <Compile Include="Assets\Scripts\Core\ButtonHandler.cs" />
     <Compile Include="Assets\Scripts\Core\GameHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyCore.cs" />

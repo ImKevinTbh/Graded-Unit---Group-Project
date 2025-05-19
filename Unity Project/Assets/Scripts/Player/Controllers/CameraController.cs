@@ -16,13 +16,13 @@ public class CameraController : MonoBehaviour
     public Collider2D BossCameraBounds;
     public Collider2D EndLevelCameraBounds;
 
-    public static CameraController instance = null; // Do not remove, needed for movement controller.
+    public static CameraController instance; // Do not remove, needed for movement controller.
 
 
 
     private void Awake()
     {
-        instance = null; // Do not remove, needed for movement controller.
+        instance = this; // Do not remove, needed for movement controller.
 
         // checks for the player object and assisns it to the p variable
         p = GameObject.Find("PlayerModel").gameObject;

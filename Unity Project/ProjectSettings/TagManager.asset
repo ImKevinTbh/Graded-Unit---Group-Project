@@ -13,6 +13,7 @@ TagManager:
   - Pickup
   - Camera Boundary
   - Layout
+  - Enemy
   layers:
   - Default
   - TransparentFX

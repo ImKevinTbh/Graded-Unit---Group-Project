@@ -14,9 +14,11 @@ using UnityEngine.Windows;
 
 public class EnemyCore : MonoBehaviour
 {
-    public static float Health { get; set; }
-    public static float Speed { get; set; }
-    public static int Damage { get; set; }
+    public int Health;
+
+    public float Speed;
+
+    public int Damage;
 
     public float DistanceFromPlayer;
 
@@ -40,17 +42,18 @@ public class EnemyCore : MonoBehaviour
 
     public bool Movement = true;
 
-    public void Start()
+    public virtual void Start()
     {
-        Health = 100f;
+        Health = 3;
         Speed = 4f;
         Damage = 1;
         DistanceFromPlayer = 0f;
         Events.Enemy.Hurt += Attacked;
         rb = GetComponent<Rigidbody2D>();
+        Player = PlayerController.Instance.gameObject;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
 
@@ -95,13 +98,13 @@ public class EnemyCore : MonoBehaviour
         rb.AddForce(Direction * Speed, ForceMode2D.Force);
     }
 
-    public void SpotPlayer()
+    public virtual void SpotPlayer()
     {
 
     }
 
     // when the player collides send a hurt event
-    public void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider == Player)
         {
@@ -109,18 +112,23 @@ public class EnemyCore : MonoBehaviour
         }
     }
 
-    public void OnDestroy()
+    public virtual void OnDestroy()
     {
-        AudioSource.PlayClipAtPoint(DyingSFX, gameObject.transform.position);
+        //AudioSource.PlayClipAtPoint(DyingSFX, gameObject.transform.position);
         Events.Enemy.Hurt -= Attacked;
-        Destroy(gameObject);
         ScoreHandler.Score += 10;
+        Debug.Log($"My ID is: {gameObject.GetInstanceID()}");
+
     }
 
-    public void Attacked(HurtEventArgs e)
+    public virtual void Attacked(HurtEventArgs e)
     {
-        if (e.Target == gameObject)
+
+        try { Debug.Log($"Object Collided: {e.Target.gameObject} IN {gameObject}"); } catch { Debug.Log($"Object Collided: NULL"); }
+        
+        if (e.Target.GetInstanceID() == gameObject.GetInstanceID())
         {
+            Debug.Log($"Target for damage: {e.Target.GetInstanceID()}");
             Color color = gameObject.GetComponent<SpriteRenderer>().color;
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
