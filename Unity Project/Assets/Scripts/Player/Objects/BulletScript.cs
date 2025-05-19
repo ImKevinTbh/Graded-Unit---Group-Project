@@ -38,14 +38,13 @@ public class BulletScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.CompareTag("Player")) { return; }
-        else if (collision.CompareTag("Boundary")) { return; }
+        else if (collision.CompareTag("Boundary") || collision.CompareTag("Camera Boundary")) { return; }
         else
         {
             if (collision.gameObject.GetComponent<EnemyCore>() != null)
             {
                 collision.gameObject.GetComponent<EnemyCore>().Attacked(this.gameObject, collision.gameObject, Damage);
             }
-            
             // Charlotte's Comments for this If statement
             // This manages the damage dealt to my boss in the Grief level, allowing it to collide with the bullet.
             if (collision.gameObject.GetComponent<GriefBossScript>() != null)
@@ -53,6 +52,8 @@ public class BulletScript : MonoBehaviour
                 collision.gameObject.GetComponent<GriefBossScript>().Attacked(this.gameObject, collision.gameObject, Damage);
             }
             Timing.CallDelayed(0.15f, () => Destroy(gameObject));
+            Debug.LogWarning(collision.gameObject.name);
+            Timing.CallDelayed(0.05f, () => Destroy(gameObject));
         }
 
     }

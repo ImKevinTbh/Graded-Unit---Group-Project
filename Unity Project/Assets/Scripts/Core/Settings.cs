@@ -10,7 +10,7 @@ public class Settings : MonoBehaviour
     
     void Start()
     {
-        instance = this;
+        if (instance == null) { instance = this; } else { Destroy(this.gameObject); }
         DontDestroyOnLoad(gameObject);
     }
 

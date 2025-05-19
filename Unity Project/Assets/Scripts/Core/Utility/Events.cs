@@ -1,4 +1,6 @@
 using System;
+using System.Text.RegularExpressions;
+using EventArgs;
 using UnityEngine;
 
 namespace EventArgs
@@ -17,6 +19,20 @@ namespace EventArgs
         public int Damage { get; }
     }
 
+    public class DenierDestroyedEventArgs
+    {
+        public DenierDestroyedEventArgs(GameObject instance, int group, int id)
+        {
+            Instance = instance;
+            Group = group;
+            Id = id;
+        }
+        public GameObject Instance { get; }
+        public int Group { get; }
+        public int Id { get; }
+
+    }
+
     public class PickupEventArgs
     {
         public PickupEventArgs(GameObject instance, Collider2D collider)
@@ -29,7 +45,7 @@ namespace EventArgs
 
     }
 
-    public class LoadedLevelEventArgs
+    public class LoadedLevelEventArgs 
     {
         public LoadedLevelEventArgs(MapController instance)
         {
@@ -91,7 +107,7 @@ namespace Events
     // -------------------------------------------------------------------------------------------------------- //
 
 
-    public class Pickup
+    public class Pickup // Kevin
     {
 
         public delegate void PickupEvent(PickupEventArgs ev);
@@ -102,8 +118,33 @@ namespace Events
         }
     }
 
-    public class Player
+    public class Game // Kevin
     {
+        public delegate void QuitEvent();
+        public static event QuitEvent Quit;
+        public virtual void _Quit()
+        {
+            Quit?.Invoke();
+        }
+
+        public delegate void TogglePauseEvent();
+        public static event TogglePauseEvent TogglePause;
+        public virtual void _TogglePause()
+        {
+            TogglePause?.Invoke();
+        }
+    }
+
+    public class Player // Kevin
+    {
+
+        public delegate void DiedEvent();
+        public static event DiedEvent OnDied;
+        public virtual void _Died()
+        {
+            OnDied?.Invoke();
+        }
+
 
         public delegate void HurtEvent(HurtEventArgs ev);
         public static event HurtEvent Hurt;
@@ -111,10 +152,17 @@ namespace Events
         {
             Hurt?.Invoke(ev);
         }
+
+        public delegate void RespawnEvent();
+        public static event RespawnEvent Respawn;
+        public virtual void _Respawn()
+        {
+            Respawn?.Invoke();
+        }
     }
 
 
-    public class Enemy
+    public class Enemy // Kevin
     {
 
         public delegate void HurtEvent();
@@ -125,8 +173,8 @@ namespace Events
         }
     }
 
-    // ~Allan
-    public class Level
+
+    public class Level // Kevin
     {
 
         public delegate void LoadedLevel(LoadedLevelEventArgs ev);
@@ -137,11 +185,24 @@ namespace Events
         }
 
 
-        public delegate void BossArenaEnterEvent();
+        public delegate void BossArenaEnterEvent(); // ~Allan
         public static event BossArenaEnterEvent BossArenaEnter;
         public virtual void _BossArenaEnter()
         {
             BossArenaEnter?.Invoke();
         }
     }
+
+    public class Denial // Kevin
+    {
+        public delegate void DenierDestroyedEvent(DenierDestroyedEventArgs ev);
+        public static event DenierDestroyedEvent DenierDestroyed;
+        public virtual void _DenierDestroyed(DenierDestroyedEventArgs ev)
+        {
+            DenierDestroyed?.Invoke(ev);
+        }
+    }
 }
+
+
+
