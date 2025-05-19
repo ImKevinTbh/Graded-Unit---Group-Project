@@ -17,6 +17,6 @@ public class UiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ui.text = $"Speed {PlayerController.Instance.gameObject.GetComponent<Rigidbody2D>().velocity.ToString()} \nScore {PlayerController.Instance.Score.ToString()}";
+        ui.text = $"Speed {PlayerController.Instance.gameObject.GetComponent<Rigidbody2D>().velocity.ToString()} \nScore {ScoreHandler.Score.ToString()}";
     }
 }

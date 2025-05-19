@@ -50,7 +50,7 @@ public class EnemyCore : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(DyingSFX, gameObject.transform.position);
         Destroy(gameObject);
-        PlayerController.Instance.Score += 10;
+        ScoreHandler.Score += 10;
     }
 
     public bool Attacked(GameObject attacker, GameObject instance, float Damage)

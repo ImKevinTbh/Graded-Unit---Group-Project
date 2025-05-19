@@ -45,11 +45,11 @@ public class GriefBossScript : MonoBehaviour
     private void Update()
     {
         // DistanceFromPlayer is constantly checking for the current co-ordinates of the player
-        DistanceFromPlayer = (int)(GameObject.Find("Player(Clone)").transform.position - transform.position).magnitude;
+        DistanceFromPlayer = (int)(PlayerController.Instance.gameObject.transform.position - transform.position).magnitude;
         // If the player is less than 35 units away from the player, the enemy will begin heading towards them.
         if (DistanceFromPlayer <= 35)
         // This tells the boss where to move
-            dir = (Vector2)(GameObject.Find("Player(Clone)").transform.position) - (Vector2)transform.position;
+            dir = (Vector2)(PlayerController.Instance.gameObject.transform.position) - (Vector2)transform.position;
         // This is intended to cap the bosses speed to a reasonable level.   
             dir.Normalize();
         // This actually makes the enemy move

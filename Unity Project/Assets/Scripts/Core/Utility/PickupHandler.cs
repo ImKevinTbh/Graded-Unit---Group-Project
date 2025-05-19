@@ -40,7 +40,7 @@ public class PickupHandler : MonoBehaviour
     {
         pickups.Remove(ev.Instance.gameObject);
         Debug.Log("PICKED UP");
-        PlayerController.Instance.Score += 5;
+        ScoreHandler.Score += 5;
 
     }
 

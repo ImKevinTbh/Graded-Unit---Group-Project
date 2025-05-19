@@ -47,7 +47,7 @@ public class WinLoseCon : MonoBehaviour
         }
 
         // This method will trigger when the player has been alive for at least a second and has reached zero health
-        if (time >= 1f && PlayerController.Health <= 0)
+        if (time >= 1f && PlayerController.Instance.Health <= 0)
         {
             Debug.Log("Dead.");
             Object.Destroy(Player);
@@ -55,7 +55,7 @@ public class WinLoseCon : MonoBehaviour
             // When the player dies, they are taken to the death screen.
             SceneManager.LoadScene("DeathScene");
             // This will reset the health back to default values so they don't immediately die if the player needs to restart.
-            PlayerController.Health = 3;
+            EventHandler.Player._Respawn();
         }
     }
 }
