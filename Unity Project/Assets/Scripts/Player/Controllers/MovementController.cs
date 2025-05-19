@@ -143,7 +143,6 @@ public class MovementHandler : MonoBehaviour
 
     public bool GroundCheck()
     {
-        Debug.Log("No Ground");
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one / 2, 0, Vector2.down, 1f, mask); // cast downwards by 1 meter 
         Debug.DrawRay(transform.position, Vector2.down, Color.red);
         if (hit.collider == null)
