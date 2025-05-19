@@ -12,6 +12,7 @@ TagManager:
   - Door
   - Pickup
   - Camera Boundary
+  - Layout
   layers:
   - Default
   - TransparentFX

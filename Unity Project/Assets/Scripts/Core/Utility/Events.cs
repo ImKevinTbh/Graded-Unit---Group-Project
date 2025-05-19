@@ -1,20 +1,40 @@
 using System;
 using UnityEngine;
+using System.Text.RegularExpressions;
+using EventArgs;
+
 
 namespace EventArgs
 {
     public class HurtEventArgs
     {
-        public HurtEventArgs(GameObject instance, GameObject source, float damage)
+        public HurtEventArgs(GameObject source, GameObject target, int damage)
         {
-            Instance = instance;
+            Target = target;
             Source = source;
             Damage = damage;
         }
 
-        public GameObject Instance { get; }
+
+        public GameObject Target { get; }
         public GameObject Source { get; }
-        public float Damage { get; }
+        public int Damage { get; }
+
+    }
+
+    public class DenierDestroyedEventArgs
+    {
+        public DenierDestroyedEventArgs(GameObject instance, int group, int id)
+        {
+            Instance = instance;
+            Group = group;
+            Id = id;
+        }
+        public GameObject Instance { get; }
+        public int Group { get; }
+        public int Id { get; }
+
+
     }
 
     public class PickupEventArgs
@@ -29,6 +49,28 @@ namespace EventArgs
 
     }
 
+
+
+    public class BossLayoutChangeEventArgs
+    {
+        public BossLayoutChangeEventArgs(GameObject instance, int layoutNumber)
+        {
+            LayoutNumber = layoutNumber;
+        }
+        public int LayoutNumber { get; }
+    }
+
+    public class ButtonClickEventArgs
+    {
+        public ButtonClickEventArgs(GameObject instance, int buttonNumber)
+        {
+            Instance = instance;
+            ButtonNumber = buttonNumber;
+        }
+        public int ButtonNumber { get; }
+        public GameObject Instance { get; }
+
+    }
     public class LoadedLevelEventArgs
     {
         public LoadedLevelEventArgs(MapController instance)
@@ -45,6 +87,7 @@ namespace EventArgs
         {
             Instance = instance;
         }
+
         public GameObject Instance { get; }
     }
 }
@@ -55,23 +98,23 @@ namespace Events
 
     // -------------------------------------------------------------------------------------------------------- //
     // ~Allan                                                                                                   //
-    // For creating new events which don't absolutely need to have data passed through do the following format; //
+    // For creating new events which don't  need to have data passed through do the following format;           //
     //                                                                                                          //
-    // public class *event group name*;                                                                         //
-    // {                                                                                                        //
-    //      public delegate void *specific event name*();                                                       //
-    //      public static event *specific event name* *variable name to listen for event*;                      //
-    //                                                                                                          //
-    //      public virtual void *_variablle name to trigger event*()                                            //
+    //      public class *event group name*;                                                                    //
     //      {                                                                                                   //
-    //          *_variablle name to trigger event*?.Invoke();                                                   //
+    //          public delegate void *specific event name*();                                                   //
+    //          public static event *specific event name* *variable name to listen for event*;                  //
+    //                                                                                                          //
+    //          public virtual void *_variablle name to trigger event*()                                        //
+    //          {                                                                                               //
+    //              *_variablle name to trigger event*?.Invoke();                                               //
+    //          }                                                                                               //
     //      }                                                                                                   //
-    // }                                                                                                        //
     // -------------------------------------------------------------------------------------------------------- //
     //                                                                                                          //
     // To trigger an event from anywhere run:                                                                   //
     //                                                                                                          //
-    // EventHandler.*event group name*.*_variablle name to trigger event*();                                    //
+    //      EventHandler.*event group name*.*_variablle name to trigger event*();                               //
     //                                                                                                          //
     // Which will ping that event once every time it's run.                                                     //
     //                                                                                                          //
@@ -79,19 +122,64 @@ namespace Events
     //                                                                                                          //
     // To listen for an event do:                                                                               //
     //                                                                                                          //
-    // Events.*event group name*.*specific event name* += *function to run from event trigger*;                 //
+    //      Events.*event group name*.*specific event name* += *function to run from event trigger*;            //
     //                                                                                                          //
-    // ...in Start function of script, then *function to run from event trigger* will run every time the event  //
+    // ...in Awake function of script, then *function to run from event trigger* will run every time the event  //
     // is triggered.                                                                                            //
     //                                                                                                          //
     // -------------------------------------------------------------------------------------------------------- //
     //                                                                                                          //
-    // If your event ABSOLUTELY NEEDS to have data passed through it amd you can't do it another way, we will   //
-    // make a unique event for your purpose a different way to this.                                            //
+    // If your event needs to have data passed through then you also need to include a seperate class for the   //
+    // data:                                                                                                    //
+    //                                                                                                          //
+    //      public class *event group name*Args;                                                                //
+    //      {                                                                                                   //
+    //          public *event group name*Args(*Any paramiters which you want to come through*)                  //
+    //          {                                                                                               //
+    //              LayoutNumber = layoutNumber;                                                                //
+    //          }                                                                                               //
+    //          public int LayoutNumber { get; }                                                                //
+    //                                                                                                          //
+    // -------------------------------------------------------------------------------------------------------- //
+    //                                                                                                          //
+    //...Then include your arguments in when you send the event:                                                //
+    //                                                                                                          //
+    //     EventHandler.*event group name*.*_variablle name to trigger event*(*event arguments with data type*);//
+    //                                                                                                          //
+    // -------------------------------------------------------------------------------------------------------- //
+    //                                                                                                          //
+    //...Include the event args in the event:                                                                   //
+    //                                                                                                          //
+    //      public class *event group name*;                                                                    //
+    //      {                                                                                                   //
+    //          public delegate void *specific event name*(*event group name*Args e);                           //
+    //          public static event *specific event name* *variable name to listen for event*;                  //
+    //                                                                                                          //
+    //          public virtual void *_variablle name to trigger event*(*event group name*Args e)                //
+    //          {                                                                                               //
+    //              *_variablle name to trigger event*?.Invoke(e);                                              //
+    //          }                                                                                               //
+    //      }                                                                                                   //
+    //                                                                                                          //
+    // -------------------------------------------------------------------------------------------------------- //
+    //                                                                                                          //
+    //...Finally where you listen for the event include the data type being passed through in the               //
+    //                                                                                                          //
+    //      Events.*event group name*.*specific event name* += *function to run from event trigger*             //
+    //                                                                                                          //
+    //      void *function to run frmo event trigger*(*event group name*Args e)                                 //
+    //      {                                                                                                   //
+    //           Something needing data += e.Whatever data type you have passed through                         //
+    //      }                                                                                                   //
+    //                                                                                                          //
+    // -------------------------------------------------------------------------------------------------------- //
+    //                                                                                                          //
+    //     If that doesn't make sense look through examples already in the code                                 //
+    //                                                                                                          //
     // -------------------------------------------------------------------------------------------------------- //
 
 
-    public class Pickup
+    public class Pickup // Kevin
     {
 
         public delegate void PickupEvent(PickupEventArgs ev);
@@ -102,14 +190,46 @@ namespace Events
         }
     }
 
-    public class Player
+    public class Game // Kevin
+    {
+        public delegate void QuitEvent();
+        public static event QuitEvent Quit;
+        public virtual void _Quit()
+        {
+            Quit?.Invoke();
+        }
+
+        public delegate void TogglePauseEvent();
+        public static event TogglePauseEvent TogglePause;
+        public virtual void _TogglePause()
+        {
+            TogglePause?.Invoke();
+        }
+    }
+
+    public class Player // Kevin
     {
 
-        public delegate void HurtEvent();
-        public static event HurtEvent Hurt;
-        public virtual void _Hurt()
+        public delegate void DiedEvent();
+        public static event DiedEvent OnDied;
+        public virtual void _Died()
         {
-            Hurt?.Invoke();
+            OnDied?.Invoke();
+        }
+
+
+        public delegate void HurtEvent(HurtEventArgs ev);
+        public static event HurtEvent Hurt;
+        public virtual void _Hurt(HurtEventArgs ev)
+        {
+            Hurt?.Invoke(ev);
+        }
+
+        public delegate void RespawnEvent();
+        public static event RespawnEvent Respawn;
+        public virtual void _Respawn()
+        {
+            Respawn?.Invoke();
         }
     }
 
@@ -117,17 +237,44 @@ namespace Events
     public class Enemy
     {
 
-        public delegate void HurtEvent();
+        public delegate void HurtEvent(HurtEventArgs e);
         public static event HurtEvent Hurt;
-        public virtual void _Hurt()
+        public virtual void _Hurt(HurtEventArgs e)
         {
-            Hurt?.Invoke();
+            Hurt?.Invoke(e);
+            Debug.Log("Enemy Hurt");
+
         }
     }
 
     // ~Allan
     public class Level
     {
+
+        public delegate void BossArenaEnterEvent(); // ~Allan
+        public static event BossArenaEnterEvent BossArenaEnter;
+        public virtual void _BossArenaEnter()
+        {
+            BossArenaEnter?.Invoke();
+            Debug.Log("Boss Arena Enter");
+        }
+
+        public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
+        public static event BossLayoutChangeEvent BossLayoutChange;
+        public virtual void _BossLayoutChangeEvent(BossLayoutChangeEventArgs e)
+        {
+            BossLayoutChange?.Invoke(e);
+            Debug.Log("Boss Layout Change");
+        }
+
+        public delegate void ButtonClickEvent(ButtonClickEventArgs e);
+        public static event ButtonClickEvent ButtonClick;
+        public virtual void _ButtonClickEvent(ButtonClickEventArgs e)
+        {
+            ButtonClick?.Invoke(e);
+            Debug.Log("Button Click Event");
+
+        }
 
         public delegate void LoadedLevel(LoadedLevelEventArgs ev);
         public static event LoadedLevel OnLoadedLevel;
@@ -136,12 +283,16 @@ namespace Events
             OnLoadedLevel?.Invoke(ev);
         }
 
+    }
 
-        public delegate void BossArenaEnterEvent();
-        public static event BossArenaEnterEvent BossArenaEnter;
-        public virtual void _BossArenaEnter()
+
+    public class Denial // Kevin
+    {
+        public delegate void DenierDestroyedEvent(DenierDestroyedEventArgs ev);
+        public static event DenierDestroyedEvent DenierDestroyed;
+        public virtual void _DenierDestroyed(DenierDestroyedEventArgs ev)
         {
-            BossArenaEnter?.Invoke();
+            DenierDestroyed?.Invoke(ev);
         }
     }
 }
