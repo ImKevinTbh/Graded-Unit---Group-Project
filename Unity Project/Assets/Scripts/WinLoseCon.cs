@@ -18,9 +18,9 @@ public class WinLoseCon : MonoBehaviour
     void Start()
     {
         Boss = GameObject.FindGameObjectWithTag("GriefBoss");
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = PlayerController.Instance.gameObject;
         time = 0f;
-        script = Player.gameObject.GetComponent<PlayerController>();
+        script = PlayerController.Instance;
 
     }
 
@@ -36,7 +36,7 @@ public class WinLoseCon : MonoBehaviour
         // It cannot be uppercase like the rest as Time is an actual function in Unity.
         time += Time.deltaTime;
         // Script is used to call the PlayerController script.
-        script = Player.gameObject.GetComponent<PlayerController>();
+        script = PlayerController.Instance;
 
         // This method triggers when the boss is killed.
         if (Boss == null)
@@ -50,12 +50,7 @@ public class WinLoseCon : MonoBehaviour
         if (time >= 1f && PlayerController.Instance.Health <= 0)
         {
             Debug.Log("Dead.");
-            Object.Destroy(Player);
-            Object.Destroy(Boss);
-            // When the player dies, they are taken to the death screen.
-            SceneManager.LoadScene("DeathScene");
-            // This will reset the health back to default values so they don't immediately die if the player needs to restart.
-            EventHandler.Player._Respawn();
+            EventHandler.Game._Quit();
         }
     }
 }

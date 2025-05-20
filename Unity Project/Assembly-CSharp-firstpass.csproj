@@ -979,16 +979,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
+      <HintPath>Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Sysroot.Linux_x86_64">
       <HintPath>Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PsdPlugin">
       <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Toolchain.Linux-x86_64">
-      <HintPath>Library\ScriptAssemblies\Unity.Toolchain.Linux-x86_64.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Burst">

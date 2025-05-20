@@ -20,6 +20,8 @@ public class DenialBoss : MonoBehaviour
     public static bool Vulnerable = false;
     public static int Health = 10;
 
+    public static bool CanAttack = false;
+    public GameObject AttackProjectile;
     private void Awake()
     {
         instance = this;
@@ -30,9 +32,9 @@ public class DenialBoss : MonoBehaviour
 
 
 
-    private void Update()
+    private void FixedUpdate()
     {
-        AttackPlayer();
+
 
 
 
@@ -47,7 +49,8 @@ public class DenialBoss : MonoBehaviour
     public void AttackPlayer()
     {
         Vector3 direction = gameObject.transform.position - PlayerController.Instance.transform.position;
-        Debug.DrawRay(transform.position, direction, Color.red, 10f);
+        Instantiate(AttackProjectile, DenialBoss.instance.gameObject.transform.position, Quaternion.identity);
+
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -69,20 +72,19 @@ public class DenialBoss : MonoBehaviour
     public IEnumerator<float> Phase1()
     {
         Hit = false;
-
+        CanAttack = true;
         gameObject.transform.position = Phase_1_SpawnPoint;
         origin = transform.position;
         while (!Hit)
         {
-            yield return Timing.WaitForOneFrame;
+            yield return Timing.WaitForSeconds(0.1f);
 
 
             var sin = Mathf.Sin(Time.time);
             if (sin < 0) sin *= -1;
-            gameObject.transform.position = new Vector3(Mathf.Lerp(origin.x - 1.75f, origin.x, sin), Mathf.Lerp(origin.y - Random.Range(-1.74f, -1f), origin.y, sin), transform.position.z);
-
-
-            if (Random.Range(0, 100) <= 85)
+            gameObject.transform.position = new Vector3(Mathf.Lerp(origin.x - 1.75f, origin.x, sin), origin.y, transform.position.z);
+            
+            if (Random.Range(0, 100) <= 98)
             {
 
                 AttackPlayer();
@@ -92,6 +94,7 @@ public class DenialBoss : MonoBehaviour
 
         transform.position = IdlePos;
         origin = IdlePos;
+        CanAttack = false;
 
     }
 }

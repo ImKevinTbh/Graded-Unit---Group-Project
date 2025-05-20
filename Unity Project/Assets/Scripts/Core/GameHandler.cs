@@ -1,10 +1,12 @@
-
+using Assets;
+using Events;
+using System;
+using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using EventArgs;
-using Events;
 using MEC;
 using UnityEngine.SceneManagement;
 public class GameHandler : MonoBehaviour // Kevin 
@@ -26,8 +28,8 @@ public class GameHandler : MonoBehaviour // Kevin
 
     public static GameHandler instance = null; // Declare Instance Variable, This allows us to find THIS SPECIFIC SCRIPT without doing gameobject.find because it is performance heavy
     public GameObject Player; // Used to set the player object prefab in the editor so we can spawn them in
-    public GameObject SettingsItem;
-    private void Start() // On Object Creation Upon Scene Load
+
+    private void Awake() // On Object Creation Upon Scene Load
     {
         if (instance == null) { instance = this; } else { Destroy(this); } // If an instance of this type of script already exists, destroy this one. (Should never happen)
         EventHandler.Init(); // Starts our event system (THIS NEEDS TO BE RUN BEFORE WE USE EVENTS *ANYWHERE* ELSE IN THE SOLUTION) 
@@ -44,8 +46,7 @@ public class GameHandler : MonoBehaviour // Kevin
 
     public void PlayerDied()
     {
-        EventHandler.Game._Quit(); // Quit the game
-        SceneManager.LoadScene("LevelSelect");
+        //SceneManager.LoadScene("LevelSelect");
         // Do shit here when the player is dead
     }
 

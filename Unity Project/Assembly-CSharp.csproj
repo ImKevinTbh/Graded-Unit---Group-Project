@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
@@ -63,7 +63,7 @@
     <Compile Include="Assets\Scripts\Enemy\GriefBossScript.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\EventHandler.cs" />
     <Compile Include="Assets\Scripts\Respawn.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\MiscController.cs" />
+    <Compile Include="Assets\Scripts\Player\Objects\BulletScriptDenialBoss.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
@@ -72,15 +72,18 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\Scripts\Core\Button.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
     <Compile Include="Assets\GodMode.cs" />
+    <Compile Include="Assets\Scripts\Player\Handlers\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\Core\LevelSelector.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\DenialBoss.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\Scripts\Core\Layout.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\CameraControllerBossArena.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
@@ -121,10 +124,13 @@
     <Compile Include="Assets\Scripts\Core\GameHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyCore.cs" />
+    <Compile Include="Assets\Scripts\Core\Utility\Elevator.cs" />
+    <Compile Include="Assets\Scripts\Core\Utility\Buttons.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\AttackController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorOpenScript.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\MovementController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
+    <Compile Include="Assets\Scripts\Enemy\HandEnemy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Scripts\WinLoseCon.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
@@ -1072,16 +1078,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
+      <HintPath>Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Sysroot.Linux_x86_64">
       <HintPath>Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PsdPlugin">
       <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Toolchain.Linux-x86_64">
-      <HintPath>Library\ScriptAssemblies\Unity.Toolchain.Linux-x86_64.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Burst">

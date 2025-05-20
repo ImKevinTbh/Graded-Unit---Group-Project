@@ -1,12 +1,6 @@
+.vs/slnx.sqlite-journal
 
-Unity Project/Library/Artifacts/0d/
-
-Unity Project/Library/Artifacts/57/
-
-Unity Project/Library/Artifacts/60/
-
-Unity Project/Temp/UnityLockfile
-
+.vs/slnx.sqlite
 
 Unity Project/Library/Artifacts/07/
 
@@ -27,5 +21,3 @@ Unity Project/Library/
 Unity Project/Logs/
 
 *.cache
-
-Unity Project/obj/Debug/

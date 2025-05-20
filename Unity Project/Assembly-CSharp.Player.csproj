@@ -61,12 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Core\Utility\EventHandler.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\MiscController.cs" />
+    <Compile Include="Assets\Scripts\Player\Objects\BulletScriptDenialBoss.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
+    <Compile Include="Assets\Scripts\Core\Button.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
     <Compile Include="Assets\GodMode.cs" />
+    <Compile Include="Assets\Scripts\Player\Handlers\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\Core\LevelSelector.cs" />
     <Compile Include="Assets\DenialBoss.cs" />
+    <Compile Include="Assets\Scripts\Core\Layout.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\CameraControllerBossArena.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\PickupHandler.cs" />
@@ -84,10 +87,13 @@
     <Compile Include="Assets\Scripts\Core\ButtonHandler.cs" />
     <Compile Include="Assets\Scripts\Core\GameHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyCore.cs" />
+    <Compile Include="Assets\Scripts\Core\Utility\Elevator.cs" />
+    <Compile Include="Assets\Scripts\Core\Utility\Buttons.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\AttackController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorOpenScript.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\MovementController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
+    <Compile Include="Assets\Scripts\Enemy\HandEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -922,6 +928,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
       <Private>False</Private>
@@ -951,10 +961,6 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.Player.csproj">
       <Project>{2E64FCC8-6D46-F682-FE85-741C1D9A95D5}</Project>
       <Name>Assembly-CSharp-firstpass.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.Player.csproj">
-      <Project>{41BCB76B-FA8D-6060-0483-F24EE4EEF4BD}</Project>
-      <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
