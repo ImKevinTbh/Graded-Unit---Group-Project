@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// depricated
 public class LayoutSingle : MonoBehaviour
 {
     // Start is called before the first frame update

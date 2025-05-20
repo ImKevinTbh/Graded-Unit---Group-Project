@@ -6,13 +6,16 @@ using UnityEngine;
 public class LevelBounds : MonoBehaviour
 {
     public static LevelBounds instance = null;
-    // Start is called before the first frame update
+
+    // sets intance to the game object attached for easy finding and subscribes to event
+    // Awake instead of Start to make sure instance is initialised in time for other scripts
     void Awake()
     {
         instance = this;
         Events.Level.BossArenaEnter += BossEnter;
     }
 
+    // unsuscribes and sets inactive
     void BossEnter()
     {
         Events.Level.BossArenaEnter -= BossEnter;

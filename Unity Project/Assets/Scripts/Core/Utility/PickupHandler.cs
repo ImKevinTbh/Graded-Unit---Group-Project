@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using EventArgs;
 
+
+// All code by Kevin
 public class PickupHandler : MonoBehaviour
 {
     public static PickupHandler instance = null;

@@ -1,7 +1,3 @@
-// Code by Allan
-
-// Don't touch this directly, inherit this script instead of MonoBehaviour in other enemy scripts
-
 using EventArgs;
 using MEC;
 using System;
@@ -11,9 +7,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
 
+// All code by Allan
+
+// Don't touch this directly, inherit this script instead of MonoBehaviour in other enemy scripts
 
 public class EnemyCore : MonoBehaviour
 {
+
+    // As this is an inherited script all variables which could potentially be needed by various enemys are initialised here, then are inherited by other scripts
+
     public int Health;
 
     public float Speed;
@@ -48,6 +50,8 @@ public class EnemyCore : MonoBehaviour
 
     public RaycastHit2D PlayerCast;
 
+
+    // sets default variables
     public virtual void Start()
     {
         Health = 3;
@@ -71,10 +75,10 @@ public class EnemyCore : MonoBehaviour
 
     public virtual void Update()
     {
-
+        // when health is at or below zero, destroys the boject this script is attached to
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
 
-        // Raycasts towards the players current possition from the enemies current possition at a distance defined in VisionDistance
+        // Raycasts towards the players current possition from the enemies current possition at a distance defined in VisionDistance, if no player is assigned tries to find and assign Player variable to the player
         if (Player != null)
         {
             PlayerCast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, VisionDistance, Mask);
@@ -123,6 +127,8 @@ public class EnemyCore : MonoBehaviour
         
     }
 
+
+    // here for inheritable functionality
     public virtual void SpotPlayer()
     {
 
@@ -137,6 +143,7 @@ public class EnemyCore : MonoBehaviour
         }
     }
 
+    // on destroy unsubscribes from events and pings enemy died event
     public virtual void OnDestroy()
     {
         Events.Enemy.Hurt -= Attacked;
@@ -144,6 +151,7 @@ public class EnemyCore : MonoBehaviour
         EventHandler.Enemy._Died();
     }
 
+    // when enemy hurt is pinged sets enemy colour to red for 0.2 seconds then back to the origional colour, then reduces health by damage
     public virtual void Attacked(HurtEventArgs e)
     {
 

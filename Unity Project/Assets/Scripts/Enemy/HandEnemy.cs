@@ -6,17 +6,19 @@ using EventArgs;
 using MEC;
 using System;
 
-
+// All code by Allan
 public class HandEnemy : EnemyCore
 {
     
+    // inherits EnemyCore sript for most functionality
 
-    public float HoverHeight = 3f;   // Hover 3 units above the platform
-    public float BobAmplitude = 1f;  // Bob up and down by 1 unit
-    public float BobFrequency = 1f;  // Bobbing speed
+    public float HoverHeight = 3f;   // Default height to hover above the ground
+    public float BobAmplitude = 1f;  // the varience in hover height to give a bob
+    public float BobFrequency = 1f;  // bobbing speed
 
     private float baseY;
 
+    // initialises variables
     public override void Start()
     {
         base.Start();
@@ -27,6 +29,8 @@ public class HandEnemy : EnemyCore
         GroundDistance += HoverHeight;
     }
 
+
+    // uses a sine wave to move up and down around a fixed y possition
     void FixedUpdate()
     {
         float targetY = baseY + Mathf.Sin(Time.time * Mathf.PI * 2f * BobFrequency) * BobAmplitude;

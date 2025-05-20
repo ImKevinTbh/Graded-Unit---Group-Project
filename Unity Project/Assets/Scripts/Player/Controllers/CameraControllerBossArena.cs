@@ -9,7 +9,7 @@ using static Cinemachine.DocumentationSortingAttribute;
 using EventArgs;
 using Events;
 
-// depricated afaik // ~Allan
+// depricated  // ~Allan
 
 public class BossCameraController : MonoBehaviour
 {

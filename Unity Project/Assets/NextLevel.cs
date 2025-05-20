@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// depricated(?)
 public class NextLevel : MonoBehaviour
 {
     public void OnCollisionEnter2D(Collision2D other)

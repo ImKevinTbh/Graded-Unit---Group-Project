@@ -81,6 +81,7 @@
     <Compile Include="Assets\EndBounds.cs" />
     <Compile Include="Assets\Scripts\Core\Init.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\CameraController.cs" />
+    <Compile Include="Assets\DoorExitTrigger.cs" />
     <Compile Include="Assets\Scripts\Core\UiController.cs" />
     <Compile Include="Assets\DenierScript.cs" />
     <Compile Include="Assets\Scripts\Core\BossBounds.cs" />
