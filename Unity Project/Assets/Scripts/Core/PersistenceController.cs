@@ -31,6 +31,7 @@ public class PersistenceController : MonoBehaviour
         {
             if (Objects.Contains(gameObject.transform.GetChild(i).gameObject))
             {
+                
                 Objects.Add(gameObject.transform.GetChild(i).gameObject);
             }
         }
@@ -39,14 +40,8 @@ public class PersistenceController : MonoBehaviour
     public void Quit()
     {
 
-        foreach (GameObject o in Objects)
-        {
-            Debug.Log("Destroying " + o.name);
-            Destroy(o.gameObject);
-        }
-
         SceneManager.LoadScene("MainMenu");
-        Destroy(PlayerController.Instance.gameObject.transform.parent.gameObject);
+
 
         Destroy(this.gameObject);
     }

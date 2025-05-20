@@ -62,7 +62,6 @@ public class GameHandler : MonoBehaviour // Kevin
         }
         else
         {
-            Destroy(PlayerController.Instance.gameObject);
             Instantiate(Player, MapController.Instance.InitialSpawnPoint, Quaternion.identity, PersistenceController.instance.gameObject.transform); // Spawn the player
             print("Spawned player.");
             Timing.CallDelayed(0.17f, () => Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = PlayerController.Instance.gameObject.transform); // Make the camera follow the player again
@@ -81,8 +80,7 @@ public class GameHandler : MonoBehaviour // Kevin
             }
             else // If an instance of the playercontroller script DOES exist
             {
-                Debug.Log(PlayerController.Instance.gameObject.name);
-                Debug.unityLogger.Log(MapController.Instance.InitialSpawnPoint);
+                Debug.Log("Player exists on level load");
                 PlayerController.Instance.gameObject.transform.position = MapController.Instance.InitialSpawnPoint; // Move the player to the initial spawnpoint
             }
             
