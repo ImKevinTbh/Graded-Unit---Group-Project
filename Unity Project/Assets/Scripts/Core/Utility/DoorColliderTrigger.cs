@@ -24,8 +24,7 @@ public class MiscController : MonoBehaviour
         {
             //r = UnityEngine.Random.Range(1, range);
             EventHandler.Level._BossArenaEnter();
-            //EventHandler.Level._BossLayoutChangeEvent(new BossLayoutChangeEventArgs(gameObject, r));
-
+            gameObject.SetActive(false);
         }
     }
 }

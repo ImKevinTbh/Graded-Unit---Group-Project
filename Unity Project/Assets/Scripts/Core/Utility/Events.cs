@@ -1,22 +1,25 @@
 using System;
+using UnityEngine;
 using System.Text.RegularExpressions;
 using EventArgs;
-using UnityEngine;
+
 
 namespace EventArgs
 {
     public class HurtEventArgs
     {
-        public HurtEventArgs(GameObject target, GameObject source, int damage)
+        public HurtEventArgs(GameObject source, GameObject target, int damage)
         {
             Target = target;
             Source = source;
             Damage = damage;
         }
 
+
         public GameObject Target { get; }
         public GameObject Source { get; }
         public int Damage { get; }
+
     }
 
     public class DenierDestroyedEventArgs
@@ -30,6 +33,7 @@ namespace EventArgs
         public GameObject Instance { get; }
         public int Group { get; }
         public int Id { get; }
+
 
     }
 
@@ -45,7 +49,29 @@ namespace EventArgs
 
     }
 
-    public class LoadedLevelEventArgs 
+
+
+    public class BossLayoutChangeEventArgs
+    {
+        public BossLayoutChangeEventArgs(GameObject instance, int layoutNumber)
+        {
+            LayoutNumber = layoutNumber;
+        }
+        public int LayoutNumber { get; }
+    }
+
+    public class ButtonClickEventArgs
+    {
+        public ButtonClickEventArgs(GameObject instance, int buttonNumber)
+        {
+            Instance = instance;
+            ButtonNumber = buttonNumber;
+        }
+        public int ButtonNumber { get; }
+        public GameObject Instance { get; }
+
+    }
+    public class LoadedLevelEventArgs
     {
         public LoadedLevelEventArgs(MapController instance)
         {
@@ -71,7 +97,7 @@ namespace EventArgs
             Instance = instance;
             ButtonNumber = buttonNumber;
         }
-        public int ButtonNumber { get; }
+
         public GameObject Instance { get; }
     }
 }
@@ -218,20 +244,47 @@ namespace Events
     }
 
 
-    public class Enemy // Kevin
+    public class Enemy
     {
 
-        public delegate void HurtEvent();
+        public delegate void HurtEvent(HurtEventArgs e);
         public static event HurtEvent Hurt;
-        public virtual void _Hurt()
+        public virtual void _Hurt(HurtEventArgs e)
         {
-            Hurt?.Invoke();
+            Hurt?.Invoke(e);
+            Debug.Log("Enemy Hurt");
+
         }
     }
 
-
-    public class Level // Kevin
+    // ~Allan
+    public class Level
     {
+
+        public delegate void BossArenaEnterEvent(); // ~Allan
+        public static event BossArenaEnterEvent BossArenaEnter;
+        public virtual void _BossArenaEnter()
+        {
+            BossArenaEnter?.Invoke();
+            Debug.Log("Boss Arena Enter");
+        }
+
+        public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
+        public static event BossLayoutChangeEvent BossLayoutChange;
+        public virtual void _BossLayoutChangeEvent(BossLayoutChangeEventArgs e)
+        {
+            BossLayoutChange?.Invoke(e);
+            Debug.Log("Boss Layout Change");
+        }
+
+        public delegate void ButtonClickEvent(ButtonClickEventArgs e);
+        public static event ButtonClickEvent ButtonClick;
+        public virtual void _ButtonClickEvent(ButtonClickEventArgs e)
+        {
+            ButtonClick?.Invoke(e);
+            Debug.Log("Button Click Event");
+
+        }
 
         public delegate void LoadedLevel(LoadedLevelEventArgs ev);
         public static event LoadedLevel OnLoadedLevel;
@@ -240,36 +293,8 @@ namespace Events
             OnLoadedLevel?.Invoke(ev);
         }
 
-
-        public delegate void BossArenaEnterEvent(); // ~Allan
-        public static event BossArenaEnterEvent BossArenaEnter;
-        public virtual void _BossArenaEnter()
-        {
-            BossArenaEnter?.Invoke();
-        }
-
-        //public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
-       // public static event BossLayoutChangeEvent BossLayoutChange;
-        //public virtual void _BossLayoutChangeEvent(BossLayoutChangeEventArgs e)
-        //{
-        //    BossLayoutChange?.Invoke(e);
-        //}
-
-        public delegate void ButtonClickEvent(ButtonClickEventArgs e);
-        public static event ButtonClickEvent ButtonClick;
-        public virtual void _ButtonClickEvent(ButtonClickEventArgs e)
-        {
-            ButtonClick?.Invoke(e);
-        }
-
-        //Lilith
-
-        
-
-
-
-
     }
+
 
     public class Denial // Kevin
     {
@@ -281,6 +306,3 @@ namespace Events
         }
     }
 }
-
-
-

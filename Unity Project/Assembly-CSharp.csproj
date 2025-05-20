@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
@@ -61,12 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Core\Utility\EventHandler.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\MiscController.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScriptDenialBoss.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
     <Compile Include="Assets\Scripts\Core\Button.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
     <Compile Include="Assets\GodMode.cs" />
+    <Compile Include="Assets\Scripts\Player\Handlers\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\HazardController.cs" />
     <Compile Include="Assets\Scripts\Core\LevelSelector.cs" />
     <Compile Include="Assets\DenialBoss.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Core\Utility\DoorOpenScript.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\MovementController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
+    <Compile Include="Assets\Scripts\Enemy\HandEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>

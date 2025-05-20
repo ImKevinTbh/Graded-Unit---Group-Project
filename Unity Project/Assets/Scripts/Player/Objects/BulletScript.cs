@@ -4,9 +4,10 @@ using System;
 using Unity.Collections;
 using UnityEngine.Animations;
 using UnityEngine.Assertions.Must;
+using EventArgs;
 public class BulletScript : MonoBehaviour
 {
-    public float Damage;
+    public int Damage;
     public float Created;
     public float LifeTime;
     public float bSpeed = 1;
@@ -43,7 +44,7 @@ public class BulletScript : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<EnemyCore>() != null)
             {
-                collision.gameObject.GetComponent<EnemyCore>().Attacked(this.gameObject, collision.gameObject, Damage);
+                EventHandler.Enemy._Hurt(new HurtEventArgs(this.gameObject, collision.gameObject, Damage));
             }
             Debug.LogWarning(collision.gameObject.name);
             Timing.CallDelayed(0.05f, () => Destroy(gameObject));
