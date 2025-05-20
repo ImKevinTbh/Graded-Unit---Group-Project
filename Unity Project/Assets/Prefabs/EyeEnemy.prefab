@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 595729306239610359}
   - component: {fileID: 1498086287021346779}
   - component: {fileID: 6845538207771262649}
-  - component: {fileID: 6066647165892421246}
   - component: {fileID: 3035120165578063481}
+  - component: {fileID: 2303089234351304892}
   m_Layer: 0
   m_Name: EyeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,34 +144,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.8730087
---- !u!114 &6066647165892421246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801572152923037613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 578face7f31e90842b465d140e99b77f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DistanceFromPlayer: 0
-  DyingSFX: {fileID: 0}
-  Direction: {x: -1, y: 0}
-  Mask:
-    serializedVersion: 2
-    m_Bits: 8
-  rb: {fileID: 3035120165578063481}
-  SpottedPlayer: 0
-  Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
-  VisionDistance: 3
-  GroundDistance: 3
-  WidthScale: 3
-  Movement: 1
-  HoverHeight: 5
-  BobAmplitude: 1
-  BobFrequency: 2
 --- !u!50 &3035120165578063481
 Rigidbody2D:
   serializedVersion: 4
@@ -199,3 +171,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2303089234351304892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801572152923037613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed096f2e4f416247869800ee9a2f7de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  Speed: 0
+  Damage: 0
+  DistanceFromPlayer: 0
+  DyingSFX: {fileID: 0}
+  Direction: {x: -1, y: 0}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 72
+  rb: {fileID: 3035120165578063481}
+  SpottedPlayer: 0
+  Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
+  VisionDistance: 5
+  GroundDistance: 2
+  WidthScale: 1
+  Movement: 1
+  color: {r: 0, g: 0, b: 0, a: 0}
+  i: 0
+  HoverHeight: 3
+  BobAmplitude: 1
+  BobFrequency: 1
