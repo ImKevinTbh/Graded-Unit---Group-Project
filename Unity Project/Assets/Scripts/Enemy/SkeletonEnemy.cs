@@ -25,6 +25,8 @@ public class SkeletonEnemy : EnemyCore
         Events.Enemy.Hurt += Attacked;
         rb = GetComponent<Rigidbody2D>();
         Player = PlayerController.Instance.gameObject;
+        EventHandler.Enemy._spawn();
+
     }
 
     public void Update()
@@ -45,14 +47,12 @@ public class SkeletonEnemy : EnemyCore
 
     public void OnDestroy()
     {
-        //base.OnDestroy();
-        Debug.Log($"My ID is: {gameObject.GetInstanceID()}");
 
     }
 
     public void Attacked(HurtEventArgs e)
     {
-        //base.Attacked(e);       
+
     }
 
 }

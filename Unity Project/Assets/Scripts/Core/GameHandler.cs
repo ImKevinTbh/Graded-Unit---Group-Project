@@ -59,6 +59,7 @@ public class GameHandler : MonoBehaviour // Kevin
             Destroy(PlayerController.Instance.gameObject);
             Instantiate(Player, MapController.Instance.InitialSpawnPoint, Quaternion.identity, PersistenceController.instance.gameObject.transform); // Spawn the player
             print("Spawned player.");
+            EventHandler.Player._spawn();
             Timing.CallDelayed(0.17f, () => Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = PlayerController.Instance.gameObject.transform); // Make the camera follow the player again
         }
         else
@@ -79,6 +80,7 @@ public class GameHandler : MonoBehaviour // Kevin
             {
                 Instantiate(Player, MapController.Instance.InitialSpawnPoint, Quaternion.identity, PersistenceController.instance.gameObject.transform); // Spawn the player
                 print("Spawned player.");
+                EventHandler.Player._spawn();
             }
             else // If an instance of the playercontroller script DOES exist
             {

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using EventArgs;
+using Events;
 
 
 /* All Code Below This Point Has Been Written By Charlotte, Unless Stated Otherwise */
@@ -44,6 +46,7 @@ public class LevelSelector : MonoBehaviour
     public void LoadBargaining()
     {
         Debug.Log("Loading Bargaining...");
+        SceneManager.LoadScene("Bargaining");
     }
 
     // This method manages the functions for the button assigned to the 5th level, Depression.

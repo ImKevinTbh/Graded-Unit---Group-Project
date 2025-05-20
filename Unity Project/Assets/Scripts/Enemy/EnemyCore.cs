@@ -51,6 +51,7 @@ public class EnemyCore : MonoBehaviour
         Events.Enemy.Hurt += Attacked;
         rb = GetComponent<Rigidbody2D>();
         Player = PlayerController.Instance.gameObject;
+        EventHandler.Enemy._spawn();
     }
 
     public virtual void Update()
@@ -112,23 +113,20 @@ public class EnemyCore : MonoBehaviour
         }
     }
 
-    public virtual void OnDestroy()
+    public void OnDestroy()
     {
-        //AudioSource.PlayClipAtPoint(DyingSFX, gameObject.transform.position);
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA I DIED");  
         Events.Enemy.Hurt -= Attacked;
         ScoreHandler.Score += 10;
-        Debug.Log($"My ID is: {gameObject.GetInstanceID()}");
-
+        EventHandler.Enemy._Died();
     }
 
     public virtual void Attacked(HurtEventArgs e)
     {
 
-        try { Debug.Log($"Object Collided: {e.Target.gameObject} IN {gameObject}"); } catch { Debug.Log($"Object Collided: NULL"); }
         
         if (e.Target.GetInstanceID() == gameObject.GetInstanceID())
         {
-            Debug.Log($"Target for damage: {e.Target.GetInstanceID()}");
             Color color = gameObject.GetComponent<SpriteRenderer>().color;
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 

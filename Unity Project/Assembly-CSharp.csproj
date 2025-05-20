@@ -77,12 +77,15 @@
     <Compile Include="Assets\Scripts\Core\Settings.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScript.cs" />
     <Compile Include="Assets\DenialController.cs" />
+    <Compile Include="Assets\EndBounds.cs" />
     <Compile Include="Assets\Scripts\Core\Init.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\CameraController.cs" />
     <Compile Include="Assets\Scripts\Core\UiController.cs" />
     <Compile Include="Assets\DenierScript.cs" />
+    <Compile Include="Assets\Scripts\Core\BossBounds.cs" />
     <Compile Include="Assets\Scripts\Core\MapController.cs" />
     <Compile Include="Assets\Object components\PickupObject.cs" />
+    <Compile Include="Assets\Scripts\Core\LevelBounds.cs" />
     <Compile Include="Assets\NextLevel.cs" />
     <Compile Include="Assets\Scripts\Player\Handlers\StateHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\SkeletonEnemy.cs" />
@@ -460,6 +463,18 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.36f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.36f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.GradleProject">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.36f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.GradleProject.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">

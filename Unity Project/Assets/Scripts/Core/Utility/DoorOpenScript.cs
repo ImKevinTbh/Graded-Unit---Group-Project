@@ -18,11 +18,18 @@ public class DoorOpenScript : MonoBehaviour
     {
         instance = this;
         Events.Level.BossArenaEnter += doorOpenTrigger;
+        Events.Level.OnBossArenaExit += bossExit;
         gameObject.SetActive(false);
     }
 
     void doorOpenTrigger()
     {
         gameObject.SetActive(true);
+    }
+
+    void bossExit()
+    {
+        gameObject.SetActive(false);
+
     }
 }

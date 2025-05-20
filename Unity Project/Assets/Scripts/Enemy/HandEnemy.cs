@@ -33,6 +33,8 @@ public class HandEnemy : EnemyCore
         RaycastHit2D ground = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 25, Mask);
         baseY = ground.collider.transform.position.y + HoverHeight;
         GroundDistance += HoverHeight;
+        EventHandler.Enemy._spawn();
+
     }
 
     public void Update()
@@ -55,16 +57,12 @@ public class HandEnemy : EnemyCore
 
     public void OnDestroy()
     {
-        //base.OnDestroy();
-        Debug.Log($"My ID is: {gameObject.GetInstanceID()}");
 
 
     }
 
     public void Attacked(HurtEventArgs e)
     {
-        //base.Attacked(e);
-        
 
     }
 

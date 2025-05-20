@@ -31,6 +31,8 @@ public class AchievementHandler : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>().sprite;
     }
 
+    //          EventHandler.Level._Acheivement(new AcheivementArgs(SceneManager.GetActiveScene()));
+    //          To ping event
 
 
     void Acheivement(AcheivementArgs e)

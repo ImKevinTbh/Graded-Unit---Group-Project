@@ -36,6 +36,8 @@ public class BulletScript : MonoBehaviour
         }
     }
 
+
+    // SOMETHING HERE BROKEN, KEEPS OLD ENEMY TYPE IN COLLISION.GAMEOBJECT
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) { return; }
