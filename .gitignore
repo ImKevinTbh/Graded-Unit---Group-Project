@@ -22,3 +22,5 @@ Unity Project/Logs/
 
 *.cache
 Unity Project/UserSettings/
+
+*.meta

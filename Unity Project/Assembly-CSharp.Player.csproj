@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
@@ -60,7 +60,9 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemy\GriefBossScript.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\EventHandler.cs" />
+    <Compile Include="Assets\Scripts\Respawn.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScriptDenialBoss.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
     <Compile Include="Assets\Scripts\Core\Button.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Assets\Scripts\Player\Controllers\CameraControllerBossArena.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\PickupHandler.cs" />
+    <Compile Include="Assets\Scripts\Enemy\GriefEnemyScript.cs" />
     <Compile Include="Assets\Scripts\Core\AchievementHandler.cs" />
     <Compile Include="Assets\Scripts\Core\Settings.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScript.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="Assets\DenierScript.cs" />
     <Compile Include="Assets\Scripts\Core\BossBounds.cs" />
     <Compile Include="Assets\Scripts\Core\MapController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyBulletScript.cs" />
     <Compile Include="Assets\Object components\PickupObject.cs" />
     <Compile Include="Assets\Scripts\Core\LevelBounds.cs" />
     <Compile Include="Assets\NextLevel.cs" />
@@ -100,6 +104,7 @@
     <Compile Include="Assets\Scripts\Player\Controllers\MovementController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\HandEnemy.cs" />
+    <Compile Include="Assets\Scripts\WinLoseCon.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
     <Compile Include="Assets\TESTENEMY.cs" />
   </ItemGroup>
@@ -935,10 +940,6 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
       <Private>False</Private>
@@ -968,6 +969,10 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.Player.csproj">
       <Project>{2E64FCC8-6D46-F682-FE85-741C1D9A95D5}</Project>
       <Name>Assembly-CSharp-firstpass.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.Player.csproj">
+      <Project>{41BCB76B-FA8D-6060-0483-F24EE4EEF4BD}</Project>
+      <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
