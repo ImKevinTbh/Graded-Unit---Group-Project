@@ -41,11 +41,10 @@ public class PersistenceController : MonoBehaviour
 
         foreach (GameObject o in Objects)
         {
-            Debug.Log("Destroying " + o.name);
             Destroy(o.gameObject);
         }
 
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("DeathScene");
         Destroy(PlayerController.Instance.gameObject.transform.parent.gameObject);
 
         Destroy(this.gameObject);
