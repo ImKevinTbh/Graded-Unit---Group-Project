@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>9.0</LangVersion>
@@ -46,13 +46,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/Core/Utility/EventHandler.cs" />
-    <Compile Include="Assets/Scripts/Player/Controllers/MiscController.cs" />
     <Compile Include="Assets/Scripts/Player/Objects/BulletScriptDenialBoss.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/DoorColliderTrigger.cs" />
+    <Compile Include="Assets/Scripts/Core/Button.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/Events.cs" />
+    <Compile Include="Assets/Scripts/Player/Handlers/HealthHandler.cs" />
     <Compile Include="Assets/GodMode.cs" />
     <Compile Include="Assets/Scripts/Core/LevelSelector.cs" />
     <Compile Include="Assets/DenialBoss.cs" />
+    <Compile Include="Assets/Scripts/Core/Layout.cs" />
     <Compile Include="Assets/Scripts/Player/Controllers/CameraControllerBossArena.cs" />
     <Compile Include="Assets/Scripts/Core/PersistenceController.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/PickupHandler.cs" />
@@ -70,10 +72,13 @@
     <Compile Include="Assets/Scripts/Core/ButtonHandler.cs" />
     <Compile Include="Assets/Scripts/Core/GameHandler.cs" />
     <Compile Include="Assets/Scripts/Enemy/EnemyCore.cs" />
+    <Compile Include="Assets/Scripts/Core/Utility/Elevator.cs" />
+    <Compile Include="Assets/Scripts/Core/Utility/Buttons.cs" />
     <Compile Include="Assets/Scripts/Player/Controllers/AttackController.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/DoorOpenScript.cs" />
     <Compile Include="Assets/Scripts/Player/Controllers/MovementController.cs" />
     <Compile Include="Assets/Scripts/Core/Utility/ScoreHandler.cs" />
+    <Compile Include="Assets/Scripts/Enemy/HandEnemy.cs" />
     <Compile Include="Assets/Scripts/Player/Controllers/PlayerController.cs" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
@@ -780,6 +785,9 @@
     </Reference>
     <Reference Include="PsdPlugin">
       <HintPath>/home/orionportable/Desktop/Repos/Graded-Unit---Group-Project/Unity Project/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Toolchain.Linux-x86_64">
+      <HintPath>/home/orionportable/Desktop/Repos/Graded-Unit---Group-Project/Unity Project/Library/ScriptAssemblies/Unity.Toolchain.Linux-x86_64.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>/home/orionportable/Desktop/Repos/Graded-Unit---Group-Project/Unity Project/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
