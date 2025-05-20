@@ -21,7 +21,7 @@ public class WinLoseCon : MonoBehaviour
         Player = PlayerController.Instance.gameObject;
         time = 0f;
         script = PlayerController.Instance;
-
+         
     }
 
     // Update is called once per frame
@@ -47,10 +47,10 @@ public class WinLoseCon : MonoBehaviour
         }
 
         // This method will trigger when the player has been alive for at least a second and has reached zero health
-        if (time >= 1f && PlayerController.Instance.Health <= 0)
-        {
-            Debug.Log("Dead.");
-            EventHandler.Game._Quit();
-        }
+        //if (time >= 1f && PlayerController.Instance.Health <= 0)
+        //{
+        //    Debug.Log("Dead.");
+        //    EventHandler.Game._Quit();
+        //}
     }
 }

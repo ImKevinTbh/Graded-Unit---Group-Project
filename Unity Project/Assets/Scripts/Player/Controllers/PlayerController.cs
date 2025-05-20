@@ -22,10 +22,13 @@ public class PlayerController : MonoBehaviour
     {
         Health -= ev.Damage;
 
-        Debug.Log($"Object: {ev.Target.name} took ({ev.Damage}) damage from source: {ev.Source.name}");
+
         if (Health <= 0)
         {
+            Debug.LogWarning("Player Died");
             EventHandler.Player._Died();
         }
+
+        Debug.Log($"Object: {ev.Target.name} took ({ev.Damage}) damage from source: {ev.Source.name}");
     }
 }
