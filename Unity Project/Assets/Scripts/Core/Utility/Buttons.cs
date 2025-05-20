@@ -11,6 +11,7 @@ public class Buttons : MonoBehaviour
     void Awake()
     {
         Events.Level.ButtonClick += click;
+        Events.Level.LayoutComplete += changeLayout;
     }
 
 
@@ -21,4 +22,9 @@ public class Buttons : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+
+    void changeLayout()
+    {
+        gameObject.SetActive(true);
+    }
 }

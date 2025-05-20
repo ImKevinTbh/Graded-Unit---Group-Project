@@ -9,14 +9,19 @@ public class Layout : MonoBehaviour
 {
     public GameObject[] Layouts;
 
-    private GameObject selectedLayout;
-    private GameObject PreviousLayout;
-    private int ePrevious;
-
+    [SerializeField] private GameObject layout;
+    [SerializeField] private GameObject PreviousLayout;
+    [SerializeField] private int ePrevious;
+    [SerializeField] private int i = 0;
+    [SerializeField] private int EnemyCount = 0;
+    [SerializeField] private string layoutName;
+    [SerializeField] private string previousLayoutName;
 
     void Awake()
     {
         Events.Level.BossLayoutChange += Trigger;
+        Events.Enemy.Spawn += spawn;
+        Events.Enemy.OnDied += died;
     }
 
     
@@ -25,41 +30,55 @@ public class Layout : MonoBehaviour
         Events.Level.BossLayoutChange -= Trigger;
     }
 
+    void spawn()
+    {
+        EnemyCount++;
+
+    }
+
+    void died()
+    {
+        EnemyCount--;
+
+        if (i >= 3 && EnemyCount == 0)
+        {
+            EventHandler.Level._BossArenaExit();
+            Destroy(gameObject);
+            return;
+        }
+        else if (EnemyCount == 0)
+        {
+            EventHandler.Level._LayoutCompete();
+        }
+        
+    }
+
 
     // when the Boss Layout Change event is triggered a random intiger of all the level layouts is passed through
     // in e.LayoutNumber, this is then used to select one of the layout prefabs to create in the level.
     void Trigger(BossLayoutChangeEventArgs e)
     {
-
-
+        
+        i += 1;
+        
         string layoutName = "Layout " + e.LayoutNumber; // Construct variable name // this works
 
         // cleans up previous boss arena layout
-        if (e.LayoutNumber != ePrevious)
+        if (layout)
         {
-            string previousLayoutName = "Layout " + e.LayoutNumber;
-            foreach (GameObject target in Layouts)
-            {
-                if (target.name == layoutName && target.activeInHierarchy)
-                {
-                    Destroy(target);
-
-                }
-
-            }
-            ePrevious = e.LayoutNumber;
+            Destroy(layout);
         }
+        
+        
 
         foreach (GameObject target in Layouts)
         {
             if (target.name == layoutName)
             {
-                Instantiate(target, new Vector2(-69.42f, 1.4f), Quaternion.identity);
+                layout = Instantiate(target, new Vector2(-69.42f, 1.4f), Quaternion.identity);
             }
 
         }
-
-
 
     }
 
