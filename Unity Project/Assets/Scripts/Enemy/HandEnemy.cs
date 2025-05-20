@@ -17,25 +17,25 @@ public class HandEnemy : EnemyCore
 
     private float baseY;
 
-    public void Start()
-    {
-        base.Start();
-        Health = 3;
-        Speed = 4f;
-        Damage = 1;
-        DistanceFromPlayer = 0f;
-        Events.Enemy.Hurt += Attacked;
-        rb = GetComponent<Rigidbody2D>();
-        Player = PlayerController.Instance.gameObject;
+    //public override void Start()
+    //{
+    //    base.Start();
+    //    Health = 3;
+    //    Speed = 4f;
+    //    Damage = 1;
+    //    DistanceFromPlayer = 0f;
+    //    Events.Enemy.Hurt += Attacked;
+    //    rb = GetComponent<Rigidbody2D>();
+    //    Player = PlayerController.Instance.gameObject;
 
-        rb.gravityScale = 0;
+    //    rb.gravityScale = 0;
 
-        RaycastHit2D ground = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 25, Mask);
-        baseY = ground.collider.transform.position.y + HoverHeight;
-        GroundDistance += HoverHeight;
-        EventHandler.Enemy._spawn();
+    //    RaycastHit2D ground = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 25, Mask);
+    //    baseY = ground.collider.transform.position.y + HoverHeight;
+    //    GroundDistance += HoverHeight;
+    //    EventHandler.Enemy._spawn();
 
-    }
+    //}
 
     public void Update()
     {

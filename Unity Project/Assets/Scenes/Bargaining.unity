@@ -5723,7 +5723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5b7a43aac0eda469880767c773e88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialSpawnPoint: {x: -200, y: -8, z: 0}
+  InitialSpawnPoint: {x: -30, y: -8, z: 0}
   LevelID: Bargaining
 --- !u!114 &1446044158
 MonoBehaviour:

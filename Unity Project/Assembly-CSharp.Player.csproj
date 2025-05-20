@@ -77,12 +77,15 @@
     <Compile Include="Assets\Scripts\Core\Settings.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScript.cs" />
     <Compile Include="Assets\DenialController.cs" />
+    <Compile Include="Assets\EndBounds.cs" />
     <Compile Include="Assets\Scripts\Core\Init.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\CameraController.cs" />
     <Compile Include="Assets\Scripts\Core\UiController.cs" />
     <Compile Include="Assets\DenierScript.cs" />
+    <Compile Include="Assets\Scripts\Core\BossBounds.cs" />
     <Compile Include="Assets\Scripts\Core\MapController.cs" />
     <Compile Include="Assets\Object components\PickupObject.cs" />
+    <Compile Include="Assets\Scripts\Core\LevelBounds.cs" />
     <Compile Include="Assets\NextLevel.cs" />
     <Compile Include="Assets\Scripts\Player\Handlers\StateHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\SkeletonEnemy.cs" />
@@ -97,6 +100,7 @@
     <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\HandEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\TESTENEMY.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

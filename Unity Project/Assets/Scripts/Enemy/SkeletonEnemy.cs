@@ -15,24 +15,24 @@ using UnityEngine.Windows;
 public class SkeletonEnemy : EnemyCore
 {
 
-    public void Start()
+    public override void Start()
     {
         base.Start();
         Health = 3;
         Speed = 4f;
         Damage = 1;
-        DistanceFromPlayer = 0f;
-        Events.Enemy.Hurt += Attacked;
-        rb = GetComponent<Rigidbody2D>();
-        Player = PlayerController.Instance.gameObject;
-        EventHandler.Enemy._spawn();
+        //DistanceFromPlayer = 0f;
+        //Events.Enemy.Hurt += Attacked;
+        //rb = GetComponent<Rigidbody2D>();
+        //Player = PlayerController.Instance.gameObject;
+        //EventHandler.Enemy._spawn();
 
     }
 
-    public void Update()
-    {
-        base.Update();
-    }
+    //public void Update()
+    //{
+    //    base.Update();
+    //}
 
     public void SpotPlayer()
     {

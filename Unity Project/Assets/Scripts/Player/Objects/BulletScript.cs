@@ -38,7 +38,7 @@ public class BulletScript : MonoBehaviour
 
 
     // SOMETHING HERE BROKEN, KEEPS OLD ENEMY TYPE IN COLLISION.GAMEOBJECT
-    void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) { return; }
         else if (collision.CompareTag("Boundary") || collision.CompareTag("Camera Boundary")) { return; }
@@ -46,7 +46,7 @@ public class BulletScript : MonoBehaviour
         {
             if (collision.CompareTag("Enemy"))
             {
-                EventHandler.Enemy._Hurt(new HurtEventArgs(this.gameObject, collision.gameObject, Damage));
+                EventHandler.Enemy._Hurt(new HurtEventArgs(gameObject, collision.gameObject, Damage));
                 Debug.Log($"Object Collided: {collision.gameObject} IN BULLET SCRIPT");
             }
             Debug.LogWarning(collision.gameObject.name);
@@ -54,7 +54,5 @@ public class BulletScript : MonoBehaviour
         }
 
     }
-
-
 
 }

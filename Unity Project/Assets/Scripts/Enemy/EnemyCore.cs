@@ -42,25 +42,48 @@ public class EnemyCore : MonoBehaviour
 
     public bool Movement = true;
 
+    public Color color;
+
+    public int i = 0;
+
+    public RaycastHit2D PlayerCast;
+
     public virtual void Start()
     {
         Health = 3;
+
         Speed = 4f;
+
         Damage = 1;
+
         DistanceFromPlayer = 0f;
+
         Events.Enemy.Hurt += Attacked;
+
         rb = GetComponent<Rigidbody2D>();
-        Player = PlayerController.Instance.gameObject;
+        
+        color = gameObject.GetComponent<SpriteRenderer>().color;
+
         EventHandler.Enemy._spawn();
+
+        Player = PlayerController.Instance.gameObject;
     }
 
     public virtual void Update()
     {
+
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
 
         // Raycasts towards the players current possition from the enemies current possition at a distance defined in VisionDistance
-        RaycastHit2D PlayerCast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, VisionDistance, Mask);
+        if (Player)
+        {
+            RaycastHit2D PlayerCast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, VisionDistance, Mask);
+        }
+        else if (!Player)
+        {
+            Player = PlayerController.Instance.gameObject;
 
+        }
 
         // if the ray collides with the player, changes the enemies direction towards the player
         if (PlayerCast && PlayerCast.collider.gameObject == Player)
@@ -97,6 +120,7 @@ public class EnemyCore : MonoBehaviour
 
         rb.velocity = vel; // Now set the velocity back to whatever we had in the variable
         rb.AddForce(Direction * Speed, ForceMode2D.Force);
+        
     }
 
     public virtual void SpotPlayer()
@@ -115,7 +139,6 @@ public class EnemyCore : MonoBehaviour
 
     public void OnDestroy()
     {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA I DIED");  
         Events.Enemy.Hurt -= Attacked;
         ScoreHandler.Score += 10;
         EventHandler.Enemy._Died();
@@ -124,10 +147,8 @@ public class EnemyCore : MonoBehaviour
     public virtual void Attacked(HurtEventArgs e)
     {
 
-        
         if (e.Target.GetInstanceID() == gameObject.GetInstanceID())
         {
-            Color color = gameObject.GetComponent<SpriteRenderer>().color;
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
             Timing.CallDelayed(0.2f, () =>
