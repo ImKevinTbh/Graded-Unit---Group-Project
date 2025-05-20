@@ -22,6 +22,7 @@ public class LevelSelector : MonoBehaviour
     public void LoadGrief()
     {
         Debug.Log("Loading Grief...");
+        SceneManager.LoadScene("GriefScene");
     }
 
     // This method manages the functions for the button assigned to the 2nd level, Denial.
