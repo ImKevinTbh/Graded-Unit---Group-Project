@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using EventArgs;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,11 +18,22 @@ public class PersistenceController : MonoBehaviour
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             Objects.Add(gameObject.transform.GetChild(i).gameObject);
-            Debug.LogWarning(gameObject.transform.GetChild(i).gameObject.name);
         }
         if (instance == null) { instance = this; } else { Destroy(this); }
         if (Settings.instance == null) { Instantiate(SettingsItem).gameObject.transform.parent = gameObject.transform; } // If the settings object does not exist, create it, shouldn't really need to happen
         Events.Game.Quit += Quit;
+        Events.Level.OnLoadedLevel += LoadedLevel;
+    }
+
+    public void LoadedLevel(LoadedLevelEventArgs ev)
+    {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            if (Objects.Contains(gameObject.transform.GetChild(i).gameObject))
+            {
+                Objects.Add(gameObject.transform.GetChild(i).gameObject);
+            }
+        }
     }
 
     public void Quit()
@@ -29,9 +41,13 @@ public class PersistenceController : MonoBehaviour
 
         foreach (GameObject o in Objects)
         {
-            Debug.Log(o.name);
-            Destroy(o);
+            Debug.Log("Destroying " + o.name);
+            Destroy(o.gameObject);
         }
 
+        SceneManager.LoadScene("MainMenu");
+        Destroy(PlayerController.Instance.gameObject.transform.parent.gameObject);
+
+        Destroy(this.gameObject);
     }
 }
