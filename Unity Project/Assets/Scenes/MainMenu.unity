@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1, y: 166}
+  m_AnchoredPosition: {x: -122.1, y: 84.5}
   m_SizeDelta: {x: -504.6979, y: -376.9759}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &157463565
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 248.7472, y: 0, z: 0, w: 141.67056}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -423,11 +423,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 177628575}
+  - {fileID: 157463564}
   - {fileID: 1085114798}
   - {fileID: 758460041}
   - {fileID: 1073882615}
   - {fileID: 1246309493}
-  - {fileID: 157463564}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1221,9 +1221,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1085114798}
+  - component: {fileID: 1085114800}
   - component: {fileID: 1085114802}
   - component: {fileID: 1085114801}
-  - component: {fileID: 1085114800}
   - component: {fileID: 1085114799}
   m_Layer: 5
   m_Name: PlayButton
@@ -1249,7 +1249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 69.70001}
+  m_AnchoredPosition: {x: -0.7, y: 69.70001}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085114799

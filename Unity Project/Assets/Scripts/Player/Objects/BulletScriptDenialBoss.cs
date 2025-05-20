@@ -41,7 +41,7 @@ public class BulletScriptDenialBoss : MonoBehaviour
         
         if (!collision.gameObject == DenialBoss.instance.gameObject && !collision.gameObject.CompareTag(("Player")))
         {
-            Timing.CallDelayed(0.05f, () => Destroy(gameObject));
+            //Timing.CallDelayed(0.05f, () => Destroy(gameObject));
             return;
         }
         if (collision.gameObject.CompareTag("Player"))
