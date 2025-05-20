@@ -40,7 +40,7 @@ public class PersistenceController : MonoBehaviour
     public void Quit()
     {
 
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("DeathScene");
 
 
         Destroy(this.gameObject);
