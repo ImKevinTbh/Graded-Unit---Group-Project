@@ -8,21 +8,14 @@ public class OnPlayerTouch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Physics2D.IgnoreCollision(GetComponent.gameObject.tag== "Ground"<Collider2D>(), GetComponent<Collider2D>());
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D trigger)
-    {
-        if (trigger.gameObject.tag == "Player")
-        {
-            transform.position = new Vector2(0f, 1f);
-        }
+        transform.position = new Vector2( 0f, 0.5f) * Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
