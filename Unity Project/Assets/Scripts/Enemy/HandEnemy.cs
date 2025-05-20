@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using Events;
+using EventArgs;
+using MEC;
+using System;
+
 
 public class HandEnemy : EnemyCore
 {
+    
 
     public float HoverHeight = 3f;   // Hover 3 units above the platform
     public float BobAmplitude = 1f;  // Bob up and down by 1 unit
@@ -11,10 +17,9 @@ public class HandEnemy : EnemyCore
 
     private float baseY;
 
-    void Start()
+    public override void Start()
     {
         base.Start();
-        rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
 
         RaycastHit2D ground = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 25, Mask);
@@ -35,9 +40,5 @@ public class HandEnemy : EnemyCore
         velocity.y = desiredVelocityY;
         rb.velocity = velocity;
     }
-    void Update()
-    {
 
-        base.Update();
-    }
 }

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using EventArgs;
+using UnityEngine.SceneManagement;
 
 
 namespace EventArgs
@@ -90,6 +91,15 @@ namespace EventArgs
        // public int LayoutNumber { get; }
     }
 
+    public class AcheivementArgs
+    {
+        public AcheivementArgs(Scene level) 
+        {
+            Level = level;
+        }
+
+        public Scene Level { get; }
+    }
 }
 
 namespace Events
@@ -231,6 +241,13 @@ namespace Events
         {
             Respawn?.Invoke();
         }
+
+        public delegate void SpawnEvent();  
+        public static event SpawnEvent Spawn;
+        public virtual void _spawn()
+        {
+            Spawn?.Invoke();
+        }
     }
 
 
@@ -242,8 +259,20 @@ namespace Events
         public virtual void _Hurt(HurtEventArgs e)
         {
             Hurt?.Invoke(e);
-            Debug.Log("Enemy Hurt");
+        }
 
+        public delegate void SpawnEvent();
+        public static event SpawnEvent Spawn;
+        public virtual void _spawn()
+        {
+            Spawn?.Invoke();
+        }
+
+        public delegate void DiedEvent();
+        public static event DiedEvent OnDied;
+        public virtual void _Died()
+        {
+            OnDied?.Invoke();
         }
     }
 
@@ -257,6 +286,13 @@ namespace Events
         {
             BossArenaEnter?.Invoke();
             Debug.Log("Boss Arena Enter");
+        }
+
+        public delegate void BossArenaExit();
+        public static event BossArenaExit OnBossArenaExit;
+        public virtual void _BossArenaExit()
+        {
+            OnBossArenaExit?.Invoke();
         }
 
         public delegate void BossLayoutChangeEvent(BossLayoutChangeEventArgs e);
@@ -283,6 +319,22 @@ namespace Events
             OnLoadedLevel?.Invoke(ev);
         }
 
+
+        public delegate void Acheivement(AcheivementArgs e);
+        public static event Acheivement OnAcheivement;
+        public virtual void _Acheivement(AcheivementArgs e)
+        {
+            OnAcheivement?.Invoke(e);
+        }
+
+
+        public delegate void LayoutCompleteEvent();
+        public static event LayoutCompleteEvent LayoutComplete;
+        public virtual void _LayoutCompete()
+        {
+            LayoutComplete?.Invoke();
+        }
+        
     }
 
 

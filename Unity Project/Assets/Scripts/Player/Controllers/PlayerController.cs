@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public int Health = 3;
     public int MaxHealth = 3;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Instance = this;
             

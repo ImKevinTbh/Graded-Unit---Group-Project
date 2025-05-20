@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
     <Compile Include="Assets\Scripts\Core\Button.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
+    <Compile Include="Assets\LayoutSingle.cs" />
     <Compile Include="Assets\GodMode.cs" />
     <Compile Include="Assets\Scripts\Player\Handlers\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\HazardController.cs" />
@@ -74,18 +75,23 @@
     <Compile Include="Assets\Scripts\Player\Controllers\CameraControllerBossArena.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\PickupHandler.cs" />
+    <Compile Include="Assets\Scripts\Core\AchievementHandler.cs" />
     <Compile Include="Assets\Scripts\Core\Settings.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScript.cs" />
     <Compile Include="Assets\DenialController.cs" />
+    <Compile Include="Assets\EndBounds.cs" />
     <Compile Include="Assets\Scripts\Core\Init.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\CameraController.cs" />
     <Compile Include="Assets\Scripts\Core\UiController.cs" />
     <Compile Include="Assets\DenierScript.cs" />
+    <Compile Include="Assets\Scripts\Core\BossBounds.cs" />
     <Compile Include="Assets\Scripts\Core\MapController.cs" />
     <Compile Include="Assets\Object components\PickupObject.cs" />
+    <Compile Include="Assets\Scripts\Core\LevelBounds.cs" />
     <Compile Include="Assets\NextLevel.cs" />
     <Compile Include="Assets\SpectralSwordController.cs" />
     <Compile Include="Assets\Scripts\Player\Handlers\StateHandler.cs" />
+    <Compile Include="Assets\Scripts\Enemy\SkeletonEnemy.cs" />
     <Compile Include="Assets\Scripts\Core\ButtonHandler.cs" />
     <Compile Include="Assets\Scripts\Core\GameHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyCore.cs" />
@@ -98,6 +104,7 @@
     <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\HandEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\TESTENEMY.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

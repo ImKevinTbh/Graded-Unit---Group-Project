@@ -12,30 +12,34 @@ public class CameraController : MonoBehaviour
 
     // initialises variable to hold player reference
     public GameObject p;
-    public Collider2D LevelCameraBounds;
-    public Collider2D BossCameraBounds;
-    public Collider2D EndLevelCameraBounds;
 
-    public static CameraController instance = null; // Do not remove, needed for movement controller.
+
+    public static CameraController instance; // Do not remove, needed for movement controller.
 
 
 
-    private void Awake()
+    private void Start()
     {
-        instance = null; // Do not remove, needed for movement controller.
-
-        // checks for the player object and assisns it to the p variable
-        p = GameObject.Find("PlayerModel").gameObject;
-
-        gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = LevelCameraBounds;
+        instance = this; // Do not remove, needed for movement controller.
 
         // subscribes the door open trigger function to the boss arena enter event
         Events.Level.BossArenaEnter += BossArenaEnter;
 
-        //Events.Level.BossArenaLeave += BossArenaLeave;    //TBA//
-		
-		Events.Level.OnLoadedLevel += OnLoadedLevel;
 
+        Events.Level.OnBossArenaExit += BossArenaExit;
+
+        Events.Level.OnLoadedLevel += OnLoadedLevel;
+
+        Events.Player.Spawn += spawn;
+
+        gameObject.GetComponent<CinemachineConfiner2D>().m_Damping = 1.5f;
+        gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = LevelBounds.instance.gameObject.GetComponent<Collider2D>();
+
+    }
+
+    void spawn()
+    {
+        
     }
 
     private void OnLoadedLevel(LoadedLevelEventArgs ev)
@@ -48,22 +52,34 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        // every frame moves the cameras possition to focus on the player
-
         if (p != null) { gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f); }
     }
 
     // switches camera bounds to stay within the boss arena when entering the boss arena
     private void BossArenaEnter()
     {
-        gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = BossCameraBounds;
-
+        Debug.Log("Boss Arena Enter Bounds");
+        if (BossBounds.instance != null)
+        {
+            gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = BossBounds.instance.gameObject.GetComponent<Collider2D>();
+        }
     }
 
     // switches camera bounds to leave the boss arena when leaving
-    private void BossArenaLeave()
+    private void BossArenaExit()
     {
-        gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = EndLevelCameraBounds;
-	}
-	
+        if (EndBounds.instance != null)
+        {
+            gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = EndBounds.instance.gameObject.GetComponent<Collider2D>();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Events.Player.Spawn -= spawn;
+        Events.Level.OnLoadedLevel -= OnLoadedLevel;
+        Events.Level.OnBossArenaExit -= BossArenaExit;    
+        Events.Level.BossArenaEnter -= BossArenaEnter;
+
+    }
 }
