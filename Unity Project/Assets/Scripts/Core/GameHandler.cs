@@ -29,7 +29,7 @@ public class GameHandler : MonoBehaviour // Kevin
     public static GameHandler instance = null; // Declare Instance Variable, This allows us to find THIS SPECIFIC SCRIPT without doing gameobject.find because it is performance heavy
     public GameObject Player; // Used to set the player object prefab in the editor so we can spawn them in
 
-    private void Start() // On Object Creation Upon Scene Load
+    private void Awake() // On Object Creation Upon Scene Load
     {
         if (instance == null) { instance = this; } else { Destroy(this); } // If an instance of this type of script already exists, destroy this one. (Should never happen)
         EventHandler.Init(); // Starts our event system (THIS NEEDS TO BE RUN BEFORE WE USE EVENTS *ANYWHERE* ELSE IN THE SOLUTION) 
@@ -46,8 +46,7 @@ public class GameHandler : MonoBehaviour // Kevin
 
     public void PlayerDied()
     {
-        EventHandler.Game._Quit(); // Quit the game
-        SceneManager.LoadScene("LevelSelect");
+        //SceneManager.LoadScene("LevelSelect");
         // Do shit here when the player is dead
     }
 
@@ -64,7 +63,6 @@ public class GameHandler : MonoBehaviour // Kevin
         }
         else
         {
-            Destroy(PlayerController.Instance.gameObject);
             Instantiate(Player, MapController.Instance.InitialSpawnPoint, Quaternion.identity, PersistenceController.instance.gameObject.transform); // Spawn the player
             print("Spawned player.");
             Timing.CallDelayed(0.17f, () => Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = PlayerController.Instance.gameObject.transform); // Make the camera follow the player again
@@ -84,6 +82,7 @@ public class GameHandler : MonoBehaviour // Kevin
             }
             else // If an instance of the playercontroller script DOES exist
             {
+                Debug.Log("Player exists on level load");
                 PlayerController.Instance.gameObject.transform.position = MapController.Instance.InitialSpawnPoint; // Move the player to the initial spawnpoint
             }
 

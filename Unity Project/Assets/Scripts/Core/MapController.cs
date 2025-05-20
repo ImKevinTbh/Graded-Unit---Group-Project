@@ -24,9 +24,10 @@ public class MapController : MonoBehaviour // Kevin
     {
         Debug.Log("Map controller running");
 
-
+        
         EventHandler.Level._LoadedLevel(new LoadedLevelEventArgs(this)); // Trigger the "LevelLoaded" event
         Debug.Log("MapController: Loading Level");
+        EventHandler.Player._Respawn();
     }
     
 }

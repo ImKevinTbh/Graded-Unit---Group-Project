@@ -34,11 +34,10 @@ public class DenialBoss : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-
-
-
-
+        var sin = Mathf.Sin(Time.time);
+        if (sin < 0) sin *= -1;
+        gameObject.transform.position = new Vector3(Mathf.Lerp(origin.x - 1.75f, origin.x, sin), origin.y, transform.position.z);
+        
     }
 
 
@@ -77,13 +76,10 @@ public class DenialBoss : MonoBehaviour
         origin = transform.position;
         while (!Hit)
         {
-            yield return Timing.WaitForSeconds(0.1f);
+            yield return Timing.WaitForSeconds(1f);
 
 
-            var sin = Mathf.Sin(Time.time);
-            if (sin < 0) sin *= -1;
-            gameObject.transform.position = new Vector3(Mathf.Lerp(origin.x - 1.75f, origin.x, sin), origin.y, transform.position.z);
-            
+
             if (Random.Range(0, 100) <= 98)
             {
 
@@ -95,6 +91,61 @@ public class DenialBoss : MonoBehaviour
         transform.position = IdlePos;
         origin = IdlePos;
         CanAttack = false;
-
+        Destroy(GameObject.Find("Wall1"));
     }
+    
+    public IEnumerator<float> Phase2()
+    {
+        Hit = false;
+        CanAttack = true;
+        gameObject.transform.position = Phase_2_SpawnPoint;
+        origin = transform.position;
+        while (!Hit)
+        {
+            yield return Timing.WaitForSeconds(1f);
+
+
+
+            if (Random.Range(0, 100) <= 98)
+            {
+
+                AttackPlayer();
+            }
+        }
+
+
+        transform.position = IdlePos;
+        origin = IdlePos;
+        CanAttack = false;
+        Destroy(GameObject.Find("Wall2"));
+    }
+    
+    public IEnumerator<float> Phase3()
+    {
+        Hit = false;
+        CanAttack = true;
+        gameObject.transform.position = Phase_3_SpawnPoint;
+        origin = transform.position;
+        while (!Hit)
+        {
+            yield return Timing.WaitForSeconds(1f);
+
+
+
+            if (Random.Range(0, 100) <= 98)
+            {
+
+                AttackPlayer();
+            }
+        }
+
+
+        transform.position = IdlePos;
+        origin = IdlePos;
+        CanAttack = false;
+        Destroy(GameObject.Find("Wall3"));
+    }
+    
+    
 }
+

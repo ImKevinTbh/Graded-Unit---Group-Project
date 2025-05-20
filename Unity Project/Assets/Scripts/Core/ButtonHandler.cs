@@ -19,15 +19,20 @@ public class ButtonHandler : MonoBehaviour
     // When the button is pressed, it will load the player into the options menu.
     public void OptionsButton()
     {
-        Debug.Log("Going to Options Menu...");
         SceneManager.LoadScene("OptionsMenu");
+    }
+
+    // This method manages the functions for the tutorial button.
+    // When the button is pressed, it loads the player into the Tutorial screen.
+    public void TutorialButton()
+    {
+        SceneManager.LoadScene("TutorialScene");
     }
 
     // This method manages the functions for the credits button.
     // When the button is pressed, it loads the player into the Credits screen.
     public void CreditsButton()
     {
-        Debug.Log("Going to Credits Screen...");
         SceneManager.LoadScene("CreditsMenu");
     }
 
