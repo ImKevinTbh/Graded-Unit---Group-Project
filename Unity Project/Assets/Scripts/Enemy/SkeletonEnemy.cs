@@ -34,25 +34,25 @@ public class SkeletonEnemy : EnemyCore
     //    base.Update();
     //}
 
-    public void SpotPlayer()
-    {
+    //public void SpotPlayer()
+    //{
 
-    }
+    //}
 
     // when the player collides send a hurt event
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        base.OnCollisionEnter2D (collision);       
-    }
+    //public void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    base.OnCollisionEnter2D (collision);       
+    //}
 
-    public void OnDestroy()
-    {
+    //public void OnDestroy()
+    //{
 
-    }
+    //}
 
-    public void Attacked(HurtEventArgs e)
-    {
+    //public void Attacked(HurtEventArgs e)
+    //{
 
-    }
+    //}
 
 }

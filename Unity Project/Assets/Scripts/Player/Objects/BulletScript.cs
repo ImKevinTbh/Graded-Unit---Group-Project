@@ -37,7 +37,7 @@ public class BulletScript : MonoBehaviour
     }
 
 
-    // SOMETHING HERE BROKEN, KEEPS OLD ENEMY TYPE IN COLLISION.GAMEOBJECT
+    
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) { return; }
@@ -50,9 +50,10 @@ public class BulletScript : MonoBehaviour
                 Debug.Log($"Object Collided: {collision.gameObject} IN BULLET SCRIPT");
             }
             Debug.LogWarning(collision.gameObject.name);
-            Timing.CallDelayed(0.05f, () => Destroy(gameObject));
+            Timing.CallDelayed(0.05f, () => Destroy(gameObject)); 
         }
-
+        collision = null; // this added because the collision keeps the previous object type sometimes,
+                          // I dont know why this could be and I no longer care ~ Allan
     }
 
 }

@@ -75,9 +75,9 @@ public class EnemyCore : MonoBehaviour
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
 
         // Raycasts towards the players current possition from the enemies current possition at a distance defined in VisionDistance
-        if (Player)
+        if (Player != null)
         {
-            RaycastHit2D PlayerCast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, VisionDistance, Mask);
+            PlayerCast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, VisionDistance, Mask);
         }
         else if (!Player)
         {
@@ -137,7 +137,7 @@ public class EnemyCore : MonoBehaviour
         }
     }
 
-    public void OnDestroy()
+    public virtual void OnDestroy()
     {
         Events.Enemy.Hurt -= Attacked;
         ScoreHandler.Score += 10;
