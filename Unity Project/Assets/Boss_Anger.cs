@@ -22,6 +22,9 @@ public class Boss_Anger : MonoBehaviour
     public float GroundDistance = 2.0f;
     public float WidthScale = 1.0f;
     public bool Movement = true;
+    public float JumpPower = 10;
+    public int MaxJumps = 2;
+    public int _JumpsUsed = 0;
 
     void Start()
     {
@@ -30,6 +33,7 @@ public class Boss_Anger : MonoBehaviour
 
     void Update()
     {
+        if (Time.time >= nextAttackTime){ Jump(); }
         // Move towards the player
         // Raycasts towards the players current possition from the enemies current possition at a distance defined in VisionDistance
         RaycastHit2D PlayerCast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, VisionDistance, Mask);
@@ -92,12 +96,30 @@ public class Boss_Anger : MonoBehaviour
         // Implement boss attack logic here
         Debug.Log("Boss attacks!");
     }
-    
-    //public void AttackPlayer()
-   // {
-    //    Vector3 direction = gameObject.transform.position - PlayerController.Instance.transform.position;
-     //   Instantiate(AttackProjectile, Boss_Anger.instance.gameObject.transform.position, Quaternion.identity);
-     //   Debug.Log("Spectral Sword")
 
-   // }
+    public void Jump()
+    {
+
+        if(Time.time >= nextAttackTime)
+        {
+            _JumpsUsed = 0;
+        }
+        Debug.Log("Can't Jump)");
+
+        if (_JumpsUsed < MaxJumps)
+        {
+            _JumpsUsed++; // Increment the value of the _JumpsUsed variable by 1
+            rb.velocity = new Vector2(rb.velocity.x, JumpPower * (rb.mass + rb.gravityScale / 10)); // Construct a new velocity value to move the player upwards
+            //AudioSource.PlayClipAtPoint(JumpSFX, CameraController.instance.transform.position); // Play a stupid sound effect when jumping on the player's position in worldspace, this is a bit clunky
+        }
+
+    }
+
+    //public void AttackPlayer()
+    // {
+    //    Vector3 direction = gameObject.transform.position - PlayerController.Instance.transform.position;
+    //   Instantiate(AttackProjectile, Boss_Anger.instance.gameObject.transform.position, Quaternion.identity);
+    //   Debug.Log("Spectral Sword")
+
+    // }
 }
