@@ -328,6 +328,13 @@ namespace Events
             OnAcheivement?.Invoke(e);
         }
 
+
+        public delegate void LayoutCompleteEvent();
+        public static event LayoutCompleteEvent LayoutComplete;
+        public virtual void _LayoutCompete()
+        {
+            LayoutComplete?.Invoke();
+        }
         
     }
 

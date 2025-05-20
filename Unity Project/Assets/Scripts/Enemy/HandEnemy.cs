@@ -25,40 +25,7 @@ public class HandEnemy : EnemyCore
         RaycastHit2D ground = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 25, Mask);
         baseY = ground.collider.transform.position.y + HoverHeight;
         GroundDistance += HoverHeight;
-        EventHandler.Enemy._spawn();
-
     }
-
-    //public void Update()
-    //{
-    //    base.Update();
-        
-    //}
-
-    //public void SpotPlayer()
-    //{
-
-    //}
-
-    // when the player collides send a hurt event
-    //public void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    base.OnCollisionEnter2D (collision);
-        
-    //}
-
-    //public void OnDestroy()
-    //{
-
-
-    //}
-
-    //public void Attacked(HurtEventArgs e)
-    //{
-
-    //}
-
-
 
     void FixedUpdate()
     {

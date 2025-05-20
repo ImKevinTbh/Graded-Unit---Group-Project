@@ -9,11 +9,13 @@ public class Layout : MonoBehaviour
 {
     public GameObject[] Layouts;
 
-    private GameObject selectedLayout;
-    private GameObject PreviousLayout;
-    private int ePrevious;
-    private int i = 0;
-    private int EnemyCount = 0;
+    [SerializeField] private GameObject layout;
+    [SerializeField] private GameObject PreviousLayout;
+    [SerializeField] private int ePrevious;
+    [SerializeField] private int i = 0;
+    [SerializeField] private int EnemyCount = 0;
+    [SerializeField] private string layoutName;
+    [SerializeField] private string previousLayoutName;
 
     void Awake()
     {
@@ -31,24 +33,24 @@ public class Layout : MonoBehaviour
     void spawn()
     {
         EnemyCount++;
-        Debug.Log("Enemy Count = " + EnemyCount);
 
     }
 
     void died()
     {
         EnemyCount--;
-        Debug.Log("Enemy Count = " + EnemyCount);
 
-        if (EnemyCount == 0)
+        if (i >= 3 && EnemyCount == 0)
         {
-            EventHandler.Level._BossLayoutChangeEvent(new BossLayoutChangeEventArgs(gameObject, 0));
-
+            EventHandler.Level._BossArenaExit();
+            Destroy(gameObject);
+            return;
         }
-    }
-
-    private void Update()
-    {
+        else if (EnemyCount == 0)
+        {
+            EventHandler.Level._LayoutCompete();
+        }
+        
     }
 
 
@@ -56,41 +58,27 @@ public class Layout : MonoBehaviour
     // in e.LayoutNumber, this is then used to select one of the layout prefabs to create in the level.
     void Trigger(BossLayoutChangeEventArgs e)
     {
-
+        
         i += 1;
+        
         string layoutName = "Layout " + e.LayoutNumber; // Construct variable name // this works
-        Debug.Log("Boss Layout Change Triggered, i = " + i);
+
         // cleans up previous boss arena layout
-        if ((e.LayoutNumber != ePrevious) && i < 3)
+        if (layout)
         {
-            string previousLayoutName = "Layout " + e.LayoutNumber;
-            foreach (GameObject target in Layouts)
-            {
-                if (target.name == layoutName && target.activeInHierarchy)
-                {
-                    Destroy(target);
-
-                }
-
-            }
-            ePrevious = e.LayoutNumber;
+            Destroy(layout);
         }
-        else if (i >= 3)
-        {
-            EventHandler.Level._BossArenaExit();
-            Destroy(gameObject);
-        }
+        
+        
 
         foreach (GameObject target in Layouts)
         {
             if (target.name == layoutName)
             {
-                Instantiate(target, new Vector2(-69.42f, 1.4f), Quaternion.identity);
+                layout = Instantiate(target, new Vector2(-69.42f, 1.4f), Quaternion.identity);
             }
 
         }
-
-
 
     }
 

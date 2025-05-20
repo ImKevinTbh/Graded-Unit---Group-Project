@@ -12,7 +12,6 @@ public class Button : MonoBehaviour
      void Awake()
     {
         Events.Level.BossArenaEnter += enter;
-        Events.Level.ButtonClick += click;
         gameObject.SetActive(false);
     }
 
@@ -29,8 +28,4 @@ public class Button : MonoBehaviour
     }
 
 
-    void click(ButtonClickEventArgs e)
-    {
-        gameObject.SetActive(false);
-    }
 }
