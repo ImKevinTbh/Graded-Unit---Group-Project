@@ -36,6 +36,9 @@ public class DenialBoss : MonoBehaviour
     {
 
 
+        var sin = Mathf.Sin(Time.time);
+        if (sin < 0) sin *= -1;
+        gameObject.transform.position = new Vector3(Mathf.Lerp(origin.x - 1.75f, origin.x, sin), origin.y, transform.position.z);
 
 
 
@@ -77,13 +80,10 @@ public class DenialBoss : MonoBehaviour
         origin = transform.position;
         while (!Hit)
         {
-            yield return Timing.WaitForSeconds(0.1f);
+            yield return Timing.WaitForSeconds(1f);
 
 
-            var sin = Mathf.Sin(Time.time);
-            if (sin < 0) sin *= -1;
-            gameObject.transform.position = new Vector3(Mathf.Lerp(origin.x - 1.75f, origin.x, sin), origin.y, transform.position.z);
-            
+
             if (Random.Range(0, 100) <= 98)
             {
 

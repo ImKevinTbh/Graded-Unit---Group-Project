@@ -16,10 +16,11 @@ public class PersistenceController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
-            Objects.Add(gameObject);
+            Objects.Add(gameObject.transform.GetChild(i).gameObject);
+            Debug.LogWarning(gameObject.transform.GetChild(i).gameObject.name);
         }
         if (instance == null) { instance = this; } else { Destroy(this); }
-        if (Settings.instance == null) { Instantiate(SettingsItem); } // If the settings object does not exist, create it, shouldn't really need to happen
+        if (Settings.instance == null) { Instantiate(SettingsItem).gameObject.transform.parent = gameObject.transform; } // If the settings object does not exist, create it, shouldn't really need to happen
         Events.Game.Quit += Quit;
     }
 
