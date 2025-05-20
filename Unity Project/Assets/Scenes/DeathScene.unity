@@ -139,6 +139,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d7bf49a04a0d4e34599e38e9920e9e1b, type: 3}
     - target: {fileID: 3019724074691443554, guid: 0ce40af0e062f754a85bd7401675e1dd, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.81886786
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019724074691443554, guid: 0ce40af0e062f754a85bd7401675e1dd, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.81886786
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019724074691443554, guid: 0ce40af0e062f754a85bd7401675e1dd, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.81886786
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019724074691443554, guid: 0ce40af0e062f754a85bd7401675e1dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: QuitButton
       objectReference: {fileID: 0}
