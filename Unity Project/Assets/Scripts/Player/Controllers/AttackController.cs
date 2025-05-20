@@ -32,7 +32,6 @@ public class AttackController : MonoBehaviour
         {
             canAttack = false;
             anim.SetBool("IsAttacking", true);
-            RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one / 2, 0, Vector2.down, 2f, mask);
 
 
             Timing.CallDelayed(1f, () => { canAttack = true; anim.SetBool("IsAttacking", false); });
