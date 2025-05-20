@@ -14,11 +14,13 @@ public class GodMode : MonoBehaviour
         if (togglevalue)
         {
             Debug.Log("God Mode Activated");
+            Settings.instance.CheatMode = true;
         }
 
         else
         {
             Debug.Log("God Mode Deactivated.");
+            Settings.instance.CheatMode = false;
         }
     }
 }
