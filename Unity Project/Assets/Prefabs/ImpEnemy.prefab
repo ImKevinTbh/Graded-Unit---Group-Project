@@ -185,7 +185,7 @@ MonoBehaviour:
   Player: {fileID: 7868585400333019922}
   VisionDistance: 5
   GroundDistance: 2
-  WidthScale: 1
+  WidthScale: 3
   Movement: 1
   color: {r: 0, g: 0, b: 0, a: 0}
   i: 0
