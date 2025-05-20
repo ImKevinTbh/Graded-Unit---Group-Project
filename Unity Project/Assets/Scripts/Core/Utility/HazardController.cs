@@ -17,7 +17,7 @@ public class OnPlayerTouch : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collision2D trigger)
+    private void OnTriggerEnter2D(Collider2D trigger)
     {
         if (trigger.gameObject.tag == "Player")
         {

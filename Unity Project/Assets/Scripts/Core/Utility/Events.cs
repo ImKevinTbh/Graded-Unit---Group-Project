@@ -90,16 +90,6 @@ namespace EventArgs
        // public int LayoutNumber { get; }
     }
 
-    public class ButtonClickEventArgs
-    {
-        public ButtonClickEventArgs(GameObject instance, int buttonNumber)
-        {
-            Instance = instance;
-            ButtonNumber = buttonNumber;
-        }
-
-        public GameObject Instance { get; }
-    }
 }
 
 namespace Events
