@@ -61,6 +61,8 @@ public class AttackController : MonoBehaviour
 
     void Update()
     {
+
+        
         
 
 
@@ -75,6 +77,7 @@ public class AttackController : MonoBehaviour
                 Instantiate(bullet, transform.position, transform.rotation);
                 AudioSource.PlayClipAtPoint(AudioClip, PlayerController.Instance.transform.position);
                 Timing.CallDelayed(0.7f, () => canShoot = true);
+
             }
 
         }

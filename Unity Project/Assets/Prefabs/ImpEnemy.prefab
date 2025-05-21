@@ -186,7 +186,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   VisionDistance: 5
   GroundDistance: 2
-  WidthScale: 3
+  WidthScale: 1
   Movement: 1
   color: {r: 0, g: 0, b: 0, a: 0}
   i: 0
@@ -210,8 +210,8 @@ MonoBehaviour:
   Direction: {x: -1, y: 0}
   Mask:
     serializedVersion: 2
-    m_Bits: 0
-  rb: {fileID: 0}
+    m_Bits: 72
+  rb: {fileID: 1923304547600902164}
   SpottedPlayer: 0
   Player: {fileID: 0}
   VisionDistance: 5

@@ -72,11 +72,11 @@
     <Compile Include="Assets\Scripts\Core\Button.cs" />
     <Compile Include="Assets\Scripts\Enemy\EyeEnemy.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
-    <Compile Include="Assets\Sprites\HealthController.cs" />
     <Compile Include="Assets\GodMode.cs" />
     <Compile Include="Assets\Scripts\Player\Handlers\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\HazardController.cs" />
     <Compile Include="Assets\Scripts\Core\LevelSelector.cs" />
+    <Compile Include="Assets\Scripts\Core\HealthController.cs" />
     <Compile Include="Assets\DenialBoss.cs" />
     <Compile Include="Assets\Scripts\Core\Layout.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
@@ -103,6 +103,7 @@
     <Compile Include="Assets\Scripts\Player\Handlers\StateHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\SkeletonEnemy.cs" />
     <Compile Include="Assets\BossSwordController.cs" />
+    <Compile Include="Assets\Scripts\Core\EnergyController.cs" />
     <Compile Include="Assets\Scripts\Core\ButtonHandler.cs" />
     <Compile Include="Assets\Scripts\Core\GameHandler.cs" />
     <Compile Include="Assets\EnemyInstance.cs" />
