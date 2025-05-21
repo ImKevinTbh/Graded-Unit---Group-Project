@@ -18,6 +18,7 @@ TagManager:
   - Layout
   - Hazard
   - GriefBoss
+  - SpectralSword
   layers:
   - Default
   - TransparentFX

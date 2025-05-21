@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 6412518409099157912}
   - component: {fileID: 7601460522965117098}
   m_Layer: 0
-  m_Name: HellbentAngerBossSpectralSword
-  m_TagString: Untagged
+  m_Name: SpectralSword
+  m_TagString: SpectralSword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb46582e29ee9d4b9add3b80e053cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 1
+  Created: 0
+  LifeTime: 10
+  bSpeed: 1000
+  pushBackForce: 2000
 --- !u!61 &6412518409099157912
 BoxCollider2D:
   m_ObjectHideFlags: 0

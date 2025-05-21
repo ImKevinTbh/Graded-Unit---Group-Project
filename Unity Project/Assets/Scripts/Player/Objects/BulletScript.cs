@@ -29,11 +29,15 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         Vector2 dir = (target - gameObject.transform.position);
-
+        //rotation script written by Lilith
+        // this script rotates the bullet to face forward after firing, no matter the direction the player is facing
+        //TL/DR fancy maths makes the pointy bit rotate to face away from the player
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        
+        //end of rotation script
+
+
         if (Time.time < Created + LifeTime)
         {
 

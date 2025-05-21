@@ -6,8 +6,11 @@ using MEC;
 
 public class Boss_Anger : EnemyCore
 {
+    public static Boss_Anger instance;
     public static bool CanAttack = false;
-    public GameObject HellbentAngerBossSpectralSword;
+    public GameObject SpectralSword;
+    
+    
     public override void Start()
     {
         base.Start();
@@ -18,8 +21,16 @@ public class Boss_Anger : EnemyCore
 
     public void AttackPlayer()
     {
-        Vector3 direction = gameObject.transform.position - PlayerController.Instance.transform.position;
-        Instantiate(HellbentAngerBossSpectralSword, gameObject.transform.position, Quaternion.identity);
+        Instantiate(SpectralSword, Boss_Anger.instance.gameObject.transform.position, Quaternion.identity); // Spawn bullet prefab
 
     }
+
+    public void update()
+    {
+        if (Random.Range(0, 100) <= 98)
+        {
+            AttackPlayer();
+        }
+    }
+    
 }
