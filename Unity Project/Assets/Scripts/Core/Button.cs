@@ -27,6 +27,7 @@ public class Button : MonoBehaviour
     public void Clicked()
     {
         EventHandler.Level._ButtonClickEvent(new ButtonClickEventArgs(gameObject, buttonNumber));
+        Debug.Log("Button Clicked Event");
     }
 
 

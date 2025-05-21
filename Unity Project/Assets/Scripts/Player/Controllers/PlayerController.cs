@@ -9,14 +9,25 @@ public class PlayerController : MonoBehaviour
 
     public int Health = 3;
     public int MaxHealth = 3;
+
+    private Vector2 PreviousTempPossition;
+    private Vector2 CurrentTempPossition;
+    private Vector2 CurrentTempDirection;
+    private Vector2 Direction;
+
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
             
         Events.Player.Hurt += PlayerHurt;
+
     }
 
+    private void Update()
+    {
+
+    }
 
     public void PlayerHurt(HurtEventArgs ev)
     {
