@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 1923304547600902164}
   - component: {fileID: 3556016125591234779}
   - component: {fileID: 7137122260086814812}
-  m_Layer: 0
+  - component: {fileID: 4238555714929903626}
+  m_Layer: 10
   m_Name: ImpEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -186,6 +187,36 @@ MonoBehaviour:
   VisionDistance: 5
   GroundDistance: 2
   WidthScale: 3
+  Movement: 1
+  color: {r: 0, g: 0, b: 0, a: 0}
+  i: 0
+--- !u!114 &4238555714929903626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7868585400333019922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851e6939a726f6d4388af1f39b3f7309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  Speed: 0
+  Damage: 0
+  DistanceFromPlayer: 0
+  DyingSFX: {fileID: 0}
+  Direction: {x: -1, y: 0}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 0
+  rb: {fileID: 0}
+  SpottedPlayer: 0
+  Player: {fileID: 0}
+  VisionDistance: 5
+  GroundDistance: 2
+  WidthScale: 1
   Movement: 1
   color: {r: 0, g: 0, b: 0, a: 0}
   i: 0

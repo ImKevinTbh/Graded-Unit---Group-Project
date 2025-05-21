@@ -17,6 +17,7 @@ TagManager:
   - DenialBossBullet
   - Layout
   - Hazard
+  - GriefBoss
   layers:
   - Default
   - TransparentFX
@@ -28,8 +29,7 @@ TagManager:
   - DenialBoss
   - DenialBossBullet
   - Hazard
-  - 
-  - 
+  - Enemy
   - 
   - 
   - 
