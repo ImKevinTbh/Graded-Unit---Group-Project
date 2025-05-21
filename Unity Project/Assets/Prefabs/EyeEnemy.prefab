@@ -170,7 +170,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2303089234351304892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
     m_Bits: 72
   rb: {fileID: 3035120165578063481}
   SpottedPlayer: 0
-  Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
+  Player: {fileID: 0}
   VisionDistance: 5
   GroundDistance: 2
   WidthScale: 1

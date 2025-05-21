@@ -182,7 +182,7 @@ MonoBehaviour:
     m_Bits: 72
   rb: {fileID: 1923304547600902164}
   SpottedPlayer: 0
-  Player: {fileID: 7868585400333019922}
+  Player: {fileID: 0}
   VisionDistance: 5
   GroundDistance: 2
   WidthScale: 3

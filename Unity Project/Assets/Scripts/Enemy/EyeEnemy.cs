@@ -17,6 +17,7 @@ public class EyeEnemy : EnemyCore
 
     public override void Start()
     {
+        baseY = 10;
         base.Start();
         rb.gravityScale = 0;
 
