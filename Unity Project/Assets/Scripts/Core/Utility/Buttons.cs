@@ -14,6 +14,7 @@ public class Buttons : MonoBehaviour
     {
         Events.Level.ButtonClick += click;
         Events.Level.LayoutComplete += changeLayout;
+        gameObject.SetActive(false);
     }
 
     // when a button for the boss layout has been clicked, sends a boss layout change event with the buttons number and disable the buttons
