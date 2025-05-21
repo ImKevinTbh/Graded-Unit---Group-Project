@@ -11,15 +11,12 @@ public class GriefEnemyScript : EnemyCore
 
     private Vector2 dir;
 
-    private float Health;
-
     private Animator Anim;
 
     public void Start()
     {
         Anim = gameObject.GetComponent<Animator>();
         base.Start();
-        this.Health = 10f;
         Events.Enemy.Hurt += Attacked;
         Events.Enemy.Hurt -= base.Attacked;
     }
@@ -28,12 +25,11 @@ public class GriefEnemyScript : EnemyCore
     private void Update()
     {
         Anim.speed = 0.4f;
-        Debug.Log(this.Health);
         Movement();
 
         // When the bosses health reaches 0, it will die.
         // The destroy function allows it to die.
-        if (this.Health <= 0.0f) { Events.Enemy.Hurt -= Attacked; Events.Enemy.Hurt += base.Attacked; Destroy(this); }
+        if (this.Health <= 0.0f) { Events.Enemy.Hurt -= Attacked; Events.Enemy.Hurt += base.Attacked; Destroy(this.gameObject); }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -60,11 +56,11 @@ public class GriefEnemyScript : EnemyCore
         gameObject.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force);
     }
 
-    public void Attacked(HurtEventArgs e)
+    public virtual void Attacked(HurtEventArgs e)
     {
-        if (e.Target == gameObject)
+
+        if (e.Target.GetInstanceID() == gameObject.GetInstanceID())
         {
-            Color color = gameObject.GetComponent<SpriteRenderer>().color;
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
             Timing.CallDelayed(0.2f, () =>
@@ -76,7 +72,7 @@ public class GriefEnemyScript : EnemyCore
                 catch (Exception e) { }
             });
 
-            this.Health -= Damage;
+            Health -= Damage;
         }
     }
 }

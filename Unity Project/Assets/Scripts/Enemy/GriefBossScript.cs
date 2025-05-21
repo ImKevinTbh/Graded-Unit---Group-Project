@@ -17,33 +17,30 @@ public class GriefBossScript : EnemyCore
 
     private Animator Anim;
 
-    public static float Damage { get; set; }
-
     public float cooldown;
 
     public GameObject EnemyBullet;
-    
+
     private float timer;
 
     // These are the default values for the boss.
     public void Start()
     {
         Anim = gameObject.GetComponent<Animator>();
-        base.Start();
-        Health = 5f;
-        Speed = 0.5f;
-        Damage = 2f;
         // DistanceFromPlayer is used to measure the distance between the enemy and the player
         DistanceFromPlayer = 0f;
         // Timer is used to manage how often the boss shoots a bullet at the player
         timer = 0;
+        base.Start();
+        Events.Enemy.Hurt += Attacked;
+        Events.Enemy.Hurt -= base.Attacked;
     }
 
     // This method is used to control anything in the script that needs to be constantly checked, like the movement.
     private void Update()
     {
         Anim.speed = 0.4f;
-        Debug.Log(Health);
+        Debug.Log(this.Health);
         Movement();
         // This will spawn the bullet once a short cooldown ends
         timer += Time.deltaTime;
@@ -57,7 +54,7 @@ public class GriefBossScript : EnemyCore
 
         // When the bosses health reaches 0, it will die.
         // The destroy function allows it to die.
-        if (Health == 0f) { Debug.Log("Dead"); Destroy(this.gameObject); }
+        if (this.Health <= 0.0f) { Events.Enemy.Hurt -= Attacked; Events.Enemy.Hurt += base.Attacked; Destroy(this.gameObject); }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -82,5 +79,25 @@ public class GriefBossScript : EnemyCore
         dir.Normalize();
         // This actually makes the enemy move
         gameObject.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force);
+    }
+
+    public virtual void Attacked(HurtEventArgs e)
+    {
+
+        if (e.Target.GetInstanceID() == gameObject.GetInstanceID())
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+
+            Timing.CallDelayed(0.2f, () =>
+            {
+                try
+                {
+                    gameObject.GetComponent<SpriteRenderer>().color = color;
+                }
+                catch (Exception e) { }
+            });
+
+            this.Health -= Damage;
+        }
     }
 }

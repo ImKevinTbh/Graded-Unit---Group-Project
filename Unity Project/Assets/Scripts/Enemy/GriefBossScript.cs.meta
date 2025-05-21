@@ -3,7 +3,11 @@ guid: 29966775004c62e4fb00ab0b8c2ac3ff
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - DyingSFX: {instanceID: 0}
+  - rb: {instanceID: 0}
+  - Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
+  - EnemyBullet: {fileID: 3992247994866975454, guid: 84b33402802298c4ca7cbd3103c57891, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
