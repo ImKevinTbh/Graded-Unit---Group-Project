@@ -88,6 +88,7 @@ MonoBehaviour:
   CheatMode: 0
   Spawn: {x: 0, y: 0}
   JumpSFX: {fileID: 8300000, guid: f55b9bc7234280248a25bc4dbbb712c1, type: 3}
+  CanToggleCheatMode: 1
   OnGround: 0
   anim: {fileID: 8139652290114253636}
 --- !u!114 &302957464035576626
@@ -193,7 +194,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -244,7 +245,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8182716, y: 1.9181223}
+  m_Size: {x: 1.42, y: 2.29}
   m_EdgeRadius: 0
 --- !u!95 &8139652290114253636
 Animator:

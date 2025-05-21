@@ -56,7 +56,7 @@ public class AttackController : MonoBehaviour
     void Update()
     {
         _Damage = Damage;
-        if (Input.GetKey(KeyCode.Mouse1) && canShoot)
+        if (Input.GetKey(KeyCode.Mouse1) && canShoot && GameHandler.instance.Player_Unlock_RangedAttack)
         {
             if (canShoot)
             {
