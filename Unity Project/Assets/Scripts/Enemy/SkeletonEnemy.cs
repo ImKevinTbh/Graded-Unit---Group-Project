@@ -11,10 +11,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
 
-
+// Allan
 public class SkeletonEnemy : EnemyCore
 {
 
+    // all functionallity inherited
     public override void Start()
     {
         base.Start();

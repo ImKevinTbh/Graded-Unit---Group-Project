@@ -4,17 +4,20 @@ using UnityEngine;
 using Events;
 using MEC;
 
+
+// Code by Allan
 public class BossBounds : MonoBehaviour
 {
     public static BossBounds instance = null;
-    // Start is called before the first frame update
+
+    // sets intance to the game object attached for easy finding and subscribes to event
     void Start()
     {
         instance = this;
         Events.Level.OnBossArenaExit += BossExit;
     }
 
-
+    // unsubscribes and sets itself inactive after a delay
     void BossExit()
     {
         Events.Level.OnBossArenaExit -= BossExit;

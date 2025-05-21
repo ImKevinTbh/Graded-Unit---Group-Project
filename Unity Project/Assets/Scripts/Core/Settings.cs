@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Code by Kevin
 public class Settings : MonoBehaviour
 {
     public static Settings instance = null;

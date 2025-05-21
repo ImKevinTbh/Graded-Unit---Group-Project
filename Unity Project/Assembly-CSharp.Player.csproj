@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
@@ -66,18 +66,17 @@
     <Compile Include="Assets\Scripts\Respawn.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScriptDenialBoss.cs" />
     <Compile Include="Assets\Scripts\Enemy\ImpEnemy.cs" />
+    <Compile Include="Assets\Bargaining.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
     <Compile Include="Assets\Scripts\Core\Button.cs" />
     <Compile Include="Assets\Scripts\Enemy\EyeEnemy.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
-    <Compile Include="Assets\LayoutSingle.cs" />
     <Compile Include="Assets\GodMode.cs" />
     <Compile Include="Assets\Scripts\Player\Handlers\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\HazardController.cs" />
     <Compile Include="Assets\Scripts\Core\LevelSelector.cs" />
     <Compile Include="Assets\DenialBoss.cs" />
     <Compile Include="Assets\Scripts\Core\Layout.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\CameraControllerBossArena.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\PickupHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\GriefEnemyScript.cs" />
@@ -88,6 +87,7 @@
     <Compile Include="Assets\EndBounds.cs" />
     <Compile Include="Assets\Scripts\Core\Init.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\CameraController.cs" />
+    <Compile Include="Assets\DoorExitTrigger.cs" />
     <Compile Include="Assets\Scripts\Core\UiController.cs" />
     <Compile Include="Assets\DenierScript.cs" />
     <Compile Include="Assets\Scripts\Core\BossBounds.cs" />

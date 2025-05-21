@@ -7,6 +7,8 @@ using EventArgs;
 using Events;
 using MEC;
 
+
+//Most code writed by Allan unless stated otherwise
 public class CameraController : MonoBehaviour
 {
 
@@ -17,7 +19,7 @@ public class CameraController : MonoBehaviour
     public static CameraController instance; // Do not remove, needed for movement controller.
 
 
-
+    // initialises variables, subscribes to boss arena enter, exit and level loaded events, sets dampening for transitions between camera bounds, and sets default camera bounds
     private void Start()
     {
         instance = this; // Do not remove, needed for movement controller.
@@ -30,31 +32,31 @@ public class CameraController : MonoBehaviour
 
         Events.Level.OnLoadedLevel += OnLoadedLevel;
 
-        Events.Player.Spawn += spawn;
-
         gameObject.GetComponent<CinemachineConfiner2D>().m_Damping = 1.5f;
         gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = LevelBounds.instance.gameObject.GetComponent<Collider2D>();
 
     }
 
-    void spawn()
-    {
-        
-    }
 
+    //Kevin
+    // when the level is loaded after a half second delay sets p as the player game object
     private void OnLoadedLevel(LoadedLevelEventArgs ev)
     {
         Timing.CallDelayed(0.5f, () =>  p = PlayerController.Instance.gameObject );
+        gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = LevelBounds.instance.gameObject.GetComponent<Collider2D>();        
 
         Debug.Log("Camera: Level Loaded");
     }
 
-
+    //Kevin
+    // updates camera possition to players current possition
     private void Update()
     {
         if (p != null) { gameObject.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, p.transform.position.z - 1f); }
     }
 
+
+    //Allan
     // switches camera bounds to stay within the boss arena when entering the boss arena
     private void BossArenaEnter()
     {
@@ -65,6 +67,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    //Allan
     // switches camera bounds to leave the boss arena when leaving
     private void BossArenaExit()
     {
@@ -74,9 +77,10 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    //Allan
+    // unsubscribes from all events
     private void OnDestroy()
     {
-        Events.Player.Spawn -= spawn;
         Events.Level.OnLoadedLevel -= OnLoadedLevel;
         Events.Level.OnBossArenaExit -= BossArenaExit;    
         Events.Level.BossArenaEnter -= BossArenaEnter;

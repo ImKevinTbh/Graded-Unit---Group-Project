@@ -4,6 +4,7 @@ using MEC;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Code by Kevin
 public class DenialBoss : MonoBehaviour
 {
     public static DenialBoss instance;
@@ -12,6 +13,8 @@ public class DenialBoss : MonoBehaviour
     public Vector2 Phase_2_SpawnPoint;
     public Vector2 Phase_3_SpawnPoint;
 
+    public Vector2 FinalPhase_SpawnPoint;
+    
     public Vector2 origin;
     
     public Vector2 IdlePos = new Vector2(-999, -999);
@@ -68,6 +71,18 @@ public class DenialBoss : MonoBehaviour
         }
     }
 
+    public IEnumerator<float> FinalFight()
+    {
+        yield return Timing.WaitForOneFrame;
+        origin = FinalPhase_SpawnPoint;
+        while (Health > 0)
+        {
+            yield return Timing.WaitForOneFrame;
+            
+        }
+    }
+    
+    
     public IEnumerator<float> Phase1()
     {
         Hit = false;

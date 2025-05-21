@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Code by Allan
 public class EndBounds : MonoBehaviour
 {
     public static EndBounds instance = null;
