@@ -12,15 +12,13 @@ public class EyeEnemy : EnemyCore
     public float HoverHeight = 3f;   // Hover 3 units above the platform
     public float BobAmplitude = 1f;  // Bob up and down by 1 unit
     public float BobFrequency = 1f;  // Bobbing speed
-
     private float baseY;
 
     public override void Start()
     {
-        baseY = 10;
+        baseY = transform.position.y;
         base.Start();
         rb.gravityScale = 0;
-
         RaycastHit2D ground = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 25, Mask);
         baseY = ground.collider.transform.position.y + HoverHeight;
         GroundDistance += HoverHeight;
