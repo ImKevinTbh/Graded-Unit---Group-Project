@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using MEC;
 
 
 //All code writen by Allan
@@ -59,8 +60,14 @@ public class Layout : MonoBehaviour
         else if (EnemyCount == 0)
         {
             EventHandler.Level._LayoutCompete();
+
+            // cleans up previous boss arena layout
+            if (layout)
+            {
+                Timing.CallDelayed(1.5f, () => Destroy(layout));
+            }
         }
-        
+
     }
 
 
@@ -71,13 +78,9 @@ public class Layout : MonoBehaviour
 
         iterations += 1;
         
-        string layoutName = "Layout " + e.LayoutNumber; // Construct variable name // this works
+        layoutName = "Layout " + e.LayoutNumber; // Construct variable name // this works
 
-        // cleans up previous boss arena layout
-        if (layout)
-        {
-            Destroy(layout);
-        }
+        
         
         
         // checks through all layouts in the layouts array and spawns the one with the matching number to the option selected

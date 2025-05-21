@@ -62,16 +62,15 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Core\Utility\EventHandler.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScriptDenialBoss.cs" />
+    <Compile Include="Assets\Bargaining.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
     <Compile Include="Assets\Scripts\Core\Button.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
-    <Compile Include="Assets\LayoutSingle.cs" />
     <Compile Include="Assets\GodMode.cs" />
     <Compile Include="Assets\Scripts\Player\Handlers\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\Core\LevelSelector.cs" />
     <Compile Include="Assets\DenialBoss.cs" />
     <Compile Include="Assets\Scripts\Core\Layout.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\CameraControllerBossArena.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\PickupHandler.cs" />
     <Compile Include="Assets\Scripts\Core\AchievementHandler.cs" />
@@ -102,7 +101,6 @@
     <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\HandEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
-    <Compile Include="Assets\TESTENEMY.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

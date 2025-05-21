@@ -48,15 +48,16 @@ public class AchievementHandler : MonoBehaviour
         {
             gameObject.transform.position += Vector3.up * 2.8f;
         }
-        else if (hitTop)
+        else if (gameObject.transform.position.y >= heightMax && !hitTop)
         {
+            hitTop = true;
             Timing.CallDelayed(5.0f, () => moveDown = true);
         }
-        else if (moveDown)
+        else if (moveDown && gameObject.transform.position.y > heightMin)
         {
             gameObject.transform.position -= Vector3.up * 10;
         }
-        else if (gameObject.transform.position.y < heightMin)
+        else if (gameObject.transform.position.y <= heightMin)
         {
             gameObject.GetComponent<SpriteRenderer>().color = clear;
             moveDown = false;
