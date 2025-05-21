@@ -142,6 +142,7 @@ public class EnemyCore : MonoBehaviour
         if (collision.collider == Player)
         {
             EventHandler.Player._Hurt(new HurtEventArgs(this.gameObject, collision.gameObject, Damage));
+            Debug.Log("Player Hurt Event Triggered from" + gameObject.name);
         }
     }
 

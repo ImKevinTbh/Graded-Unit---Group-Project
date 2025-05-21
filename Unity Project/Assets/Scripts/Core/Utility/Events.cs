@@ -327,7 +327,15 @@ namespace Events
         {
             LayoutComplete?.Invoke();
         }
-        
+
+        // ~Allan
+        public delegate void DiaglogueCompleteEvent();
+        public static event DiaglogueCompleteEvent DiaglogueComplete;
+        public virtual void _DiaglogueComplete()
+        {
+            DiaglogueComplete?.Invoke();
+        }
+
     }
 
     // Kevin

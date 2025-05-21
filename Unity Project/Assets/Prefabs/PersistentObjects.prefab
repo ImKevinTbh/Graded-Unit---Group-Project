@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BoundingShape2D: {fileID: 0}
   m_Damping: 1.67
-  m_MaxWindowSize: -1
+  m_MaxWindowSize: 0
   m_Padding: 0
 --- !u!1 &677330140399713105
 GameObject:
@@ -311,6 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4646307eaef12345a2eb8b54c84780b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player_Unlock_Dash: 0
+  Player_Unlock_DoubleJump: 0
+  Player_Unlock_RangedAttack: 0
   Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
 --- !u!114 &2720382252342250905
 MonoBehaviour:
@@ -495,6 +498,7 @@ MonoBehaviour:
   Bargaining: {fileID: 21300000, guid: 2f11fe8bd4bc64a489c6d79d112a078a, type: 3}
   Depression: {fileID: 21300000, guid: 67477303b3dd09f42a0acf2b79d54850, type: 3}
   Acceptance: {fileID: 0}
+  levelID: 1
 --- !u!212 &4779471206182430671
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -556,8 +560,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8197006652425725855}
-  - component: {fileID: 5050457786834653232}
-  - component: {fileID: 7950003289778920575}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -583,33 +585,6 @@ Transform:
   - {fileID: 225407381035800125}
   m_Father: {fileID: 792170435507115623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5050457786834653232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2772102545641034453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb738ea5f5b3b46b2864ac567e44d6ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CoreObjects: {fileID: 4843581735020449753}
---- !u!114 &7950003289778920575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2772102545641034453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a5b7a43aac0eda469880767c773e88c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitialSpawnPoint: {x: 0, y: 0, z: 0}
-  LevelID: 
 --- !u!1 &3489110559395200319
 GameObject:
   m_ObjectHideFlags: 0

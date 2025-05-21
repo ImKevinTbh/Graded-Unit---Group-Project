@@ -1,6 +1,8 @@
 //- THIS CODE WAS WRITTEN BY KEVIN WATSON -//
 using System;
+using MEC;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.Windows;
 using Input = UnityEngine.Input;
 
@@ -12,6 +14,7 @@ public class MovementHandler : MonoBehaviour
 
     //- Settings -// 
     public float Speed = 35f;
+    public float OriginMaxSpd;
     public float MaxSpeed = 7.5f;
 
     public float JumpPower = 10;
@@ -26,9 +29,13 @@ public class MovementHandler : MonoBehaviour
 
     public AudioClip JumpSFX;
 
+    public bool CanToggleCheatMode = true;
     public bool OnGround = false;
     //referencing animator to allow for correct animation transitions - Lilith
     public Animator anim;
+    public static MovementHandler instance;
+    public float inputX;
+    public float inputY;
 
     // Parameter Setting, Public params are for external use, private params only get used within this script
     
@@ -38,6 +45,8 @@ public class MovementHandler : MonoBehaviour
 
     public void Awake() // Run *AFTER* object is done instantiating and this component script is being loaded (DO NOT USE START UNLESS YOU REALLY NEED TO)
     {
+        instance = this;
+        OriginMaxSpd = MaxSpeed;
         mask = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
         _JumpsUsed = MaxJumps; // Set Initial Jumps to maxJumps
@@ -49,8 +58,9 @@ public class MovementHandler : MonoBehaviour
 
     void Update()
     {
-        float inputX = Mathf.Clamp((int)Input.GetAxis("Horizontal"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
-        float inputY = Mathf.Clamp((int)Input.GetAxis("Vertical"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
+        CheatMode = Settings.instance.CheatMode;
+        inputX = Mathf.Clamp((int)Input.GetAxis("Horizontal"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
+        inputY = Mathf.Clamp((int)Input.GetAxis("Vertical"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
         
         // Analogue Inputs are absolutely terrible 
 
@@ -71,9 +81,39 @@ public class MovementHandler : MonoBehaviour
             OnGround = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) { Jump(); } // Run my jump method if spacebar is pressed
+        if (Input.GetKeyDown(KeyCode.Q) && GameHandler.instance.Player_Unlock_Dash)
+        {
+            movement = movement * 2;
+            MaxSpeed = OriginMaxSpd * 10;
+            Timing.CallDelayed(1f, () => MaxSpeed = OriginMaxSpd);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.G))
+        {
 
-        Move(movement, CheatMode, NoInput); // Run movement method every update with passed parameters
+            if (CanToggleCheatMode)
+            {
+                CanToggleCheatMode = false;
+                Settings.instance.CheatMode = !CheatMode;
+                if (!CheatMode)
+                {
+                    PlayerController.Instance.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow; // Make character yellow
+                }
+                else
+                {
+                    PlayerController.Instance.gameObject.GetComponent<SpriteRenderer>().color = Color.white; // Make character not yellow
+                }
+                Debug.LogWarning($"Cheatmode is: {!CheatMode}");
+                Timing.CallDelayed(1f, () => { CanToggleCheatMode = true; });
+            }
+
+            
+        } // Toggle Cheatmode by inverting the variable
+        
+        if (Input.GetKeyDown(KeyCode.Space)) { Jump(); } // Run my jump method if spacebar is pressed
+        
+
+        Move(movement, NoInput); // Run movement method every update with passed parameters
 
         if (inputX != (int)0)//checks for correct key inputs in order to play running animation
         {
@@ -91,7 +131,16 @@ public class MovementHandler : MonoBehaviour
 
     public void Jump()
     {
-
+        if (!GameHandler.instance.Player_Unlock_DoubleJump)
+        {
+            MaxJumps = 1;
+        }
+        else
+        {
+            MaxJumps = 2;
+        }
+        
+        
         if (GroundCheck())
         {
             _JumpsUsed = 0;
@@ -107,8 +156,10 @@ public class MovementHandler : MonoBehaviour
 
     }
 
-    public void Move(Vector2 movement, bool CheatMode, bool NoInput) 
+    public void Move(Vector2 movement, bool NoInput) 
     {
+        
+        
         if (NoInput)
         {
             if (GroundCheck()) { rb.velocity = new Vector3(rb.velocity.x * 0.97f, rb.velocity.y, 0f); } // Slowly Reduce Velocity on the X axis while keeping Y axis the same} // Drag while on ground

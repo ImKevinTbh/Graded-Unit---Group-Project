@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// depricated(?)
 public class NextLevel : MonoBehaviour
 {
     public static NextLevel instance;
@@ -16,7 +15,7 @@ public class NextLevel : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-
+        PlayerController.Instance.Health = PlayerController.Instance.MaxHealth;
         SceneManager.LoadScene("AngerScene");
     }
 }
