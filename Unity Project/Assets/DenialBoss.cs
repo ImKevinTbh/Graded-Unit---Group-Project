@@ -157,7 +157,7 @@ public class DenialBoss : MonoBehaviour
     public IEnumerator<float> Phase3() // Coroutine for third phase
     {
         Hit = false; // Set hit flag to false,
-        origin = Phase_3_SpawnPoint; // Move the boss to the the Phase 3 spawn room
+        origin = Phase_3_SpawnPoint; // Move the boss to the Phase 3 spawn room
 
         while (!Hit) // while hit var is not true
         {

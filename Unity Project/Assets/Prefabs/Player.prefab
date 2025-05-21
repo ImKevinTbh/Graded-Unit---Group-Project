@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 35
+  OriginMaxSpd: 0
   MaxSpeed: 7.5
   JumpPower: 12
   MaxJumps: 2
@@ -91,6 +92,8 @@ MonoBehaviour:
   CanToggleCheatMode: 1
   OnGround: 0
   anim: {fileID: 8139652290114253636}
+  inputX: 0
+  inputY: 0
 --- !u!114 &302957464035576626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,10 +109,15 @@ MonoBehaviour:
   bullet: {fileID: 3992247994866975454, guid: 46db81c198132b84797f9a38d0ab9f82, type: 3}
   Damage: 33
   AudioClip: {fileID: 8300000, guid: 6db01ee8ac799e040882bb05510d7ca3, type: 3}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 1024
   anim: {fileID: 8139652290114253636}
   DetectedEnemy: 0
   Enemy: {fileID: 0}
   VisionDistance: 10
+  WidthScale: 1
+  Direction: {x: -1, y: 0}
 --- !u!114 &3788466099473842122
 MonoBehaviour:
   m_ObjectHideFlags: 0

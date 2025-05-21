@@ -33,7 +33,9 @@ public class MovementHandler : MonoBehaviour
     public bool OnGround = false;
     //referencing animator to allow for correct animation transitions - Lilith
     public Animator anim;
-    public static MovementHandler instance; 
+    public static MovementHandler instance;
+    public float inputX;
+    public float inputY;
 
     // Parameter Setting, Public params are for external use, private params only get used within this script
     
@@ -43,6 +45,7 @@ public class MovementHandler : MonoBehaviour
 
     public void Awake() // Run *AFTER* object is done instantiating and this component script is being loaded (DO NOT USE START UNLESS YOU REALLY NEED TO)
     {
+        instance = this;
         OriginMaxSpd = MaxSpeed;
         mask = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
@@ -56,8 +59,8 @@ public class MovementHandler : MonoBehaviour
     void Update()
     {
         CheatMode = Settings.instance.CheatMode;
-        float inputX = Mathf.Clamp((int)Input.GetAxis("Horizontal"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
-        float inputY = Mathf.Clamp((int)Input.GetAxis("Vertical"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
+        inputX = Mathf.Clamp((int)Input.GetAxis("Horizontal"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
+        inputY = Mathf.Clamp((int)Input.GetAxis("Vertical"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
         
         // Analogue Inputs are absolutely terrible 
 

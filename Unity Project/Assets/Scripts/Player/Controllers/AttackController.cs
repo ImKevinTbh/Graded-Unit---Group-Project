@@ -12,14 +12,14 @@ public class AttackController : MonoBehaviour
     private bool canShoot = true;
     public AudioClip AudioClip;
     private bool canAttack = true;
-    private LayerMask Mask;
+    public LayerMask Mask;
     public Animator anim;
     public bool DetectedEnemy = false;
     public GameObject Enemy;
     public float VisionDistance = 5.0f;
     public RaycastHit2D EnemyCast;
     public float WidthScale = 1.0f;
-    public Vector2 Direction = Vector2.forward;
+    public Vector2 Direction = Vector2.left;
 
     public virtual void Start()
     {
@@ -76,8 +76,12 @@ public class AttackController : MonoBehaviour
 
 
             Timing.CallDelayed(1f, () => { canAttack = true; anim.SetBool("IsAttacking", false); });
-
-
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(MovementHandler.instance.inputX, 0) * 10, 2.0f, Mask);
+            if (hit.collider.gameObject.CompareTag("Enemy"))
+            {
+                Debug.Log("Hit");
+                EventHandler.Enemy._Hurt(new HurtEventArgs(gameObject, hit.collider.gameObject, 1));
+            }
         }
 
         }
