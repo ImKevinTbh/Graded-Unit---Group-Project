@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+// We use the events system here - Lilith
 using EventArgs;
 using Events;
 using MEC;
@@ -11,34 +12,77 @@ using UnityEngine;
 /* All Code Beyond This Point Has Been Written By Charlotte, Unless Stated Otherwise */
 public class GriefBossScript : MonoBehaviour
 {
-    // These variables are used to store the default values of the bosses health, speed and damage.
-    public static float Health { get; set; }
-    public static float Speed { get; set; }
-    public static float Damage { get; set; }
-
+    // These variables are used to store the default values of the bosses health, speed and damage
+    // Variables Updated By Lilith
     public float cooldown;
 
     public GameObject EnemyBullet;
-
-    private float DistanceFromPlayer;
     
     private float timer;
 
     private Vector2 dir;
 
+    public int Health;
+
+    public float Speed;
+
+    public int Damage;
+
+    public float DistanceFromPlayer;
+
+    public AudioClip DyingSFX;
+
+    public LayerMask Mask;
+
+    public Rigidbody2D rb;
+
+    public bool SpottedPlayer = false;
+
+    public GameObject Player;
+
+    public float VisionDistance = 5.0f;
+
+    public float GroundDistance = 2.0f;
+
+    public float WidthScale = 1.0f;
+
+    public bool Movement = true;
+
+    public Color color;
+
+    public int i = 0;
+
+    public RaycastHit2D PlayerCast;
+
+
     // These are the default values for the boss.
-    public void Start()
+    //Sets Health, Speed and damage, initialises certain methods for colour change, Damage Dealing and Player Tracking - Lilith
+    public virtual void Start()
     {
-        Health = 300f;
-        Speed = 0.5f;
-        Damage = 2f;
+        Health = 30;
+
+        Speed = 8f;
+
+        Damage = 1;
+
+        DistanceFromPlayer = 0f;
+
+        Events.Enemy.Hurt += Attacked;
+
+        rb = GetComponent<Rigidbody2D>();
+
+        color = gameObject.GetComponent<SpriteRenderer>().color;
+
+        EventHandler.Enemy._spawn();
+
+        Player = PlayerController.Instance.gameObject;
+
         // DistanceFromPlayer is used to measure the distance between the enemy and the player
         DistanceFromPlayer = 0f;
         // Timer is used to manage how often the boss shoots a bullet at the player
         timer = 0;
         // Dir is used to make the boss face the player 
         dir = new Vector2(0, 0);
-
     }
 
     // This method is used to control anything in the script that needs to be constantly checked, like the movement.
@@ -85,28 +129,24 @@ public class GriefBossScript : MonoBehaviour
         }
     }
 
-    // This method manages the boss recieving damage from the players attacks. Kevin created this code and I borrowed it but I wrote the comments.
-    public bool Attacked(GameObject attacker, GameObject instance, float Damage)
+    // Moved To This Script by Lilith// //This method manages the boss recieving damage from the players attacks. Kevin created this code and I borrowed it but I wrote the comments. - Allan
+    public virtual void Attacked(HurtEventArgs e)
     {
-        // The boss will change to a red colour when they take damage
-        // This code retrieves the colour saved in the Sprite Renderer
-        Color color = gameObject.GetComponent<SpriteRenderer>().color;
-        // This actually changes the bosses colour
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
-        // This will turn the boss back to its normal colours after a short period of time.
-        Timing.CallDelayed(0.2f, () =>
+        if (e.Target.GetInstanceID() == gameObject.GetInstanceID())
         {
-            try
-            {
-                gameObject.GetComponent<SpriteRenderer>().color = color;
-            }
-            // If something goes wrong with changing the colour back, it logs the exception/error here.
-            catch (Exception e) { Debug.LogError(e); }
-        });
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
-        // This manages the boss losing health by subtracting the damage from its current health.
-        Health -= Damage;
-        return true;
+            Timing.CallDelayed(0.2f, () =>
+            {
+                try
+                {
+                    gameObject.GetComponent<SpriteRenderer>().color = color;
+                }
+                catch (Exception e) { }
+            });
+
+            Health -= Damage;
+        }
     }
 }

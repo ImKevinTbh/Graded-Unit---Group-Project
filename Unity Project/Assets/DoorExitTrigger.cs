@@ -16,7 +16,7 @@ public class DoorExitTrigger : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             EventHandler.Level._BossArenaExit();
-            EventHandler.Level._Acheivement(new AcheivementArgs(SceneManager.GetActiveScene()));
+            EventHandler.Level._Acheivement();
             gameObject.SetActive(false);
         }
     }

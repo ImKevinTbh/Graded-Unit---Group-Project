@@ -93,6 +93,7 @@ public class EnemyCore : MonoBehaviour
         if (PlayerCast && PlayerCast.collider.gameObject == Player)
         {
             SpottedPlayer = true;
+            Debug.Log("Spotted Player");
             Direction.x = Player.transform.position.x - gameObject.transform.position.x;
             Direction = Direction.normalized;
             SpotPlayer();
@@ -100,6 +101,7 @@ public class EnemyCore : MonoBehaviour
         else
         {
             SpottedPlayer = false;
+            Debug.Log("Player Not Found");
         }
 
         // Raycasts a short distance in front of the enemy and diagonally down in front checking for walls and floors

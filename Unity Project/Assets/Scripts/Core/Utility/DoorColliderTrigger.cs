@@ -13,6 +13,7 @@ public class MiscController : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            //r = UnityEngine.Random.Range(1, range);
             EventHandler.Level._BossArenaEnter();
             gameObject.SetActive(false);
         }

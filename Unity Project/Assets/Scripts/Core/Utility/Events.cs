@@ -86,23 +86,13 @@ namespace EventArgs
 
     public class BossArenaEnterEventArgs
     {
-        public BossArenaEnterEventArgs(GameObject instance)
-        {
-            Instance = instance;
-        }
-
-        public GameObject Instance { get; }
+        //public BossLayoutChangeEventArgs(GameObject instance, int layoutNumber)
+      //  {
+         //   LayoutNumber = layoutNumber;
+       // }
+       // public int LayoutNumber { get; }
     }
-
-    public class AcheivementArgs
-    {
-        public AcheivementArgs(Scene level) 
-        {
-            Level = level;
-        }
-
-        public Scene Level { get; }
-    }
+    
 }
 
 namespace Events
@@ -195,11 +185,11 @@ namespace Events
     public class Pickup // Kevin
     {
 
-        public delegate void PickupEvent(PickupEventArgs ev);
+        public delegate void PickupEvent(PickupEventArgs e);
         public static event PickupEvent OnPickup;
-        public virtual void _Pickup(PickupEventArgs ev)
+        public virtual void _Pickup(PickupEventArgs e)
         {
-            OnPickup?.Invoke(ev);
+            OnPickup?.Invoke(e);
         }
     }
 
@@ -323,11 +313,11 @@ namespace Events
         }
 
         // ~Allan
-        public delegate void Acheivement(AcheivementArgs e);
+        public delegate void Acheivement();
         public static event Acheivement OnAcheivement;
-        public virtual void _Acheivement(AcheivementArgs e)
+        public virtual void _Acheivement( )
         {
-            OnAcheivement?.Invoke(e);
+            OnAcheivement?.Invoke();
         }
 
         // ~Allan
@@ -356,6 +346,13 @@ namespace Events
         public virtual void _DenierDestroyed(DenierDestroyedEventArgs ev)
         {
             DenierDestroyed?.Invoke(ev);
+        }
+        
+        public delegate void DenialBossKillEvent();
+        public static event DenialBossKillEvent DenialBossKilled;
+        public virtual void _DenialBossKilled()
+        {
+            DenialBossKilled?.Invoke();
         }
     }
 }

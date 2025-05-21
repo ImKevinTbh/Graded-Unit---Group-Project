@@ -43,6 +43,7 @@ public class CameraController : MonoBehaviour
     private void OnLoadedLevel(LoadedLevelEventArgs ev)
     {
         Timing.CallDelayed(0.5f, () =>  p = PlayerController.Instance.gameObject );
+        gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = LevelBounds.instance.gameObject.GetComponent<Collider2D>();        
 
         Debug.Log("Camera: Level Loaded");
     }

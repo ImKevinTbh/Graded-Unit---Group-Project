@@ -14,20 +14,26 @@ public class BulletScript : MonoBehaviour
     public float LifeTime;
     public float bSpeed = 1;
     public float pushBackForce = 2000f;
-    private Vector2 target;
+    private Vector3 target;
 
     void Awake()
     {
         Damage = AttackController._Damage;
         Created = Time.time;
         target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        GetComponent<Rigidbody2D>().AddForce(((Vector2)gameObject.transform.position - target).normalized * bSpeed * -Vector2.one);
+        GetComponent<Rigidbody2D>().AddForce(((Vector3)gameObject.transform.position - target).normalized * bSpeed * -Vector2.one);
         GameObject pl = GameObject.Find("PlayerModel");
 
     }
 
     void Update()
     {
+        Vector2 dir = (target - gameObject.transform.position);
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        
         if (Time.time < Created + LifeTime)
         {
 
