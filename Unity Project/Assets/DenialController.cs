@@ -6,7 +6,7 @@ using Events;
 using EventArgs;
 using MEC;
 
-
+// Code by Kevin
 public class DenialController : MonoBehaviour
 {
 
@@ -27,18 +27,19 @@ public class DenialController : MonoBehaviour
     public void BossPhase1()
     {
         Debug.LogWarning("Boss Phase 1");
-        Destroy(GameObject.Find("Wall1"));
+
         Timing.RunCoroutine(DenialBoss.instance.Phase1());
     }
     public void BossPhase2()
     {
         Debug.LogWarning("Boss Phase 2");
-        Destroy(GameObject.Find("Wall2"));
+        Timing.RunCoroutine(DenialBoss.instance.Phase2());
+
     }
     public void BossPhase3()
     {
         Debug.LogWarning("Boss Phase 3");
-        Destroy(GameObject.Find("Wall3"));
+        Timing.RunCoroutine(DenialBoss.instance.Phase3());
     }
 
     public void DenierDestroyed(DenierDestroyedEventArgs ev)

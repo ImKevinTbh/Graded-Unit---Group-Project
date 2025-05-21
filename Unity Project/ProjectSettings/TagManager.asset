@@ -13,8 +13,8 @@ TagManager:
   - Pickup
   - Camera Boundary
   - Layout
-  - GriefBoss
-  - GriefEnemy
+  - Enemy
+  - DenialBossBullet
   layers:
   - Default
   - TransparentFX
@@ -23,8 +23,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
+  - DenialBoss
+  - DenialBossBullet
   - 
   - 
   - 

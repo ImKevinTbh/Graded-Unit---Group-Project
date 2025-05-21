@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Unity Project/Assets/Scripts/Enemy/EnemyBulletScript.cs.meta
 guid: 9b631686e9ca08245b7c0df96d2f1f07
+========
+guid: a3f09c5bd2a659d4bba0410bdbe26ee1
+>>>>>>>> origin/Allan:Unity Project/Assets/EndBounds.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

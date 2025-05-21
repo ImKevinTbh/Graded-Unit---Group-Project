@@ -5,6 +5,8 @@ using Unity.Collections;
 using UnityEngine.Animations;
 using UnityEngine.Assertions.Must;
 using EventArgs;
+
+//ALl code writen by Kevin
 public class BulletScript : MonoBehaviour
 {
     public int Damage;
@@ -36,22 +38,22 @@ public class BulletScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+
+    
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) { return; }
         else if (collision.CompareTag("Boundary") || collision.CompareTag("Camera Boundary")) { return; }
         else
         {
-            if (collision.gameObject.GetComponent<EnemyCore>() != null)
+            if (collision.CompareTag("Enemy"))
             {
-                EventHandler.Enemy._Hurt(new HurtEventArgs(this.gameObject, collision.gameObject, Damage));
+                EventHandler.Enemy._Hurt(new HurtEventArgs(gameObject, collision.gameObject, Damage));
             }
-            Debug.LogWarning(collision.gameObject.name);
-            Timing.CallDelayed(0.05f, () => Destroy(gameObject));
+            Timing.CallDelayed(0.05f, () => Destroy(gameObject)); 
         }
-
+        collision = null; // this added because the collision keeps the previous object type sometimes,
+                          // I dont know why this could be and I no longer care ~ Allan
     }
-
-
 
 }

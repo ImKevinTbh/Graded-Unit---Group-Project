@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Code by Kevin
 public class PersistenceController : MonoBehaviour
 {
     public static PersistenceController instance = null;
@@ -21,8 +22,9 @@ public class PersistenceController : MonoBehaviour
         }
         if (instance == null) { instance = this; } else { Destroy(this); }
         if (Settings.instance == null) { Instantiate(SettingsItem).gameObject.transform.parent = gameObject.transform; } // If the settings object does not exist, create it, shouldn't really need to happen
-        Events.Game.Quit += Quit;
         Events.Level.OnLoadedLevel += LoadedLevel;
+        Events.Player.OnDied += Died;
+
     }
 
     public void LoadedLevel(LoadedLevelEventArgs ev)
@@ -31,21 +33,17 @@ public class PersistenceController : MonoBehaviour
         {
             if (Objects.Contains(gameObject.transform.GetChild(i).gameObject))
             {
+                
                 Objects.Add(gameObject.transform.GetChild(i).gameObject);
             }
         }
     }
 
-    public void Quit()
+    public void Died()
     {
 
-        foreach (GameObject o in Objects)
-        {
-            Destroy(o.gameObject);
-        }
-
         SceneManager.LoadScene("DeathScene");
-        Destroy(PlayerController.Instance.gameObject.transform.parent.gameObject);
+
 
         Destroy(this.gameObject);
     }

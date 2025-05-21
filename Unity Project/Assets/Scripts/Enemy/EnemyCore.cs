@@ -1,7 +1,3 @@
-// Code by Allan
-
-// Don't touch this directly, inherit this script instead of MonoBehaviour in other enemy scripts
-
 using EventArgs;
 using MEC;
 using System;
@@ -11,12 +7,20 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
 
+// All code by Allan
+
+// Don't touch this directly, inherit this script instead of MonoBehaviour in other enemy scripts
 
 public class EnemyCore : MonoBehaviour
 {
-    public static float Health { get; set; }
-    public static float Speed { get; set; }
-    public static int Damage { get; set; }
+
+    // As this is an inherited script all variables which could potentially be needed by various enemys are initialised here, then are inherited by other scripts
+
+    public int Health;
+
+    public float Speed;
+
+    public int Damage;
 
     public float DistanceFromPlayer;
 
@@ -40,23 +44,50 @@ public class EnemyCore : MonoBehaviour
 
     public bool Movement = true;
 
-    public void Start()
+    public Color color;
+
+    public int i = 0;
+
+    public RaycastHit2D PlayerCast;
+
+
+    // sets default variables
+    public virtual void Start()
     {
-        Health = 100f;
+        Health = 3;
+
         Speed = 4f;
+
         Damage = 1;
+
         DistanceFromPlayer = 0f;
+
         Events.Enemy.Hurt += Attacked;
+
         rb = GetComponent<Rigidbody2D>();
+        
+        color = gameObject.GetComponent<SpriteRenderer>().color;
+
+        EventHandler.Enemy._spawn();
+
+        Player = PlayerController.Instance.gameObject;
     }
 
-    public void Update()
+    public virtual void Update()
     {
+        // when health is at or below zero, destroys the boject this script is attached to
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
 
-        // Raycasts towards the players current possition from the enemies current possition at a distance defined in VisionDistance
-        RaycastHit2D PlayerCast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, VisionDistance, Mask);
+        // Raycasts towards the players current possition from the enemies current possition at a distance defined in VisionDistance, if no player is assigned tries to find and assign Player variable to the player
+        if (Player != null)
+        {
+            PlayerCast = Physics2D.Raycast(gameObject.transform.position, Player.transform.position - gameObject.transform.position, VisionDistance, Mask);
+        }
+        else if (!Player)
+        {
+            Player = PlayerController.Instance.gameObject;
 
+        }
 
         // if the ray collides with the player, changes the enemies direction towards the player
         if (PlayerCast && PlayerCast.collider.gameObject == Player)
@@ -93,15 +124,18 @@ public class EnemyCore : MonoBehaviour
 
         rb.velocity = vel; // Now set the velocity back to whatever we had in the variable
         rb.AddForce(Direction * Speed, ForceMode2D.Force);
+        
     }
 
-    public void SpotPlayer()
+
+    // here for inheritable functionality
+    public virtual void SpotPlayer()
     {
 
     }
 
     // when the player collides send a hurt event
-    public void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider == Player)
         {
@@ -109,19 +143,20 @@ public class EnemyCore : MonoBehaviour
         }
     }
 
-    public void OnDestroy()
+    // on destroy unsubscribes from events and pings enemy died event
+    public virtual void OnDestroy()
     {
-        AudioSource.PlayClipAtPoint(DyingSFX, gameObject.transform.position);
         Events.Enemy.Hurt -= Attacked;
-        Destroy(gameObject);
         ScoreHandler.Score += 10;
+        EventHandler.Enemy._Died();
     }
 
-    public void Attacked(HurtEventArgs e)
+    // when enemy hurt is pinged sets enemy colour to red for 0.2 seconds then back to the origional colour, then reduces health by damage
+    public virtual void Attacked(HurtEventArgs e)
     {
-        if (e.Target == gameObject)
+
+        if (e.Target.GetInstanceID() == gameObject.GetInstanceID())
         {
-            Color color = gameObject.GetComponent<SpriteRenderer>().color;
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
             Timing.CallDelayed(0.2f, () =>

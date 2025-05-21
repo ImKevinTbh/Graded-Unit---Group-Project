@@ -4,6 +4,7 @@ using EventArgs;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Code by Kevin
 public class DenierScript : MonoBehaviour
 {
     public int Group;

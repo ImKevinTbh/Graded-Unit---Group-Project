@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public int Health = 3;
     public int MaxHealth = 3;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Instance = this;
             
@@ -22,10 +22,13 @@ public class PlayerController : MonoBehaviour
     {
         Health -= ev.Damage;
 
-        Debug.Log($"Object: {ev.Target.name} took ({ev.Damage}) damage from source: {ev.Source.name}");
+
         if (Health <= 0)
         {
+            Debug.LogWarning("Player Died");
             EventHandler.Player._Died();
         }
+
+        Debug.Log($"Object: {ev.Target.name} took ({ev.Damage}) damage from source: {ev.Source.name}");
     }
 }

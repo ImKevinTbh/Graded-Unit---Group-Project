@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MEC;
+
+// Code by Kevin
 public class Init : MonoBehaviour
 {
     public GameObject CoreObjects;

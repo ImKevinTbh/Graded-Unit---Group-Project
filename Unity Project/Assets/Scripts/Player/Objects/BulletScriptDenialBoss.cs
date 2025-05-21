@@ -4,6 +4,8 @@ using System;
 using Unity.Collections;
 using UnityEngine.Animations;
 using UnityEngine.Assertions.Must;
+
+// Code by Kevin
 public class BulletScriptDenialBoss : MonoBehaviour
 {
     public float Damage;
@@ -37,13 +39,22 @@ public class BulletScriptDenialBoss : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == DenialBoss.instance.gameObject) { return; }
-        if (collision.CompareTag("Player"))
+        Debug.Log(collision.gameObject.name);
+        
+        if (!collision.gameObject == DenialBoss.instance.gameObject && !collision.gameObject.CompareTag(("Player")))
         {
-            EventHandler.Player._Hurt(new EventArgs.HurtEventArgs(PlayerController.Instance.gameObject, DenialBoss.instance.gameObject, 1));
-
+            //Timing.CallDelayed(0.05f, () => Destroy(gameObject));
+            return;
         }
-        Timing.CallDelayed(0.05f, () => Destroy(gameObject));
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log(("boss shot player"));
+            EventHandler.Player._Hurt(new EventArgs.HurtEventArgs(DenialBoss.instance.gameObject, PlayerController.Instance.gameObject, 1));
+            Timing.CallDelayed(0.05f, () => Destroy(gameObject));
+        }
+        
+
+
     }
 
 

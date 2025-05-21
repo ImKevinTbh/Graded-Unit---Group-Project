@@ -4,25 +4,70 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using MEC;
 
+
+//All code writen by Allan
 public class Layout : MonoBehaviour
 {
     public GameObject[] Layouts;
 
-    private GameObject selectedLayout;
+    private GameObject layout;
     private GameObject PreviousLayout;
     private int ePrevious;
+    private int iterations = 0;
+    private int EnemyCount = 0;
+    private string layoutName;
+    private string previousLayoutName;
 
 
+    // subscribes to events
     void Awake()
     {
         Events.Level.BossLayoutChange += Trigger;
+        Events.Enemy.Spawn += spawn;
+        Events.Enemy.OnDied += died;
     }
 
-    
+    //unsubscribes from events
     void OnDestroy()
     {
         Events.Level.BossLayoutChange -= Trigger;
+        Events.Enemy.Spawn -= spawn;
+        Events.Enemy.OnDied -= died;
+    }
+
+    // when an enemy spawns increase the enemy count by 1
+    void spawn()
+    {
+        EnemyCount++;
+
+    }
+
+    // when an enemy dies decrease the enemy count by 1
+    void died()
+    {
+        EnemyCount--;
+
+        // if there have been 3 boss room iterations & there are no enemies left, destroy this object and trigger boss arena exit event
+        if (iterations >= 3 && EnemyCount == 0)
+        {
+            EventHandler.Level._BossArenaExit();
+            Destroy(gameObject);
+            return;
+        }
+        // if there have been less than 3 iterations then ping completed layout event to create options to start another elsewhere
+        else if (EnemyCount == 0)
+        {
+            EventHandler.Level._LayoutCompete();
+
+            // cleans up previous boss arena layout
+            if (layout)
+            {
+                Timing.CallDelayed(1.5f, () => Destroy(layout));
+            }
+        }
+
     }
 
 
@@ -31,35 +76,22 @@ public class Layout : MonoBehaviour
     void Trigger(BossLayoutChangeEventArgs e)
     {
 
+        iterations += 1;
+        
+        layoutName = "Layout " + e.LayoutNumber; // Construct variable name // this works
 
-        string layoutName = "Layout " + e.LayoutNumber; // Construct variable name // this works
-
-        // cleans up previous boss arena layout
-        if (e.LayoutNumber != ePrevious)
-        {
-            string previousLayoutName = "Layout " + e.LayoutNumber;
-            foreach (GameObject target in Layouts)
-            {
-                if (target.name == layoutName && target.activeInHierarchy)
-                {
-                    Destroy(target);
-
-                }
-
-            }
-            ePrevious = e.LayoutNumber;
-        }
-
+        
+        
+        
+        // checks through all layouts in the layouts array and spawns the one with the matching number to the option selected
         foreach (GameObject target in Layouts)
         {
             if (target.name == layoutName)
             {
-                Instantiate(target, new Vector2(-69.42f, 1.4f), Quaternion.identity);
+                layout = Instantiate(target, new Vector2(-69.42f, 1.4f), Quaternion.identity);
             }
 
         }
-
-
 
     }
 

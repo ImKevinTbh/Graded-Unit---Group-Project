@@ -1,6 +1,7 @@
 using Events;
 using UnityEngine;
 
+// All code by Kevin
 public class EventHandler // DO NOT FUCKING TOUCH THIS UNLESS YOU ARE KEVIN
 {
     public static Pickup Pickup;
