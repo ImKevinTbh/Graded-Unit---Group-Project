@@ -86,6 +86,8 @@ public class DenialBoss : MonoBehaviour
 
     public IEnumerator<float> FinalFight() // Coroutine
     {
+        yield return Timing.WaitForSeconds(3f);
+        CanAttack = true;
         Vulnerable = true; // Set vulnerable so the boss can be damaged properly
         
         origin = FinalPhase_SpawnPoint; // Set the stored position of the boss to the spawn point of the final phase, set in the editor 
@@ -101,7 +103,7 @@ public class DenialBoss : MonoBehaviour
             {
                 CanAttack = false;
                 AttackPlayer(); // run attack player method
-                Timing.CallDelayed(0.5f, () => CanAttack = true);
+                Timing.CallDelayed(1.3f, () => CanAttack = true);
             }
             // More floaty math shit I do not understand
         }

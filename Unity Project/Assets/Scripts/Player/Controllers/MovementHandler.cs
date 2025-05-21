@@ -96,9 +96,13 @@ public class MovementHandler : MonoBehaviour
                 CanToggleCheatMode = false;
                 Settings.instance.CheatMode = !CheatMode;
                 if (!CheatMode)
-                { rb.gravityScale = 0; }
+                {
+                    PlayerController.Instance.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow; // Make character yellow
+                }
                 else
-                { rb.gravityScale = 3; }
+                {
+                    PlayerController.Instance.gameObject.GetComponent<SpriteRenderer>().color = Color.white; // Make character not yellow
+                }
                 Debug.LogWarning($"Cheatmode is: {!CheatMode}");
                 Timing.CallDelayed(1f, () => { CanToggleCheatMode = true; });
             }
@@ -109,7 +113,7 @@ public class MovementHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) { Jump(); } // Run my jump method if spacebar is pressed
         
 
-        Move(movement, CheatMode, NoInput); // Run movement method every update with passed parameters
+        Move(movement, NoInput); // Run movement method every update with passed parameters
 
         if (inputX != (int)0)//checks for correct key inputs in order to play running animation
         {
@@ -152,15 +156,9 @@ public class MovementHandler : MonoBehaviour
 
     }
 
-    public void Move(Vector2 movement, bool CheatMode, bool NoInput) 
+    public void Move(Vector2 movement, bool NoInput) 
     {
-
-        if (CheatMode)
-        {
-     
-            rb.velocity = (new Vector2(movement.x, movement.y) * Speed) * Time.deltaTime * 100;
-            return;
-        }
+        
         
         if (NoInput)
         {
