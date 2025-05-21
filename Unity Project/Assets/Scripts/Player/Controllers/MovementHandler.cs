@@ -37,6 +37,8 @@ public class MovementHandler : MonoBehaviour
     public float inputX;
     public float inputY;
 
+    public float direction;
+
     // Parameter Setting, Public params are for external use, private params only get used within this script
     
     
@@ -62,6 +64,15 @@ public class MovementHandler : MonoBehaviour
         inputX = Mathf.Clamp((int)Input.GetAxis("Horizontal"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
         inputY = Mathf.Clamp((int)Input.GetAxis("Vertical"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
         
+        if (inputX == 1)
+        {
+            direction = inputX;
+        }
+        if (inputX == -1)
+        {
+            direction = inputX;
+        }
+
         // Analogue Inputs are absolutely terrible 
 
         bool NoInput = false; if (inputX == 0 || (CheatMode && inputY == 0)) { NoInput = true; } // Check if the user is pressing any movement inputs (I use this for manual drag because unity's inbuilt physics are shit.
