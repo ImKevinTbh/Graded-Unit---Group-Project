@@ -61,7 +61,7 @@ public class GriefBossScript : MonoBehaviour
     {
         Health = 15;
 
-        Speed = 3f;
+        Speed = 2f;
 
         Damage = 1;
 
@@ -89,7 +89,7 @@ public class GriefBossScript : MonoBehaviour
     private void Update()
     {
         // DistanceFromPlayer is constantly checking for the current co-ordinates of the player
-        DistanceFromPlayer = (int)(PlayerController.Instance.gameObject.transform.position - transform.position).magnitude;
+        // DistanceFromPlayer = (int)(PlayerController.Instance.gameObject.transform.position - transform.position).magnitude;
         // If the player is less than 35 units away from the player, the enemy will begin heading towards them.
         if (DistanceFromPlayer <= 35)
             // This tells the boss where to move
@@ -121,6 +121,7 @@ public class GriefBossScript : MonoBehaviour
     // I use tags for this, assigning the Player a unique tag to make interactions with other things easier
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(this.Health);
         if (collision.gameObject.CompareTag("Player"))
         {
             // When the player touches the boss, they will take damage.
@@ -146,7 +147,7 @@ public class GriefBossScript : MonoBehaviour
                 catch (Exception e) { }
             });
 
-            this.Health -= Damage;
+            Health -= Damage;
         }
     }
 }

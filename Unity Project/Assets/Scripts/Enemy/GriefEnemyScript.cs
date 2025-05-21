@@ -7,13 +7,13 @@ using UnityEngine;
 
 public class GriefEnemyScript : EnemyCore
 {
-    // These variables are used to store the default values of the enemy's health, speed and damage.
+    // These variables are used to store the default values of the enemy's health, speed and damage. 
 
     private Vector2 dir;
 
     private Animator Anim;
 
-    public void Start()
+    public override void Start()
     {
         Anim = gameObject.GetComponent<Animator>();
         base.Start();
@@ -31,7 +31,7 @@ public class GriefEnemyScript : EnemyCore
 
         // When the bosses health reaches 0, it will die.
         // The destroy function allows it to die.
-        if (this.Health <= 0.0f) { Events.Enemy.Hurt -= Attacked; Events.Enemy.Hurt += base.Attacked; Destroy(this.gameObject); }
+        if (this.Health <= 0.0f) { Events.Enemy.Hurt -= this.Attacked; Destroy(this.gameObject); }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

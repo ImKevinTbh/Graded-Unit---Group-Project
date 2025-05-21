@@ -3662,8 +3662,8 @@ Transform:
   m_GameObject: {fileID: 1620666936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.7, y: -7.2598, z: 0}
-  m_LocalScale: {x: 95.211494, y: 50.124573, z: 95.211494}
+  m_LocalPosition: {x: 35.3, y: -35.5, z: 0}
+  m_LocalScale: {x: 183.17316, y: 96.43243, z: 183.17316}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3746,8 +3746,8 @@ Transform:
   m_GameObject: {fileID: 1639709127}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 175.1945, y: -6.3122, z: 0}
-  m_LocalScale: {x: 113.23527, y: 50.124573, z: 95.211494}
+  m_LocalPosition: {x: 299.81122, y: -33.677002, z: 0}
+  m_LocalScale: {x: 217.84827, y: 96.43243, z: 183.17316}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5239,11 +5239,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2094021348}
   - component: {fileID: 2094021347}
-  - component: {fileID: 2094021354}
-  - component: {fileID: 2094021345}
   - component: {fileID: 2094021353}
   - component: {fileID: 2094021352}
   - component: {fileID: 2094021355}
+  - component: {fileID: 2094021357}
+  - component: {fileID: 2094021356}
   m_Layer: 0
   m_Name: GriefBoss
   m_TagString: Enemy
@@ -5251,33 +5251,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!50 &2094021345
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094021344}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 3
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &2094021347
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5381,7 +5354,38 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!60 &2094021354
+--- !u!114 &2094021355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094021344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29966775004c62e4fb00ab0b8c2ac3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 60
+  EnemyBullet: {fileID: 3992247994866975454, guid: 84b33402802298c4ca7cbd3103c57891, type: 3}
+  Health: 15
+  Speed: 2
+  Damage: 2
+  DistanceFromPlayer: 0
+  DyingSFX: {fileID: 8300000, guid: 2781d03f8378120469be253c55681ce8, type: 3}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  rb: {fileID: 0}
+  SpottedPlayer: 0
+  Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
+  VisionDistance: 5
+  GroundDistance: 2
+  WidthScale: 1
+  Movement: 1
+  color: {r: 0, g: 0, b: 0, a: 0}
+  i: 0
+--- !u!60 &2094021356
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5393,7 +5397,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5441,37 +5445,33 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.14}
       - {x: 0.35999998, y: 0.08}
   m_UseDelaunayMesh: 0
---- !u!114 &2094021355
-MonoBehaviour:
+--- !u!50 &2094021357
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094021344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29966775004c62e4fb00ab0b8c2ac3ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 60
-  EnemyBullet: {fileID: 3992247994866975454, guid: 84b33402802298c4ca7cbd3103c57891, type: 3}
-  Health: 15
-  Speed: 2
-  Damage: 2
-  DistanceFromPlayer: 0
-  DyingSFX: {fileID: 8300000, guid: 2781d03f8378120469be253c55681ce8, type: 3}
-  Mask:
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
-  rb: {fileID: 2094021345}
-  SpottedPlayer: 0
-  Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
-  VisionDistance: 5
-  GroundDistance: 2
-  WidthScale: 1
-  Movement: 1
-  color: {r: 0, g: 0, b: 0, a: 0}
-  i: 0
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
