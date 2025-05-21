@@ -13,8 +13,11 @@ public class GriefEnemyScript : EnemyCore
 
     private float Health;
 
+    private Animator Anim;
+
     public void Start()
     {
+        Anim = gameObject.GetComponent<Animator>();
         base.Start();
         this.Health = 10f;
         Events.Enemy.Hurt += Attacked;
@@ -24,6 +27,7 @@ public class GriefEnemyScript : EnemyCore
     // These set the starting values for the enemy
     private void Update()
     {
+        Anim.speed = 0.4f;
         Debug.Log(this.Health);
         Movement();
 

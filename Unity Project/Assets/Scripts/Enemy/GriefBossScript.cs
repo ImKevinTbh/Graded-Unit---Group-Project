@@ -15,6 +15,8 @@ public class GriefBossScript : EnemyCore
 
     public Vector2 dir;
 
+    private Animator Anim;
+
     public static float Damage { get; set; }
 
     public float cooldown;
@@ -26,6 +28,7 @@ public class GriefBossScript : EnemyCore
     // These are the default values for the boss.
     public void Start()
     {
+        Anim = gameObject.GetComponent<Animator>();
         base.Start();
         Health = 5f;
         Speed = 0.5f;
@@ -39,6 +42,7 @@ public class GriefBossScript : EnemyCore
     // This method is used to control anything in the script that needs to be constantly checked, like the movement.
     private void Update()
     {
+        Anim.speed = 0.4f;
         Debug.Log(Health);
         Movement();
         // This will spawn the bullet once a short cooldown ends
