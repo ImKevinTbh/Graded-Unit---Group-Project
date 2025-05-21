@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EventArgs;
 using UnityEngine;
 
 //Lilith
@@ -20,7 +21,7 @@ public class OnPlayerTouch : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
       {
-        Debug.Log ("we hit");
+        EventHandler.Player._Hurt(new HurtEventArgs(gameObject, collision.gameObject, 1));
       }
     }
 

@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Core\Utility\EventHandler.cs" />
     <Compile Include="Assets\Scripts\Respawn.cs" />
     <Compile Include="Assets\Scripts\Player\Objects\BulletScriptDenialBoss.cs" />
+    <Compile Include="Assets\DialogueBox.cs" />
     <Compile Include="Assets\Bargaining.cs" />
     <Compile Include="Assets\Scripts\Enemy\ImpEnemy.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Scripts\Player\Handlers\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\HazardController.cs" />
     <Compile Include="Assets\Scripts\Core\LevelSelector.cs" />
+    <Compile Include="Assets\Scripts\Core\HealthController.cs" />
     <Compile Include="Assets\DenialBoss.cs" />
     <Compile Include="Assets\Scripts\Core\Layout.cs" />
     <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
@@ -100,6 +102,8 @@
     <Compile Include="Assets\SpectralSwordController.cs" />
     <Compile Include="Assets\Scripts\Player\Handlers\StateHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\SkeletonEnemy.cs" />
+    <Compile Include="Assets\BossSwordController.cs" />
+    <Compile Include="Assets\Scripts\Core\EnergyController.cs" />
     <Compile Include="Assets\Scripts\Core\ButtonHandler.cs" />
     <Compile Include="Assets\Scripts\Core\GameHandler.cs" />
     <Compile Include="Assets\EnemyInstance.cs" />
@@ -108,9 +112,9 @@
     <Compile Include="Assets\Scripts\Core\Utility\Buttons.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\AttackController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\DoorOpenScript.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\MovementController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\HandEnemy.cs" />
+    <Compile Include="Assets\Scripts\Player\Controllers\MovementHandler.cs" />
     <Compile Include="Assets\Scripts\WinLoseCon.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\AngerBoss\Boss_Anger.cs" />

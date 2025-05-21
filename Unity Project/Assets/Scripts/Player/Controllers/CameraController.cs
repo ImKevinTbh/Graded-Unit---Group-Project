@@ -22,11 +22,12 @@ public class CameraController : MonoBehaviour
     // initialises variables, subscribes to boss arena enter, exit and level loaded events, sets dampening for transitions between camera bounds, and sets default camera bounds
     private void Start()
     {
+        GetComponent<CinemachineConfiner2D>().InvalidateCache();
+
         instance = this; // Do not remove, needed for movement controller.
 
         // subscribes the door open trigger function to the boss arena enter event
         Events.Level.BossArenaEnter += BossArenaEnter;
-
 
         Events.Level.OnBossArenaExit += BossArenaExit;
 
@@ -34,7 +35,6 @@ public class CameraController : MonoBehaviour
 
         gameObject.GetComponent<CinemachineConfiner2D>().m_Damping = 1.5f;
         gameObject.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = LevelBounds.instance.gameObject.GetComponent<Collider2D>();
-
     }
 
 

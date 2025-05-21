@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3526189490934475741}
   - component: {fileID: 3157347155648368495}
   - component: {fileID: 3563667464578246365}
-  - component: {fileID: 2993314923340673017}
   - component: {fileID: 6232294550738579843}
+  - component: {fileID: 5691787549232812783}
   m_Layer: 5
   m_Name: BargainingButton
   m_TagString: Untagged
@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 387.8371, y: 145.15121}
+  m_AnchoredPosition: {x: -2, y: -28}
   m_SizeDelta: {x: 395.2684, y: 79.0097}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3526189490934475741
@@ -122,20 +122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3157347155648368495}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2993314923340673017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934457459705496780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6cd457c75667b9488622ab76a30163d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  r: 1
+      m_Calls:
+      - m_Target: {fileID: 5691787549232812783}
+        m_TargetAssemblyTypeName: DialogueBox, Assembly-CSharp
+        m_MethodName: buttonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &6232294550738579843
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181,6 +180,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 393.09195, y: 79.05321}
   m_EdgeRadius: 0
+--- !u!114 &5691787549232812783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934457459705496780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b793fdc1c990e4f86dbde4ea1aab27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialDialogue: []
+  secondaryDialogue: []
+  dialogue: 
+  index: 0
+  length: 0
+  textMeshPro: {fileID: 0}
 --- !u!1 &5381917533015175347
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Option 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
