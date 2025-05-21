@@ -15,11 +15,11 @@ public class GameHandler : MonoBehaviour // Kevin
 {
 
     /* Player Vars */
-    public static bool Player_Unlock_Dash = false;
+    public bool Player_Unlock_Dash = false;
 
-    public static bool Player_Unlock_DoubleJump = false;
+    public bool Player_Unlock_DoubleJump = false;
 
-    public static bool Player_Unlock_RangedAttack = false;
+    public bool Player_Unlock_RangedAttack = false;
     /* Player Vars */
     // These will be used to store shit for the player for use in other scripts, MUST BE STATIC TO BE VISIBLE
 
