@@ -54,9 +54,10 @@ public class DenialBoss : MonoBehaviour
         {
             EventHandler.Denial._DenialBossKilled();
             EventHandler.Level._Acheivement();
+            NextLevel.instance.gameObject.transform.position = new Vector2(101f, -14);
             Destroy(gameObject);
         }
-        Timing.CallDelayed(0.15f, () => gameObject.GetComponent<SpriteRenderer>().color = Color.red);
+        Timing.CallDelayed(0.25f, () => gameObject.GetComponent<SpriteRenderer>().color = Color.white);
     }
     public void AttackPlayer()
     {
@@ -106,9 +107,7 @@ public class DenialBoss : MonoBehaviour
         while (!Hit)
         {
             yield return Timing.WaitForSeconds(1f);
-
-
-
+            
             if (Random.Range(0, 100) <= 98)
             {
 
