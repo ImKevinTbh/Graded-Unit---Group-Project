@@ -33,6 +33,7 @@ public class MovementHandler : MonoBehaviour
     public bool OnGround = false;
     //referencing animator to allow for correct animation transitions - Lilith
     public Animator anim;
+    public static MovementHandler instance; 
 
     // Parameter Setting, Public params are for external use, private params only get used within this script
     
