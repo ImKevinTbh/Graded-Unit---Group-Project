@@ -13,6 +13,8 @@ TagManager:
   - Pickup
   - Camera Boundary
   - Layout
+  - GriefBoss
+  - GriefEnemy
   layers:
   - Default
   - TransparentFX
