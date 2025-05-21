@@ -10,16 +10,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /* All Code Beyond This Point Has Been Written By Charlotte, Unless Stated Otherwise */
-public class GriefBossScript : EnemyCore
+public class GriefBossScript : MonoBehaviour
 {
     // These variables are used to store the default values of the bosses health, speed and damage
     // Variables Updated By Lilith
-    private Animator Anim;
-
     public float cooldown;
 
     public GameObject EnemyBullet;
-    
+
     private float timer;
 
     private Vector2 dir;
@@ -61,8 +59,6 @@ public class GriefBossScript : EnemyCore
     //Sets Health, Speed and damage, initialises certain methods for colour change, Damage Dealing and Player Tracking - Lilith
     public virtual void Start()
     {
-        Anim = gameObject.GetComponent<Animator>();
-
         Health = 15;
 
         Speed = 3f;
@@ -92,8 +88,24 @@ public class GriefBossScript : EnemyCore
     // This method is used to control anything in the script that needs to be constantly checked, like the movement.
     private void Update()
     {
-        Anim.speed = 0.4f;
-        Debug.Log(this.Health);
+        // DistanceFromPlayer is constantly checking for the current co-ordinates of the player
+        DistanceFromPlayer = (int)(PlayerController.Instance.gameObject.transform.position - transform.position).magnitude;
+        // If the player is less than 35 units away from the player, the enemy will begin heading towards them.
+        if (DistanceFromPlayer <= 35)
+            // This tells the boss where to move
+            dir = (Vector2)(PlayerController.Instance.gameObject.transform.position) - (Vector2)transform.position;
+        // This is intended to cap the bosses speed to a reasonable level.   
+        dir.Normalize();
+        // This actually makes the enemy move
+        gameObject.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force);
+
+        // When the bosses health reaches 0, it will die.
+        // The destroy function allows it to die.
+        if (this.Health <= 0f)
+        {
+            GameObject.Destroy(this.gameObject);
+        }
+
         // This will spawn the bullet once a short cooldown ends
         timer += Time.deltaTime;
         if (timer > cooldown)
@@ -103,12 +115,10 @@ public class GriefBossScript : EnemyCore
             // Instantiate is used to create the bullet
             Instantiate(EnemyBullet, transform.position, transform.rotation);
         }
-
-        // When the bosses health reaches 0, it will die.
-        // The destroy function allows it to die.
-        if (this.Health <= 0.0f) { Events.Enemy.Hurt -= Attacked; Events.Enemy.Hurt += base.Attacked; Destroy(this.gameObject); }
     }
 
+    // This method will manage the boss dealing damage to the player when they collide.
+    // I use tags for this, assigning the Player a unique tag to make interactions with other things easier
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -136,7 +146,7 @@ public class GriefBossScript : EnemyCore
                 catch (Exception e) { }
             });
 
-            Health -= Damage;
+            this.Health -= Damage;
         }
     }
 }

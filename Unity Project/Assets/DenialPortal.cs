@@ -7,7 +7,11 @@ public class DenialPortal : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        SceneManager.LoadScene("DenialScene");
-        PlayerController.Instance.Health = 3;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("DenialScene");
+            PlayerController.Instance.Health = 3;
+        }
+        
     }
 }

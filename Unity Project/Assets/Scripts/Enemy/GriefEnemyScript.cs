@@ -25,6 +25,7 @@ public class GriefEnemyScript : EnemyCore
     // These set the starting values for the enemy
     private void Update()
     {
+        Debug.Log(this.Health);
         Anim.speed = 0.4f;
         Movement();
 
@@ -37,9 +38,9 @@ public class GriefEnemyScript : EnemyCore
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // When the player touches the boss, they will take damage.
+            // When the player touches the enemy, they will take damage.
             EventHandler.Player._Hurt(new HurtEventArgs(gameObject, this.gameObject, 1));
-            Debug.Log("Boss Touched Player");
+            Debug.Log("Enemy Touched Player");
         }
     }
 
@@ -73,7 +74,7 @@ public class GriefEnemyScript : EnemyCore
                 catch (Exception e) { }
             });
 
-            this.Health -= Damage;
+            this.Health -= this.Damage;
         }
     }
 }
