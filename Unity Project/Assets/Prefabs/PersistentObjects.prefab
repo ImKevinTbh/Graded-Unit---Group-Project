@@ -490,7 +490,7 @@ MonoBehaviour:
   Default: {fileID: 0}
   Limbo: {fileID: 21300000, guid: 4710142e94f750d46b4801017c0786d2, type: 3}
   Grief: {fileID: 0}
-  Denial: {fileID: 0}
+  Denial: {fileID: 21300000, guid: 5331913d18b4c977e89ac8a379ed5d52, type: 3}
   Anger: {fileID: 0}
   Bargaining: {fileID: 21300000, guid: 2f11fe8bd4bc64a489c6d79d112a078a, type: 3}
   Depression: {fileID: 21300000, guid: 67477303b3dd09f42a0acf2b79d54850, type: 3}

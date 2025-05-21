@@ -31,7 +31,7 @@ public class AchievementHandler : MonoBehaviour
     void Start()
     {
         Events.Level.OnAcheivement += Acheivement;
-        string test = SceneManager.GetActiveScene().name;
+        string e = MapController.Instance.LevelID;
         DontDestroyOnLoad(gameObject);
         sprite = GetComponent<SpriteRenderer>().sprite;
         gameObject.GetComponent<SpriteRenderer>().color = clear;
