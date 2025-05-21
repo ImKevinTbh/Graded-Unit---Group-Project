@@ -14,6 +14,7 @@ public class MovementHandler : MonoBehaviour
 
     //- Settings -// 
     public float Speed = 35f;
+    public float OriginMaxSpd;
     public float MaxSpeed = 7.5f;
 
     public float JumpPower = 10;
@@ -41,6 +42,7 @@ public class MovementHandler : MonoBehaviour
 
     public void Awake() // Run *AFTER* object is done instantiating and this component script is being loaded (DO NOT USE START UNLESS YOU REALLY NEED TO)
     {
+        OriginMaxSpd = MaxSpeed;
         mask = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
         _JumpsUsed = MaxJumps; // Set Initial Jumps to maxJumps
@@ -75,6 +77,13 @@ public class MovementHandler : MonoBehaviour
             OnGround = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.Q) && GameHandler.instance.Player_Unlock_Dash)
+        {
+            movement = movement * 2;
+            MaxSpeed = OriginMaxSpd * 10;
+            Timing.CallDelayed(1f, () => MaxSpeed = OriginMaxSpd);
+        }
+        
         if (Input.GetKeyDown(KeyCode.G))
         {
 
@@ -82,7 +91,11 @@ public class MovementHandler : MonoBehaviour
             {
                 CanToggleCheatMode = false;
                 Settings.instance.CheatMode = !CheatMode;
-                Debug.LogWarning($"Cheatmode is: {CheatMode}");
+                if (!CheatMode)
+                { rb.gravityScale = 0; }
+                else
+                { rb.gravityScale = 3; }
+                Debug.LogWarning($"Cheatmode is: {!CheatMode}");
                 Timing.CallDelayed(1f, () => { CanToggleCheatMode = true; });
             }
 
@@ -110,7 +123,16 @@ public class MovementHandler : MonoBehaviour
 
     public void Jump()
     {
-
+        if (!GameHandler.instance.Player_Unlock_DoubleJump)
+        {
+            MaxJumps = 1;
+        }
+        else
+        {
+            MaxJumps = 2;
+        }
+        
+        
         if (GroundCheck())
         {
             _JumpsUsed = 0;
@@ -131,12 +153,11 @@ public class MovementHandler : MonoBehaviour
 
         if (CheatMode)
         {
-            rb.gravityScale = 0;
-            rb.velocity = new Vector2(movement.x, movement.y);
+     
+            rb.velocity = (new Vector2(movement.x, movement.y) * Speed) * Time.deltaTime * 100;
             return;
         }
         
-        rb.gravityScale = 3;
         if (NoInput)
         {
             if (GroundCheck()) { rb.velocity = new Vector3(rb.velocity.x * 0.97f, rb.velocity.y, 0f); } // Slowly Reduce Velocity on the X axis while keeping Y axis the same} // Drag while on ground

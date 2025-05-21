@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerHurt(HurtEventArgs ev)
     {
+        if (Settings.instance.CheatMode)
+        {
+            return;}
+        
         Health -= ev.Damage;
         Color color = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;

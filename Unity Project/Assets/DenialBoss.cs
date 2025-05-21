@@ -57,6 +57,7 @@ public class DenialBoss : MonoBehaviour
             EventHandler.Denial._DenialBossKilled(); // Trigger the event to tell the rest of the scripts that the boss is dead
             EventHandler.Level._Acheivement(); // Show achievement
             NextLevel.instance.gameObject.transform.position = new Vector2(101f, -17); // Move the next level portal item into the boss room
+            GameHandler.instance.Player_Unlock_Dash = true;
             Destroy(gameObject); // Destroy bossman
         }
         Timing.CallDelayed(0.25f, () => gameObject.GetComponent<SpriteRenderer>().color = Color.white); // Stop the enemy flash
