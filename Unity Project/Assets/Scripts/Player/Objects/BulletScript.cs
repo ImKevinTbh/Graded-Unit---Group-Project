@@ -53,9 +53,9 @@ public class BulletScript : MonoBehaviour
             if (collision.CompareTag("Enemy"))
             {
                 EventHandler.Enemy._Hurt(new HurtEventArgs(gameObject, collision.gameObject, Damage));
-                //Debug.Log($"Object Collided: {collision.gameObject} IN BULLET SCRIPT");
+                Debug.Log($"Object Collided: {collision.gameObject} IN BULLET SCRIPT");
             }
-            //Debug.LogWarning(collision.gameObject.name);
+            Debug.LogWarning(collision.gameObject.name);
             Timing.CallDelayed(0.05f, () => Destroy(gameObject)); 
         }
         collision = null; // this added because the collision keeps the previous object type sometimes,
