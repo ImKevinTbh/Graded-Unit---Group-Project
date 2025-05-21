@@ -49,7 +49,7 @@ public class BulletScriptDenialBoss : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log(("boss shot player"));
-            EventHandler.Player._Hurt(new EventArgs.HurtEventArgs(DenialBoss.instance.gameObject, PlayerController.Instance.gameObject, 1));
+            EventHandler.Player._Hurt(new EventArgs.HurtEventArgs(DenialBoss.instance.gameObject, collision.gameObject, 1));
             Timing.CallDelayed(0.05f, () => Destroy(gameObject));
         }
         
