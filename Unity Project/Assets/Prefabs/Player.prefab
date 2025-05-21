@@ -94,6 +94,7 @@ MonoBehaviour:
   anim: {fileID: 8139652290114253636}
   inputX: 0
   inputY: 0
+  direction: 0
 --- !u!114 &302957464035576626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,10 +114,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   anim: {fileID: 8139652290114253636}
-  DetectedEnemy: 0
-  Enemy: {fileID: 0}
-  VisionDistance: 10
-  WidthScale: 1
+  SwingDistance: 4.5
   Direction: {x: -1, y: 0}
 --- !u!114 &3788466099473842122
 MonoBehaviour:

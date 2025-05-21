@@ -4,6 +4,7 @@ using UnityEngine;
 using MEC;
 using EventArgs;
 using Unity.Burst.CompilerServices;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 // Code by Kevin
 public class AttackController : MonoBehaviour
 {
@@ -15,43 +16,57 @@ public class AttackController : MonoBehaviour
     private bool canAttack = true;
     public LayerMask Mask;
     public Animator anim;
-    public bool DetectedEnemy = false;
-    public GameObject Enemy;
-    public float VisionDistance = 5.0f;
-    public RaycastHit2D hit;
-    public float WidthScale = 1.0f;
+    public float SwingDistance = 4.5f;
+    //public RaycastHit2D[] hit;
+
     public Vector2 Direction = Vector2.left;
+
+    public static Collider2D[] hit;
 
     public virtual void Start()
     {
         _Damage = Damage;
+        Mask = LayerMask.GetMask("Enemy");
+
+        
     }
 
-
+    // unity animation calls endAttack on the frame the player attack animation ends
     public void endAttack()
     {
         anim.SetBool("IsAttacking", false);
+        canAttack = true;
     }
 
+    // unity animation calls attack on the frame the player attack animation will visually collide with the enemy
     public void attack()
     {
-        Debug.Log("Attack Triggered");
-        Direction.x = gameObject.transform.position.x;
-        RaycastHit2D HorrizontalCast = (Physics2D.Raycast(gameObject.transform.position, Direction, 1.0f * WidthScale, Mask));
-        if (HorrizontalCast && HorrizontalCast.collider.gameObject == Enemy)
+        hit = Physics2D.OverlapBoxAll(gameObject.transform.position + (new Vector3(MovementHandler.instance.direction, 0.3f, 0) * SwingDistance / 2), new Vector2(SwingDistance / 2, SwingDistance), 0.0f, Mask);
+        foreach (Collider2D enemy in hit)
         {
-            DetectedEnemy = true;
-            Debug.Log("DetectedEnemy");
-        }
-        else
-        {
-            DetectedEnemy = false;
+            if (enemy != null && enemy.gameObject.CompareTag("Enemy"))
+            {
+                try { Debug.Log("Collider collided with melee: " + enemy.name); } catch { Debug.Log("Collider collided with melee: NULL"); }
+
+                EventHandler.Enemy._Hurt(new HurtEventArgs(gameObject, enemy.gameObject, 1));
+            }
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(gameObject.transform.position + (new Vector3(MovementHandler.instance.direction, 0.3f, 0) * SwingDistance / 2), new Vector2(SwingDistance / 2, SwingDistance));
+    }
 
     void Update()
     {
+        
+
+
+
+        Debug.DrawRay(transform.position, new Vector2(MovementHandler.instance.direction, 0) * SwingDistance, Color.red);
+
         if (Input.GetKey(KeyCode.Mouse1) && canShoot && GameHandler.instance.Player_Unlock_RangedAttack)
         {
             if (canShoot)
@@ -68,16 +83,8 @@ public class AttackController : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0) && canAttack)
         {
             canAttack = false;
-            anim.SetBool("IsAttacking", true);
-            anim.CrossFade
-            Debug.Log("started animation " + anim.GetBool("IsAttacking") + anim.);
-            Timing.CallDelayed(2f, () => { canAttack = true; anim.SetBool("IsAttacking", false); });
-            hit = Physics2D.Raycast(transform.position, new Vector2(MovementHandler.instance.inputX, 0), 2.0f, Mask);
-            if (hit.collider != null && hit.collider.gameObject.CompareTag("Enemy"))
-            {
-                Debug.Log("Hit");
-                EventHandler.Enemy._Hurt(new HurtEventArgs(gameObject, hit.collider.gameObject, 1));
-            }
+            anim.SetBool("IsAttacking", true);            
+            
         }
 
     }

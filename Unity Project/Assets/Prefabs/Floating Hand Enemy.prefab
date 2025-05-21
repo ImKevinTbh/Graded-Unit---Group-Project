@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2988060911581032105}
   - component: {fileID: 5943852026605637805}
   - component: {fileID: -6710349180399830868}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floating Hand Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
