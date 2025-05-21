@@ -163,7 +163,7 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 0}
   m_Damping: 1.67
   m_MaxWindowSize: 0
-  m_Padding: 2
+  m_Padding: 0
 --- !u!1 &677330140399713105
 GameObject:
   m_ObjectHideFlags: 0
