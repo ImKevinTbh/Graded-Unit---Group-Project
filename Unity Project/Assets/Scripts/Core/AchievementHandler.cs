@@ -9,7 +9,7 @@ using MEC;
 //using UnityEngine.UIElements;
 using UnityEngine.UI;
 
-// All code done by Allan - Fixed by Kevin
+// All code done by Allan 
 public class AchievementHandler : MonoBehaviour
 {
 
@@ -45,7 +45,7 @@ public class AchievementHandler : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    //          EventHandler.Level._Acheivement(new AcheivementArgs(SceneManager.GetActiveScene()));
+    //          EventHandler.Level._Acheivement();
     //          To ping event
 
     // checks each level and sets its sprite depending

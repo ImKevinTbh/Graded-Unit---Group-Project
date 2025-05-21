@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Test script, Allan
 public class Achievement : MonoBehaviour
 {
     // Start is called before the first frame update
