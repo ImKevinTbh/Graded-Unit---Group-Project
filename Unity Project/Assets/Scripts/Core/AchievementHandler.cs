@@ -7,7 +7,7 @@ using EventArgs;
 using UnityEngine.SceneManagement;
 using MEC;
 
-// All code done by Allan
+// All code done by Allan - Fixed by Kevin
 public class AchievementHandler : MonoBehaviour
 {
 
@@ -26,12 +26,12 @@ public class AchievementHandler : MonoBehaviour
     private bool moveDown = false;
     private Color clear = Color.clear;
     private Color white = Color.white;
-    
+    public string levelID = MapController.Instance.LevelID;
     // subscribes to acheivement event sets default variables
     void Start()
     {
         Events.Level.OnAcheivement += Acheivement;
-        string e = MapController.Instance.LevelID;
+
         DontDestroyOnLoad(gameObject);
         sprite = GetComponent<SpriteRenderer>().sprite;
         gameObject.GetComponent<SpriteRenderer>().color = clear;
@@ -42,7 +42,7 @@ public class AchievementHandler : MonoBehaviour
 
     // checks each level and sets its sprite depending
     // also slowly moves up into frame from the bottom right, holds for 5 seconds, then slowly moves back down out of frame
-    void Acheivement(AcheivementArgs e)
+    void Acheivement()
     {
         if (gameObject.transform.position.y < heightMax && !hitTop)
         {
@@ -64,42 +64,42 @@ public class AchievementHandler : MonoBehaviour
             hitTop = false;
         }
 
-        if (e.Level.name == "Limbo")
+        if (levelID == "Limbo")
         {
             sprite = Limbo;
             gameObject.GetComponent<SpriteRenderer>().color = white;
         }
-        else if (e.Level.name == "Grief")
+        else if (levelID == "Grief")
         {
             sprite = Grief;
             gameObject.GetComponent<SpriteRenderer>().color = white;
 
         }
-        else if (e.Level.name == "Denial")
+        else if (levelID == "Denial")
         {
             sprite = Denial;
             gameObject.GetComponent<SpriteRenderer>().color = white;
 
         }
-        else if (e.Level.name == "Anger")
+        else if (levelID == "Anger")
         {
             sprite = Anger;
             gameObject.GetComponent<SpriteRenderer>().color = white;
 
         }
-        else if (e.Level.name == "Bargaining")
+        else if (levelID == "Bargaining")
         {
             sprite = Bargaining;
             gameObject.GetComponent<SpriteRenderer>().color = white;
 
         }
-        else if (e.Level.name == "Depression")
+        else if (levelID == "Depression")
         {
             sprite = Depression;
             gameObject.GetComponent<SpriteRenderer>().color = white;
 
         }
-        else if (e.Level.name == "Acceptance")
+        else if (levelID == "Acceptance")
         {
             sprite = Acceptance;
             gameObject.GetComponent<SpriteRenderer>().color = white;

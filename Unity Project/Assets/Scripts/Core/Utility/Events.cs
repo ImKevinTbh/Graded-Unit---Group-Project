@@ -92,16 +92,7 @@ namespace EventArgs
        // }
        // public int LayoutNumber { get; }
     }
-
-    public class AcheivementArgs
-    {
-        public AcheivementArgs(Scene level) 
-        {
-            Level = level;
-        }
-
-        public Scene Level { get; }
-    }
+    
 }
 
 namespace Events
@@ -322,11 +313,11 @@ namespace Events
         }
 
         // ~Allan
-        public delegate void Acheivement(AcheivementArgs e);
+        public delegate void Acheivement();
         public static event Acheivement OnAcheivement;
-        public virtual void _Acheivement(AcheivementArgs e)
+        public virtual void _Acheivement( )
         {
-            OnAcheivement?.Invoke(e);
+            OnAcheivement?.Invoke();
         }
 
         // ~Allan
@@ -347,6 +338,13 @@ namespace Events
         public virtual void _DenierDestroyed(DenierDestroyedEventArgs ev)
         {
             DenierDestroyed?.Invoke(ev);
+        }
+        
+        public delegate void DenialBossKillEvent();
+        public static event DenialBossKillEvent DenialBossKilled;
+        public virtual void _DenialBossKilled()
+        {
+            DenialBossKilled?.Invoke();
         }
     }
 }

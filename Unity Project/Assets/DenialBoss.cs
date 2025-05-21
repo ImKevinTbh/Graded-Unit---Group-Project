@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using EventArgs;
 using MEC;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Code by Kevin
 public class DenialBoss : MonoBehaviour
@@ -46,7 +48,16 @@ public class DenialBoss : MonoBehaviour
 
     public void Hurt()
     {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         Health--;
+        if (Health <= 0)
+        {
+            EventHandler.Denial._DenialBossKilled();
+            EventHandler.Level._Acheivement();
+            NextLevel.instance.gameObject.transform.position = new Vector2(101f, -14);
+            Destroy(gameObject);
+        }
+        Timing.CallDelayed(0.25f, () => gameObject.GetComponent<SpriteRenderer>().color = Color.white);
     }
     public void AttackPlayer()
     {
@@ -73,11 +84,15 @@ public class DenialBoss : MonoBehaviour
 
     public IEnumerator<float> FinalFight()
     {
+        Vulnerable = true;
         yield return Timing.WaitForOneFrame;
         origin = FinalPhase_SpawnPoint;
         while (Health > 0)
         {
             yield return Timing.WaitForOneFrame;
+            var sin = Mathf.Sin(Time.time);
+            if (sin < 0) sin *= -1;
+            gameObject.transform.position = new Vector3(Mathf.Lerp(origin.x - 3.75f, origin.x, sin), origin.y, transform.position.z);
             
         }
     }
@@ -92,9 +107,7 @@ public class DenialBoss : MonoBehaviour
         while (!Hit)
         {
             yield return Timing.WaitForSeconds(1f);
-
-
-
+            
             if (Random.Range(0, 100) <= 98)
             {
 
