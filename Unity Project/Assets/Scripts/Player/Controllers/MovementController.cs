@@ -27,6 +27,8 @@ public class MovementHandler : MonoBehaviour
     public AudioClip JumpSFX;
 
     public bool OnGround = false;
+    //referencing animator to allow for correct animation transitions - Lilith
+    public Animator anim;
 
     // Parameter Setting, Public params are for external use, private params only get used within this script
     
@@ -73,6 +75,17 @@ public class MovementHandler : MonoBehaviour
 
         Move(movement, CheatMode, NoInput); // Run movement method every update with passed parameters
 
+        if (inputX != (int)0)//checks for correct key inputs in order to play running animation
+        {
+            anim.SetBool("IsRunning", true);
+            //Debug.Log("Movement:" + gameObject.GetComponent<Rigidbody2D>().velocity.x);
+        }
+       
+        else
+        {
+            anim.SetBool("IsRunning", false);
+            //Debug.Log("we stop");
+        }
 
     }
 
@@ -83,6 +96,7 @@ public class MovementHandler : MonoBehaviour
         {
             _JumpsUsed = 0;
         }
+        Debug.Log("Can't Jump)");
 
         if (_JumpsUsed < MaxJumps)
         {
@@ -103,13 +117,11 @@ public class MovementHandler : MonoBehaviour
 
         if (movement.x < 0) // Going left
         {
-            gameObject.transform.localScale = new Vector3(-1, 1, 1); // Set scale on the X axis to negative 1 to essentially flip the object 
-            gameObject.GetComponent<SpriteRenderer>().color = Color.blue; // Change colour of renderer to blue
+            gameObject.transform.localScale = new Vector3(-1, 1, 1); // Set scale on the X axis to negative to essentially flip the object 
         }
         else if (movement.x > 0) // Going right
         {
-            gameObject.transform.localScale = new Vector3(1, 1, 1); // Set scale on the X axis to 1 to unflip the object
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red; // Change colour of renderer to red
+            gameObject.transform.localScale = new Vector3(1, 1, 1); // Set scale on the X axis to positive to unflip the object
         }
 
 
@@ -134,7 +146,8 @@ public class MovementHandler : MonoBehaviour
 
     public bool GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one / 2, 0, Vector2.down, 1f, mask); // cast downwards by 1 meter 
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one / 2, 0, Vector2.down, 2f, mask); // cast downwards by 2 meters
+        Debug.DrawRay(gameObject.transform.position, Vector2.down, Color.red);
         if (hit.collider == null)
         {
             return false; // If the ray hits nothing, the player is not on the ground

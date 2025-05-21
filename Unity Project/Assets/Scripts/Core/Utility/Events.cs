@@ -86,12 +86,11 @@ namespace EventArgs
 
     public class BossArenaEnterEventArgs
     {
-        public BossArenaEnterEventArgs(GameObject instance)
-        {
-            Instance = instance;
-        }
-
-        public GameObject Instance { get; }
+        //public BossLayoutChangeEventArgs(GameObject instance, int layoutNumber)
+      //  {
+         //   LayoutNumber = layoutNumber;
+       // }
+       // public int LayoutNumber { get; }
     }
     
 }
@@ -186,11 +185,11 @@ namespace Events
     public class Pickup // Kevin
     {
 
-        public delegate void PickupEvent(PickupEventArgs ev);
+        public delegate void PickupEvent(PickupEventArgs e);
         public static event PickupEvent OnPickup;
-        public virtual void _Pickup(PickupEventArgs ev)
+        public virtual void _Pickup(PickupEventArgs e)
         {
-            OnPickup?.Invoke(ev);
+            OnPickup?.Invoke(e);
         }
     }
 
