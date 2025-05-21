@@ -162,8 +162,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BoundingShape2D: {fileID: 0}
   m_Damping: 1.67
-  m_MaxWindowSize: -1
-  m_Padding: 0
+  m_MaxWindowSize: 0
+  m_Padding: 2
 --- !u!1 &677330140399713105
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4646307eaef12345a2eb8b54c84780b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player_Unlock_Dash: 0
+  Player_Unlock_DoubleJump: 0
+  Player_Unlock_RangedAttack: 0
   Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
 --- !u!114 &2720382252342250905
 MonoBehaviour:
