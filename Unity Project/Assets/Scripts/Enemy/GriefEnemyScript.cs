@@ -19,6 +19,7 @@ public class GriefEnemyScript : EnemyCore
         base.Start();
         Events.Enemy.Hurt += Attacked;
         Events.Enemy.Hurt -= base.Attacked;
+        EventHandler.Enemy._spawn();
     }
 
     // These set the starting values for the enemy
@@ -72,7 +73,7 @@ public class GriefEnemyScript : EnemyCore
                 catch (Exception e) { }
             });
 
-            Health -= Damage;
+            this.Health -= Damage;
         }
     }
 }

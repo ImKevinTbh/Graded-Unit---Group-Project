@@ -712,7 +712,7 @@ Transform:
   m_GameObject: {fileID: 201496110}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 67.49739, y: -7.2615604, z: -0.31929693}
+  m_LocalPosition: {x: 67.49739, y: -6.89, z: -0.31929693}
   m_LocalScale: {x: 3.5799894, y: 3.5799894, z: 3.5799894}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1516,7 +1516,7 @@ Transform:
   m_GameObject: {fileID: 414757399}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 193.7674, y: -23.221561, z: -0.31929693}
+  m_LocalPosition: {x: 195, y: -24.7, z: -0.31929693}
   m_LocalScale: {x: 3.5799894, y: 3.5799894, z: 3.5799894}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1724,7 +1724,7 @@ Transform:
   m_GameObject: {fileID: 443260773}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 69.4, y: -13.1, z: 0}
+  m_LocalPosition: {x: 70.1, y: -13.5, z: 0}
   m_LocalScale: {x: 3.3301651, y: 3.3301651, z: 3.3301651}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3299,7 +3299,7 @@ PolygonCollider2D:
       - {x: 5.8399997, y: 1.38}
       - {x: 4.91, y: 1.65}
       - {x: 3.5, y: 1.7199999}
-      - {x: 2.77, y: 1.7199999}
+      - {x: 2.8101768, y: 1.6468989}
       - {x: 2.76, y: 1.63}
       - {x: 1.89, y: 1.64}
       - {x: 1.49, y: 1.54}
@@ -5081,8 +5081,8 @@ Transform:
   m_GameObject: {fileID: 1733402438}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 159.1474, y: -25.28156, z: -0.31929693}
-  m_LocalScale: {x: 3.5799894, y: 3.5799894, z: 3.5799894}
+  m_LocalPosition: {x: 159.9, y: -26.2, z: -0.31929693}
+  m_LocalScale: {x: 3.2964542, y: 3.2964542, z: 3.2964542}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1536391123}
@@ -5948,9 +5948,25 @@ MonoBehaviour:
   Movement: 1
   color: {r: 0, g: 0, b: 0, a: 0}
   i: 0
-  dir: {x: 0, y: 0}
-  cooldown: 5
+  cooldown: 60
   EnemyBullet: {fileID: 3992247994866975454, guid: 84b33402802298c4ca7cbd3103c57891, type: 3}
+  Health: 15
+  Speed: 2
+  Damage: 2
+  DistanceFromPlayer: 0
+  DyingSFX: {fileID: 0}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 0
+  rb: {fileID: 2094021345}
+  SpottedPlayer: 0
+  Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
+  VisionDistance: 5
+  GroundDistance: 2
+  WidthScale: 1
+  Movement: 1
+  color: {r: 0, g: 0, b: 0, a: 0}
+  i: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

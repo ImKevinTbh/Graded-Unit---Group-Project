@@ -14,6 +14,8 @@ public class GriefBossScript : EnemyCore
 {
     // These variables are used to store the default values of the bosses health, speed and damage
     // Variables Updated By Lilith
+    private Animator Anim;
+
     public float cooldown;
 
     public GameObject EnemyBullet;
@@ -59,9 +61,11 @@ public class GriefBossScript : EnemyCore
     //Sets Health, Speed and damage, initialises certain methods for colour change, Damage Dealing and Player Tracking - Lilith
     public virtual void Start()
     {
-        Health = 30;
+        Anim = gameObject.GetComponent<Animator>();
 
-        Speed = 8f;
+        Health = 15;
+
+        Speed = 3f;
 
         Damage = 1;
 
@@ -90,7 +94,6 @@ public class GriefBossScript : EnemyCore
     {
         Anim.speed = 0.4f;
         Debug.Log(this.Health);
-        Movement();
         // This will spawn the bullet once a short cooldown ends
         timer += Time.deltaTime;
         if (timer > cooldown)
