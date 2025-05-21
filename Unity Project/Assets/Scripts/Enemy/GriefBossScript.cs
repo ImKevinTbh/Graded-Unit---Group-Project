@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+// We use the events system here - Lilith
 using EventArgs;
 using Events;
 using MEC;
@@ -11,29 +12,77 @@ using UnityEngine;
 /* All Code Beyond This Point Has Been Written By Charlotte, Unless Stated Otherwise */
 public class GriefBossScript : EnemyCore
 {
-    // These variables are used to store the default values of the bosses health, speed and damage.
-
-    public Vector2 dir;
-
-    private Animator Anim;
-
+    // These variables are used to store the default values of the bosses health, speed and damage
+    // Variables Updated By Lilith
     public float cooldown;
 
     public GameObject EnemyBullet;
-
+    
     private float timer;
 
+    private Vector2 dir;
+
+    public int Health;
+
+    public float Speed;
+
+    public int Damage;
+
+    public float DistanceFromPlayer;
+
+    public AudioClip DyingSFX;
+
+    public LayerMask Mask;
+
+    public Rigidbody2D rb;
+
+    public bool SpottedPlayer = false;
+
+    public GameObject Player;
+
+    public float VisionDistance = 5.0f;
+
+    public float GroundDistance = 2.0f;
+
+    public float WidthScale = 1.0f;
+
+    public bool Movement = true;
+
+    public Color color;
+
+    public int i = 0;
+
+    public RaycastHit2D PlayerCast;
+
+
     // These are the default values for the boss.
-    public void Start()
+    //Sets Health, Speed and damage, initialises certain methods for colour change, Damage Dealing and Player Tracking - Lilith
+    public virtual void Start()
     {
-        Anim = gameObject.GetComponent<Animator>();
+        Health = 30;
+
+        Speed = 8f;
+
+        Damage = 1;
+
+        DistanceFromPlayer = 0f;
+
+        Events.Enemy.Hurt += Attacked;
+
+        rb = GetComponent<Rigidbody2D>();
+
+        color = gameObject.GetComponent<SpriteRenderer>().color;
+
+        EventHandler.Enemy._spawn();
+
+        Player = PlayerController.Instance.gameObject;
+
         // DistanceFromPlayer is used to measure the distance between the enemy and the player
         DistanceFromPlayer = 0f;
         // Timer is used to manage how often the boss shoots a bullet at the player
         timer = 0;
-        base.Start();
-        Events.Enemy.Hurt += Attacked;
-        Events.Enemy.Hurt -= base.Attacked;
+        // Dir is used to make the boss face the player 
+        dir = new Vector2(0, 0);
     }
 
     // This method is used to control anything in the script that needs to be constantly checked, like the movement.
@@ -67,20 +116,7 @@ public class GriefBossScript : EnemyCore
         }
     }
 
-    public void Movement()
-    {
-        // DistanceFromPlayer is constantly checking for the current co-ordinates of the player
-        DistanceFromPlayer = (int)(PlayerController.Instance.transform.position - transform.position).magnitude;
-        // If the player is less than 35 units away from the player, the enemy will begin heading towards them.
-        if (DistanceFromPlayer <= 35)
-            // This tells the boss where to move
-            dir = (Vector2)(PlayerController.Instance.transform.position) - (Vector2)transform.position;
-        // This is intended to cap the bosses speed to a reasonable level.   
-        dir.Normalize();
-        // This actually makes the enemy move
-        gameObject.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force);
-    }
-
+    // Moved To This Script by Lilith// //This method manages the boss recieving damage from the players attacks. Kevin created this code and I borrowed it but I wrote the comments. - Allan
     public virtual void Attacked(HurtEventArgs e)
     {
 
@@ -97,7 +133,7 @@ public class GriefBossScript : EnemyCore
                 catch (Exception e) { }
             });
 
-            this.Health -= Damage;
+            Health -= Damage;
         }
     }
 }

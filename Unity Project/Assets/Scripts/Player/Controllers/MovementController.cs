@@ -1,6 +1,8 @@
 //- THIS CODE WAS WRITTEN BY KEVIN WATSON -//
 using System;
+using MEC;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.Windows;
 using Input = UnityEngine.Input;
 
@@ -26,7 +28,10 @@ public class MovementHandler : MonoBehaviour
 
     public AudioClip JumpSFX;
 
+    public bool CanToggleCheatMode = true;
     public bool OnGround = false;
+    //referencing animator to allow for correct animation transitions - Lilith
+    public Animator anim;
 
     // Parameter Setting, Public params are for external use, private params only get used within this script
     
@@ -47,6 +52,7 @@ public class MovementHandler : MonoBehaviour
 
     void Update()
     {
+        CheatMode = Settings.instance.CheatMode;
         float inputX = Mathf.Clamp((int)Input.GetAxis("Horizontal"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
         float inputY = Mathf.Clamp((int)Input.GetAxis("Vertical"), -1, 1); // Get input on the X axis, Round it to the nearest 1 and clamp the value so that it can never be anything other than 0,-1,1
         
@@ -69,10 +75,36 @@ public class MovementHandler : MonoBehaviour
             OnGround = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+
+            if (CanToggleCheatMode)
+            {
+                CanToggleCheatMode = false;
+                Settings.instance.CheatMode = !CheatMode;
+                Debug.LogWarning($"Cheatmode is: {CheatMode}");
+                Timing.CallDelayed(1f, () => { CanToggleCheatMode = true; });
+            }
+
+            
+        } // Toggle Cheatmode by inverting the variable
+        
         if (Input.GetKeyDown(KeyCode.Space)) { Jump(); } // Run my jump method if spacebar is pressed
+        
 
         Move(movement, CheatMode, NoInput); // Run movement method every update with passed parameters
 
+        if (inputX != (int)0)//checks for correct key inputs in order to play running animation
+        {
+            anim.SetBool("IsRunning", true);
+            //Debug.Log("Movement:" + gameObject.GetComponent<Rigidbody2D>().velocity.x);
+        }
+       
+        else
+        {
+            anim.SetBool("IsRunning", false);
+            //Debug.Log("we stop");
+        }
 
     }
 
@@ -83,6 +115,7 @@ public class MovementHandler : MonoBehaviour
         {
             _JumpsUsed = 0;
         }
+        Debug.Log("Can't Jump)");
 
         if (_JumpsUsed < MaxJumps)
         {
@@ -95,6 +128,15 @@ public class MovementHandler : MonoBehaviour
 
     public void Move(Vector2 movement, bool CheatMode, bool NoInput) 
     {
+
+        if (CheatMode)
+        {
+            rb.gravityScale = 0;
+            rb.velocity = new Vector2(movement.x, movement.y);
+            return;
+        }
+        
+        rb.gravityScale = 3;
         if (NoInput)
         {
             if (GroundCheck()) { rb.velocity = new Vector3(rb.velocity.x * 0.97f, rb.velocity.y, 0f); } // Slowly Reduce Velocity on the X axis while keeping Y axis the same} // Drag while on ground
@@ -103,13 +145,11 @@ public class MovementHandler : MonoBehaviour
 
         if (movement.x < 0) // Going left
         {
-            gameObject.transform.localScale = new Vector3(-1, 1, 1); // Set scale on the X axis to negative 1 to essentially flip the object 
-            gameObject.GetComponent<SpriteRenderer>().color = Color.blue; // Change colour of renderer to blue
+            gameObject.transform.localScale = new Vector3(-1, 1, 1); // Set scale on the X axis to negative to essentially flip the object 
         }
         else if (movement.x > 0) // Going right
         {
-            gameObject.transform.localScale = new Vector3(1, 1, 1); // Set scale on the X axis to 1 to unflip the object
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red; // Change colour of renderer to red
+            gameObject.transform.localScale = new Vector3(1, 1, 1); // Set scale on the X axis to positive to unflip the object
         }
 
 
@@ -134,7 +174,8 @@ public class MovementHandler : MonoBehaviour
 
     public bool GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one / 2, 0, Vector2.down, 1f, mask); // cast downwards by 1 meter 
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one / 2, 0, Vector2.down, 2f, mask); // cast downwards by 2 meters
+        Debug.DrawRay(gameObject.transform.position, Vector2.down, Color.red);
         if (hit.collider == null)
         {
             return false; // If the ray hits nothing, the player is not on the ground

@@ -88,6 +88,10 @@ public class GameHandler : MonoBehaviour // Kevin
                 PlayerController.Instance.gameObject.transform.position = MapController.Instance.InitialSpawnPoint; // Move the player to the initial spawnpoint
             }
 
+            if (PlayerController.Instance.Health < 3)
+            {
+                PlayerController.Instance.Health = 3;
+            }
 
         });
         

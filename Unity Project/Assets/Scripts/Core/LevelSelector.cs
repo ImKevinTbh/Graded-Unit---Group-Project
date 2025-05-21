@@ -40,6 +40,7 @@ public class LevelSelector : MonoBehaviour
     public void LoadAnger()
     {
         Debug.Log("Loading Anger...");
+        SceneManager.LoadScene("AngerScene");
     }
 
     // This method manages the functions for the button assigned to the 4th level, Bargaining.
