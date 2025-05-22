@@ -73,6 +73,8 @@ public class AchievementHandler : MonoBehaviour
         }
         else if (levelID == "Anger")
         {
+            Debug.Log("Achievement Anger, sprite: " + uiImage.sprite.name);
+
             uiImage.sprite = Anger;
             return;
         }

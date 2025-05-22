@@ -11,7 +11,8 @@ public class Achievement : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("WinScene");
+            Debug.Log("Collider: " + collider.gameObject.name);
+            EventHandler.Level._Acheivement();
         }
     }
 }

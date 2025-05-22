@@ -366,5 +366,6 @@ namespace Events
             AngerBossKilled?.Invoke();
 
         }
+
     }
 }
