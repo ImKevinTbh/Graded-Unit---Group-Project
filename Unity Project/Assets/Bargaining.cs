@@ -18,7 +18,7 @@ public class Bargaining : MonoBehaviour
     private Vector3 startLocation;
     private Vector3 endLocation;
 
-    public float speed = 0.01F;
+    public float speed = 1.0f;
     private float startTime;
     private float journeyLength;
 
@@ -42,7 +42,6 @@ public class Bargaining : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("enter value: " + enter.ToString() + " transform.possition.y: " + transform.position.y);
         if (enter)
         {
             float distCovered = (Time.time - startTime) * speed;
@@ -62,7 +61,6 @@ public class Bargaining : MonoBehaviour
 
     void bossEnter()
     {
-        Debug.Log("BossEnterance");
         gameObject.SetActive(true);
         enter = true;
         if (transform.position != startLocation)
@@ -77,7 +75,6 @@ public class Bargaining : MonoBehaviour
         {
             startTime = Time.time;
         }
-        Debug.Log("BossExit");
         enter = false;
     }
 
@@ -87,7 +84,6 @@ public class Bargaining : MonoBehaviour
         {
             startTime = Time.time;
         }
-        Debug.Log("BossExit");
         enter = false;
     }
 

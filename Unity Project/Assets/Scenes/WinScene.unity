@@ -545,7 +545,7 @@ PrefabInstance:
       objectReference: {fileID: 1410442514}
     - target: {fileID: 3019724074691443554, guid: 0ce40af0e062f754a85bd7401675e1dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadDenial
+      value: CreditsButton
       objectReference: {fileID: 0}
     - target: {fileID: 3019724074691443554, guid: 0ce40af0e062f754a85bd7401675e1dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

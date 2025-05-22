@@ -2,6 +2,7 @@ using EventArgs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MEC;
 
 // all code by Allan
 public class Buttons : MonoBehaviour
@@ -22,7 +23,7 @@ public class Buttons : MonoBehaviour
     {
         r = e.ButtonNumber;
         EventHandler.Level._BossLayoutChangeEvent(new BossLayoutChangeEventArgs(gameObject, r));
-        gameObject.SetActive(false);
+        Timing.CallDelayed(0.1f, () => gameObject.SetActive(false));
     }
 
     // when the layout is to be changed enable the buttons

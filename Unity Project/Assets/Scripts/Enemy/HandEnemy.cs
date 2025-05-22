@@ -12,7 +12,7 @@ public class HandEnemy : EnemyCore
     
     // inherits EnemyCore sript for most functionality
 
-    public float HoverHeight = 3f;   // Default height to hover above the ground
+    public float HoverHeight = 10f;   // Default height to hover above the ground
     public float BobAmplitude = 1f;  // the varience in hover height to give a bob
     public float BobFrequency = 1f;  // bobbing speed
 
@@ -23,12 +23,21 @@ public class HandEnemy : EnemyCore
     {
         base.Start();
         rb.gravityScale = 0;
-
-        RaycastHit2D ground = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 25, Mask);
-        baseY = ground.collider.transform.position.y + HoverHeight;
+        //baseY = transform.position.y;
         GroundDistance += HoverHeight;
     }
 
+    public override void Update()
+    {
+        base.Update();
+        RaycastHit2D ground = Physics2D.Raycast(gameObject.transform.position, Vector2.down, Mask);
+        baseY = ground.collider.transform.position.y + HoverHeight;
+    }
+
+    public override void SpotPlayer()
+    {
+        rb.AddForce(PlayerCast.transform.position - transform.position);
+    }
 
     // uses a sine wave to move up and down around a fixed y possition
     void FixedUpdate()

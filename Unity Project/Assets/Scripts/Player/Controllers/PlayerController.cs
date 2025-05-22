@@ -25,27 +25,23 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-
-    }
 
     public void PlayerHurt(HurtEventArgs ev)
     {
         if (Settings.instance.CheatMode)
         {
             return;}
-        
-        Health -= ev.Damage;
-        Color color = gameObject.GetComponent<SpriteRenderer>().color;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        if (gameObject.GetComponent<SpriteRenderer>().color != Color.red)
+        {
+            Health -= ev.Damage;
+            Color color = gameObject.GetComponent<SpriteRenderer>().color;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
 
 
-
-        Timing.CallDelayed(0.25f, () => gameObject.GetComponent<SpriteRenderer>().color = Color.white);
-        Debug.Log($"Object: {ev.Target.name} took ({ev.Damage}) damage from source: {ev.Source.name}");
-        
+            Timing.CallDelayed(0.25f, () => gameObject.GetComponent<SpriteRenderer>().color = Color.white);
+            Debug.Log($"Object: {ev.Target.name} took ({ev.Damage}) damage from source: {ev.Source.name}");
+        }
         
         
         if (Health <= 0)
