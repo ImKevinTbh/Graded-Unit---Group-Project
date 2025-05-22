@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2025-01-27" view-index="0" gantt-divider-location="324" resource-divider-location="300" version="3.3.3312" locale="en_GB">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Name" width="184" order="0"/>
+        <field id="tpd4" name="Begin date" width="69" order="1"/>
+        <field id="tpd5" name="End date" width="70" order="2"/>
+        <field id="tpd15" name="Notes" width="20" order="3"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="210" order="0"/>
+        <field id="1" name="Default role" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars base-id="none">
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="true"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+        <date year="2025" month="4" date="7" type="HOLIDAY" color="#808080"/>
+        <date year="2025" month="4" date="8" type="HOLIDAY"/>
+        <date year="2025" month="4" date="9" type="HOLIDAY"/>
+        <date year="2025" month="4" date="10" type="HOLIDAY"/>
+        <date year="2025" month="4" date="11" type="HOLIDAY"/>
+        <date year="2025" month="4" date="12" type="HOLIDAY"/>
+        <date year="2025" month="4" date="13" type="HOLIDAY"/>
+        <date year="2025" month="4" date="14" type="HOLIDAY"/>
+        <date year="2025" month="4" date="15" type="HOLIDAY"/>
+        <date year="2025" month="4" date="16" type="HOLIDAY"/>
+        <date year="2025" month="4" date="17" type="HOLIDAY"/>
+        <date year="2025" month="4" date="18" type="HOLIDAY"/>
+        <date year="2025" month="4" date="19" type="HOLIDAY"/>
+        <date year="2025" month="4" date="20" type="HOLIDAY"/>
+        <date year="2025" month="4" date="21" type="HOLIDAY"/>
+        <date year="2025" month="5" date="5" type="HOLIDAY"/>
+        <date year="2025" month="5" date="23" type="HOLIDAY"/>
+        <date year="2025" month="5" date="24" type="HOLIDAY"/>
+        <date year="2025" month="5" date="25" type="HOLIDAY"/>
+        <date year="2025" month="5" date="26" type="HOLIDAY"/>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" uid="36071fc7a45543a4949e426c509cdeb9" name="Planning Phase" meeting="false" start="2025-01-27" duration="56" complete="0" expand="true">
+            <task id="3" uid="3b9e928c6799465e9964156dfa9e3c23" name="Proposal Writeup" meeting="false" start="2025-01-27" duration="21" complete="0" expand="true"/>
+            <task id="21" uid="186ed04271f747178139dda2678120bf" name="Team Organisation And Role Assignment" meeting="false" start="2025-02-17" duration="9" complete="0" expand="true"/>
+            <task id="4" uid="e8f83efd72f24156ac3d4c0d95cde628" name="Pre Production Report" meeting="false" start="2025-02-26" duration="8" complete="0" expand="true"/>
+            <task id="5" uid="1fd28a52930747aa907d0a0b115c0d64" name="Game Design Document" meeting="false" start="2025-03-07" duration="7" complete="0" expand="true">
+                <depend id="8" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="8" uid="2adf90f68f14420bac616d31908e6665" name="Concepts" meeting="false" start="2025-03-14" duration="10" complete="0" expand="true">
+                <task id="9" uid="e03572b5e1d34e1f9d3ba0e5f5c29ecb" name="Concept Art" meeting="false" start="2025-03-14" duration="10" complete="0" expand="true"/>
+                <task id="10" uid="855c5b942f9b481bb34391c678b56de6" name="Prototyping / Inspiration Gathering" meeting="false" start="2025-03-14" duration="10" complete="0" expand="true"/>
+            </task>
+        </task>
+        <task id="2" uid="51be4d8b545f4130b8f9b13fad24d5aa" name="Development Phase" meeting="false" start="2025-03-24" duration="21" complete="0" expand="true">
+            <task id="11" uid="8f12c22f42e548cb98fdbfcc17a42d27" name="Base Systems" meeting="false" start="2025-03-24" duration="21" complete="0" expand="true">
+                <task id="12" uid="29a30577375b4b859006e21da1be24c7" name="Player Movement" meeting="false" start="2025-03-24" duration="7" complete="0" expand="true">
+                    <depend id="13" type="2" difference="0" hardness="Strong"/>
+                    <depend id="15" type="2" difference="0" hardness="Strong"/>
+                    <depend id="19" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="14" uid="706c17157bfa4bdca47e5806090fb45a" name="Player Ability Base" meeting="false" start="2025-03-24" duration="7" complete="0" expand="true"/>
+                <task id="13" uid="b385993e57d04876bcc4a0854acb6241" name="Player Attacking" meeting="false" start="2025-03-31" duration="6" complete="2" expand="true">
+                    <depend id="19" type="2" difference="0" hardness="Strong"/>
+                    <depend id="20" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="16" uid="d10870ee9ce64cc69fa99c7e3d523587" name="Enemy Object" meeting="false" start="2025-03-31" duration="14" complete="0" expand="true">
+                    <task id="15" uid="1b935b080f7b4a889e584aad5fee5a36" name="Enemy Movement" meeting="false" start="2025-03-31" duration="8" complete="1" expand="true"/>
+                    <task id="18" uid="bcf141fccab84c8db96a9f59f3bc85bd" name="Enemy Attacking" meeting="false" start="2025-03-31" duration="6" complete="0" expand="true"/>
+                    <task id="19" uid="bcbfc54eaa5b492bb6852ad08c2d8c3f" name="Enemy Count Scaling" meeting="false" start="2025-04-06" duration="8" complete="0" expand="true"/>
+                    <task id="20" uid="f9d4c1155e374839aa66f82c46692342" name="Enemy Item Drops" meeting="false" start="2025-04-06" duration="8" complete="0" expand="true"/>
+                </task>
+            </task>
+        </task>
+        <task id="7" uid="e3dfe3340c3e4fec9154d7c3b4226e5e" name="Evaluation Phase" meeting="false" start="2025-05-17" duration="18" complete="0" expand="true"/>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>

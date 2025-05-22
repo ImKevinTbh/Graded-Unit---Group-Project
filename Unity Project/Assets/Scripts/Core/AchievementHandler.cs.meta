@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 021da1f54abb74546b8209ce6c94c6c6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Default: {instanceID: 0}
+  - Limbo: {instanceID: 0}
+  - Grief: {instanceID: 0}
+  - Denial: {instanceID: 0}
+  - Anger: {fileID: 21300000, guid: 29fb2fe014559e14f94985a83c43fdb6, type: 3}
+  - Bargaining: {instanceID: 0}
+  - Depression: {instanceID: 0}
+  - Acceptance: {instanceID: 0}
+  - uiImage: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
