@@ -313,7 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player_Unlock_Dash: 0
   Player_Unlock_DoubleJump: 0
-  Player_Unlock_RangedAttack: 0
+  Player_Unlock_RangedAttack: 1
   Player: {fileID: 6252064899377095316, guid: a33eadc158a8ef848a5f244c596769fc, type: 3}
 --- !u!114 &2720382252342250905
 MonoBehaviour:

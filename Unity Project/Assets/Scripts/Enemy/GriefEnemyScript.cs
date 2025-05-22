@@ -18,8 +18,14 @@ public class GriefEnemyScript : EnemyCore
         Anim = gameObject.GetComponent<Animator>();
         base.Start();
         Events.Enemy.Hurt += Attacked;
-        Events.Enemy.Hurt -= base.Attacked;
         EventHandler.Enemy._spawn();
+    }
+
+
+
+    public void OnDestroy()
+    {
+        Events.Enemy.Hurt -= Attacked;
     }
 
     // These set the starting values for the enemy
@@ -58,7 +64,9 @@ public class GriefEnemyScript : EnemyCore
         gameObject.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force);
     }
 
-    public virtual void Attacked(HurtEventArgs e)
+
+
+    public override void Attacked(HurtEventArgs e)
     {
 
         if (e.Target.GetInstanceID() == gameObject.GetInstanceID())
