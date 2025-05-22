@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>9.0</LangVersion>
@@ -43,90 +43,6 @@
   <ItemGroup>
     <Analyzer Include="/home/orionportable/Unity/Hub/Editor/2022.3.36f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll" />
     <Analyzer Include="/home/orionportable/Unity/Hub/Editor/2022.3.36f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Scripts\Enemy\GriefBossScript.cs" />
-    <Compile Include="Assets\ImpController.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\EventHandler.cs" />
-    <Compile Include="Assets\Scripts\Respawn.cs" />
-    <Compile Include="Assets\Scripts\Player\Objects\BulletScriptDenialBoss.cs" />
-    <Compile Include="Assets\DialogueBox.cs" />
-    <Compile Include="Assets\Bargaining.cs" />
-    <Compile Include="Assets\Scripts\Enemy\ImpEnemy.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\DoorColliderTrigger.cs" />
-    <Compile Include="Assets\Scripts\Core\Button.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EyeEnemy.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\Events.cs" />
-    <Compile Include="Assets\GodMode.cs" />
-    <Compile Include="Assets\Scripts\Player\Handlers\HealthHandler.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\HazardController.cs" />
-    <Compile Include="Assets\Scripts\Core\LevelSelector.cs" />
-    <Compile Include="Assets\Scripts\Core\HealthController.cs" />
-    <Compile Include="Assets\DenialBoss.cs" />
-    <Compile Include="Assets\Scripts\Core\Layout.cs" />
-    <Compile Include="Assets\Scripts\Core\PersistenceController.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\PickupHandler.cs" />
-    <Compile Include="Assets\DenialBossEnter.cs" />
-    <Compile Include="Assets\Scripts\Enemy\GriefEnemyScript.cs" />
-    <Compile Include="Assets\Scripts\Core\AchievementHandler.cs" />
-    <Compile Include="Assets\Scripts\Core\Settings.cs" />
-    <Compile Include="Assets\Scripts\Player\Objects\BulletScript.cs" />
-    <Compile Include="Assets\DenialController.cs" />
-    <Compile Include="Assets\EndBounds.cs" />
-    <Compile Include="Assets\Scripts\Core\Init.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\CameraController.cs" />
-    <Compile Include="Assets\DoorExitTrigger.cs" />
-    <Compile Include="Assets\Scripts\Core\UiController.cs" />
-    <Compile Include="Assets\DenierScript.cs" />
-    <Compile Include="Assets\Scripts\Core\BossBounds.cs" />
-    <Compile Include="Assets\Scripts\Core\MapController.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyBulletScript.cs" />
-    <Compile Include="Assets\Object components\PickupObject.cs" />
-    <Compile Include="Assets\Scripts\Core\LevelBounds.cs" />
-    <Compile Include="Assets\NextLevel.cs" />
-    <Compile Include="Assets\SpectralSwordController.cs" />
-    <Compile Include="Assets\Scripts\Player\Handlers\StateHandler.cs" />
-    <Compile Include="Assets\Scripts\Enemy\SkeletonEnemy.cs" />
-    <Compile Include="Assets\BossSwordController.cs" />
-    <Compile Include="Assets\Scripts\Core\EnergyController.cs" />
-    <Compile Include="Assets\Scripts\Core\ButtonHandler.cs" />
-    <Compile Include="Assets\Scripts\Core\GameHandler.cs" />
-    <Compile Include="Assets\Next Level 3-4.cs" />
-    <Compile Include="Assets\EnemyInstance.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyCore.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\Elevator.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\Buttons.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\AttackController.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\DoorOpenScript.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\ScoreHandler.cs" />
-    <Compile Include="Assets\Scripts\Enemy\HandEnemy.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\MovementHandler.cs" />
-    <Compile Include="Assets\Scripts\WinLoseCon.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\AngerBoss\Boss_Anger.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/Enemy/GriefBossScript.cs" />
@@ -175,6 +91,7 @@
     <Compile Include="Assets/Scripts/Core/EnergyController.cs" />
     <Compile Include="Assets/Scripts/Core/ButtonHandler.cs" />
     <Compile Include="Assets/Scripts/Core/GameHandler.cs" />
+    <Compile Include="Assets/Next Level 3-4.cs" />
     <Compile Include="Assets/EnemyInstance.cs" />
     <Compile Include="Assets/Achievement.cs" />
     <Compile Include="Assets/Scripts/Enemy/EnemyCore.cs" />
