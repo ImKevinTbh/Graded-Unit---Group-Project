@@ -355,4 +355,16 @@ namespace Events
             DenialBossKilled?.Invoke();
         }
     }
+
+    //Lilith
+    public class Anger
+    {
+        public delegate void AngerBossKillEvent();
+        public static event AngerBossKillEvent AngerBossKilled;
+        public virtual void _AngerBossKilled()
+        {
+            AngerBossKilled?.Invoke();
+
+        }
+    }
 }
