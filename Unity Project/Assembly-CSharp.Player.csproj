@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\Player\Controllers\MovementHandler.cs" />
     <Compile Include="Assets\Scripts\WinLoseCon.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\DenialPortal.cs" />
     <Compile Include="Assets\Scripts\AngerBoss\Boss_Anger.cs" />
   </ItemGroup>
   <ItemGroup>

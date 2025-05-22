@@ -15,7 +15,7 @@ public class Achievement : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            Debug.Log("COllider: " + collider.gameObject.name);
+            Debug.Log("Collider: " + collider.gameObject.name);
             EventHandler.Level._Acheivement();
         }
     }
