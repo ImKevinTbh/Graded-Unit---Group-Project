@@ -17,7 +17,7 @@ public class GriefBossScript : MonoBehaviour
     public float cooldown;
 
     public GameObject EnemyBullet;
-    
+
     private float timer;
 
     private Vector2 dir;
@@ -59,9 +59,9 @@ public class GriefBossScript : MonoBehaviour
     //Sets Health, Speed and damage, initialises certain methods for colour change, Damage Dealing and Player Tracking - Lilith
     public virtual void Start()
     {
-        Health = 30;
+        Health = 15;
 
-        Speed = 8f;
+        Speed = 2f;
 
         Damage = 1;
 
@@ -89,19 +89,19 @@ public class GriefBossScript : MonoBehaviour
     private void Update()
     {
         // DistanceFromPlayer is constantly checking for the current co-ordinates of the player
-        DistanceFromPlayer = (int)(PlayerController.Instance.gameObject.transform.position - transform.position).magnitude;
+        // DistanceFromPlayer = (int)(PlayerController.Instance.gameObject.transform.position - transform.position).magnitude;
         // If the player is less than 35 units away from the player, the enemy will begin heading towards them.
         if (DistanceFromPlayer <= 35)
-        // This tells the boss where to move
+            // This tells the boss where to move
             dir = (Vector2)(PlayerController.Instance.gameObject.transform.position) - (Vector2)transform.position;
         // This is intended to cap the bosses speed to a reasonable level.   
-            dir.Normalize();
+        dir.Normalize();
         // This actually makes the enemy move
         gameObject.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force);
 
         // When the bosses health reaches 0, it will die.
         // The destroy function allows it to die.
-        if (Health <= 0f)
+        if (this.Health <= 0f)
         {
             GameObject.Destroy(this.gameObject);
         }
@@ -121,6 +121,7 @@ public class GriefBossScript : MonoBehaviour
     // I use tags for this, assigning the Player a unique tag to make interactions with other things easier
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(this.Health);
         if (collision.gameObject.CompareTag("Player"))
         {
             // When the player touches the boss, they will take damage.
