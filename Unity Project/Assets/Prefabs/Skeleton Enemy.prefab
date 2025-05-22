@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4981373642510113077}
   - component: {fileID: 8787058818831818102}
   - component: {fileID: 5919722330085272024}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -161,6 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8277c855f76d8de438e0d4c3c5a49f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
+  Speed: 0
+  Damage: 0
   DistanceFromPlayer: 0
   DyingSFX: {fileID: 0}
   Direction: {x: -1, y: 0}
@@ -174,3 +177,5 @@ MonoBehaviour:
   GroundDistance: 2.15
   WidthScale: 1
   Movement: 1
+  color: {r: 0, g: 0, b: 0, a: 0}
+  i: 0

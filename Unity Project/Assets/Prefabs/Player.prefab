@@ -94,6 +94,7 @@ MonoBehaviour:
   anim: {fileID: 8139652290114253636}
   inputX: 0
   inputY: 0
+  direction: 0
 --- !u!114 &302957464035576626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,10 +114,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   anim: {fileID: 8139652290114253636}
-  DetectedEnemy: 0
-  Enemy: {fileID: 0}
-  VisionDistance: 10
-  WidthScale: 1
+  SwingDistance: 4.5
   Direction: {x: -1, y: 0}
 --- !u!114 &3788466099473842122
 MonoBehaviour:
@@ -242,7 +240,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.71583366, y: -0.07986593}
+  m_Offset: {x: 0.76703644, y: -0.23043084}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -253,7 +251,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.42, y: 2.29}
+  m_Size: {x: 1.4397736, y: 1.7999625}
   m_EdgeRadius: 0
 --- !u!95 &8139652290114253636
 Animator:
