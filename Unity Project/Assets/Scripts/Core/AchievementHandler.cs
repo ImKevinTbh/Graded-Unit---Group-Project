@@ -6,8 +6,10 @@ using Events;
 using EventArgs;
 using UnityEngine.SceneManagement;
 using MEC;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
 
-// All code done by Allan - Fixed by Kevin
+// All code done by Allan 
 public class AchievementHandler : MonoBehaviour
 {
 
@@ -20,96 +22,110 @@ public class AchievementHandler : MonoBehaviour
     public Sprite Depression;
     public Sprite Acceptance;
     private Sprite sprite;
-    private float heightMax = -337.7621f;
-    private float heightMin = -494.5f;
+    [SerializeField] public Image uiImage;
+    public int test;
+    private float heightMax;
+    private float heightMin;
     private bool hitTop = false;
     private bool moveDown = false;
-    private Color clear = Color.clear;
-    private Color white = Color.white;
-    public string levelID = MapController.Instance.LevelID;
+
+    public string levelID;
+
+    
+
     // subscribes to acheivement event sets default variables
     void Start()
     {
         Events.Level.OnAcheivement += Acheivement;
-
+        heightMax = transform.localPosition.y;
+        heightMin = heightMax - 160;
         DontDestroyOnLoad(gameObject);
-        sprite = GetComponent<SpriteRenderer>().sprite;
-        gameObject.GetComponent<SpriteRenderer>().color = clear;
+        transform.localPosition = new Vector2(transform.localPosition.x, heightMin);
+        levelID = MapController.Instance.LevelID;
+        gameObject.SetActive(false);
     }
 
-    //          EventHandler.Level._Acheivement(new AcheivementArgs(SceneManager.GetActiveScene()));
+    //          EventHandler.Level._Acheivement();
     //          To ping event
 
     // checks each level and sets its sprite depending
     // also slowly moves up into frame from the bottom right, holds for 5 seconds, then slowly moves back down out of frame
     void Acheivement()
     {
-        if (gameObject.transform.position.y < heightMax && !hitTop)
-        {
-            gameObject.transform.position += Vector3.up * 2.8f;
-        }
-        else if (gameObject.transform.position.y >= heightMax && !hitTop)
-        {
-            hitTop = true;
-            Timing.CallDelayed(5.0f, () => moveDown = true);
-        }
-        else if (moveDown && gameObject.transform.position.y > heightMin)
-        {
-            gameObject.transform.position -= Vector3.up * 10;
-        }
-        else if (gameObject.transform.position.y <= heightMin)
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = clear;
-            moveDown = false;
-            hitTop = false;
-        }
+        gameObject.SetActive(true);
+        
 
         if (levelID == "Limbo")
         {
-            sprite = Limbo;
-            gameObject.GetComponent<SpriteRenderer>().color = white;
+            uiImage.sprite = Limbo;
+            Debug.Log("Achievement Triggered Limbo");
+            return;
         }
         else if (levelID == "Grief")
         {
-            sprite = Grief;
-            gameObject.GetComponent<SpriteRenderer>().color = white;
-
+            uiImage.sprite = Grief;
+            return;
         }
         else if (levelID == "Denial")
         {
-            sprite = Denial;
-            gameObject.GetComponent<SpriteRenderer>().color = white;
-
+            uiImage.sprite = Denial;
+            return;
         }
         else if (levelID == "Anger")
         {
-            sprite = Anger;
-            gameObject.GetComponent<SpriteRenderer>().color = white;
-
+            uiImage.sprite = Anger;
+            return;
         }
         else if (levelID == "Bargaining")
         {
-            sprite = Bargaining;
-            gameObject.GetComponent<SpriteRenderer>().color = white;
-
+            uiImage.sprite = Bargaining;
+            Debug.Log("Achievement Bargaining, sprite: " + uiImage.sprite.name);
+            return;
         }
         else if (levelID == "Depression")
         {
-            sprite = Depression;
-            gameObject.GetComponent<SpriteRenderer>().color = white;
-
+            uiImage.sprite = Depression;
+            return;
         }
         else if (levelID == "Acceptance")
         {
-            sprite = Acceptance;
-            gameObject.GetComponent<SpriteRenderer>().color = white;
+            uiImage.sprite = Acceptance;
+            return;
+        }
+        //else
+        //{
+        //    sprite = Default;
+
+        //}
+    }
+
+    private void Update()
+    {
+        if (gameObject.transform.localPosition.y < heightMax && !hitTop)
+        {
+            gameObject.transform.localPosition += Vector3.up * 1.5f;
+            Debug.Log("Achievement Moving UP");
 
         }
-        else
+        else if (gameObject.transform.localPosition.y >= heightMax && !hitTop)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = clear;
-            sprite = Default;
+            hitTop = true;
+            Timing.CallDelayed(5.0f, () => moveDown = true);
+            Debug.Log("Current Height: " + gameObject.transform.localPosition.y + " Max Height: " + heightMax);
 
+        }
+        else if (moveDown && gameObject.transform.localPosition.y > heightMin)
+        {
+            gameObject.transform.localPosition -= Vector3.up * 2f;
+            Debug.Log("Achievement Moving down");
+
+        }
+        else if (gameObject.transform.localPosition.y <= heightMin)
+        {
+            moveDown = false;
+            hitTop = false;
+            Debug.Log("Achievement stopping at the bottom");
+            gameObject.SetActive(false);
         }
     }
 }

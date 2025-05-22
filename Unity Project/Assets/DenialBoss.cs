@@ -34,6 +34,7 @@ public class DenialBoss : MonoBehaviour
         instance = this;
         gameObject.transform.position = IdlePos; // Set the enemy to its idle position, off the map
         origin = IdlePos; // Set the current stored location 
+        Events.Enemy.Hurt += Attacked;
     }
 
 
@@ -68,10 +69,11 @@ public class DenialBoss : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter2D(Collider2D other) // When something enters the trigger collider
+    public void Attacked(HurtEventArgs ev) // When something enters the trigger collider
     {
-        if (other.gameObject.CompareTag("Bullet")) // If the other object is a bullet
+        if (ev.Target != gameObject)
         {
+            return;}
             if (Vulnerable) // If this is marked as vulnerable
             {
                 Hurt(); // Trigger hurt method
@@ -80,8 +82,6 @@ public class DenialBoss : MonoBehaviour
             {
                 Hit = true; // Set hit var to true
             }
-
-        }
     }
 
     public IEnumerator<float> FinalFight() // Coroutine
