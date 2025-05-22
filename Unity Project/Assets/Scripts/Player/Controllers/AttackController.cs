@@ -49,6 +49,7 @@ public class AttackController : MonoBehaviour
                 try { Debug.Log("Collider collided with melee: " + enemy.name); } catch { Debug.Log("Collider collided with melee: NULL"); }
 
                 EventHandler.Enemy._Hurt(new HurtEventArgs(gameObject, enemy.gameObject, 1));
+                hit = null;
             }
         }
     }
