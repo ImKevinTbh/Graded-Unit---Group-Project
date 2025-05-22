@@ -10,6 +10,7 @@ public class DenialPortal : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene("DenialScene");
+            GameHandler.instance.Player_Unlock_RangedAttack = true; // Done by kevin because charlotte cant do her work properly
             PlayerController.Instance.Health = 3;
         }
         

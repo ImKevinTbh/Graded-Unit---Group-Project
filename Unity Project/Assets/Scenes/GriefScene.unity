@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 25752877}
   - component: {fileID: 25752876}
   - component: {fileID: 25752875}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GriefEnemy (17)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2131,7 +2131,7 @@ GameObject:
   - component: {fileID: 1144210320}
   - component: {fileID: 1144210319}
   - component: {fileID: 1144210318}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GriefEnemy (13)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2751,7 +2751,7 @@ GameObject:
   - component: {fileID: 1280318914}
   - component: {fileID: 1280318913}
   - component: {fileID: 1280318916}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GriefEnemy (12)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3163,7 +3163,7 @@ GameObject:
   - component: {fileID: 1494421002}
   - component: {fileID: 1494421001}
   - component: {fileID: 1494421000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GriefEnemy (14)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4685,7 +4685,7 @@ GameObject:
   - component: {fileID: 2029288731}
   - component: {fileID: 2029288730}
   - component: {fileID: 2029288729}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GriefEnemy (16)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
