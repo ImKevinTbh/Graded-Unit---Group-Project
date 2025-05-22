@@ -106,6 +106,7 @@
     <Compile Include="Assets\Scripts\Core\EnergyController.cs" />
     <Compile Include="Assets\Scripts\Core\ButtonHandler.cs" />
     <Compile Include="Assets\Scripts\Core\GameHandler.cs" />
+    <Compile Include="Assets\Next Level 3-4.cs" />
     <Compile Include="Assets\EnemyInstance.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyCore.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Elevator.cs" />
