@@ -55,6 +55,7 @@ public class Layout : MonoBehaviour
         if (iterations <= 0 && EnemyCount == 0)
         {
             EventHandler.Level._BossArenaExit();
+            Timing.CallDelayed(1.0f, () => EventHandler.Level._Acheivement());
             Destroy(gameObject);
             return;
         }

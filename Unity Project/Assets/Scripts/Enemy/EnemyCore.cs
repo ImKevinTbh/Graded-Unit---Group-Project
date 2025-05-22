@@ -73,9 +73,12 @@ public class EnemyCore : MonoBehaviour
         Player = PlayerController.Instance.gameObject;
 
         gameObject.layer = LayerMask.GetMask("Enemy");
-    }
 
-    public virtual void Update()
+        VisionDistance = 15.0f;
+
+}
+
+public virtual void Update()
     {
         // when health is at or below zero, destroys the boject this script is attached to
         if (Health <= 0.0f) { GameObject.Destroy(this.gameObject); }
@@ -139,7 +142,7 @@ public class EnemyCore : MonoBehaviour
     // when the player collides send a hurt event
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider == Player)
+        if (collision.gameObject.CompareTag("Player"))
         {
             EventHandler.Player._Hurt(new HurtEventArgs(this.gameObject, collision.gameObject, Damage));
             Debug.Log("Player Hurt Event Triggered from" + gameObject.name);

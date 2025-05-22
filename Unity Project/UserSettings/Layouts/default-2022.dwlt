@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_SerializedViewValues:
   - C:\Users\Kevin\Desktop\Repos\Unity Project Personal\Library\PlayModeViewStates\ce978cadf0b615d47ac25073e7358219
   m_PlayModeViewName: GameView
-  m_ShowGizmos: 1
+  m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
   m_TargetSize: {x: 962, y: 541}
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_EnterPlayModeBehavior: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 01000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
@@ -1294,7 +1294,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 266
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

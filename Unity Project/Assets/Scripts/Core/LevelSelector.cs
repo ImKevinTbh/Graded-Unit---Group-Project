@@ -64,4 +64,9 @@ public class LevelSelector : MonoBehaviour
     {
         Debug.Log("Loading Acceptance...");
     }
+
+    public void CreditsButton()
+    {
+        SceneManager.LoadScene("CreditsMenu");
+    }
 }
